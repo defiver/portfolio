@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# testing
+/coverage
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+*.local
+
+# production
+/dist
+/dist-ssr
+
+# misc
+.DS_Store
+.env
+.env.development
+.env.test
+.env.production
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

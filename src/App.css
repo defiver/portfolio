@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-color: #1d1d1d #141414;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.layout {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #141414;
+  color: #d0d2d4 !important;
+  overflow: hidden;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+}
+
+a {
+  color: #2a94ff !important;
+}
+
+.journal {
+  min-width: 52%;
+  max-width: 52%;
+}
+
+.journal .ant-card-extra {
+  width: 100%;
+}
+
+.widgets {
+  min-width: 30%;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes .ant-drawer-header {
+  display: none;
+}
+
+.notes .ant-drawer-body {
+  padding: 10px;
+}
+
+.ant-card-head {
+  height: 40px;
+}
+
+.tokens-list .ant-card-body,
+.journal-card .ant-card-body,
+.note-list .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.card-item {
+  margin-bottom: 8px;
+}
+
+.edit-form {
+  margin: 0 0 16px 0;
+}
+
+.soon {
+  color: #d84a1b;
+}
+
+.blur {
+  opacity: 0.5;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #d84a1b;
+}
+
+.ant-col-grid {
+  display: grid;
+}
+
+.ant-collapse-extra {
+  min-width: 70px;
+  text-align: right;
+}
+
+.ant-typography {
+  white-space: pre-wrap;
+}
+
+.ant-typography-ellipsis {
+  white-space: nowrap;
+}
+
+.ant-typography-single-line {
+  margin-bottom: 0 !important;
+}
+
+.ant-segmented {
+  border: 1px solid #424242;
+  text-transform: capitalize;
+}
+
+.ant-form-horizontal .ant-form-item {
+  margin-bottom: 4px;
+}
+
+.ant-form-item {
+  width: 100% !important;
+}
+
+.ant-collapse-item:not(:last-child) {
+  border-bottom: none !important;
+}
+
+.ant-collapse-content {
+  border-top: none !important;
+}
+
+.ant-card {
+  width: 100%;
+}
+
+.ant-input-number,
+.ant-input {
+  width: 100% !important;
+}
+
+.close-notification {
+  color: rgba(255, 255, 255, 0.45);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 22px;
+  justify-content: center;
+  text-transform: none;
+  text-rendering: auto;
+  border-radius: 4px;
+}
+
+.close-notification:hover {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+}
