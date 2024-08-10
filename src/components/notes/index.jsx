@@ -10,7 +10,10 @@ export default function Notes({ db }) {
 
   return (
     <>
-      <FloatButton onClick={() => setSwowNotes(true)} style={{ insetInlineStart: 24 }} />
+      <FloatButton
+        onClick={() => setSwowNotes(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 120 }}
+      />
 
       <Drawer
         title={false}
