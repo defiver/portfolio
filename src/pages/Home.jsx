@@ -2,6 +2,8 @@ import { RecoilRoot } from "recoil";
 import Journal from "@/components/journal/";
 import Notes from "@/components/notes";
 import Tokens from "@/components/tokens";
+import Help from "@/components/help";
+import Settings from "@/components/settings";
 import Dexie from 'dexie';
 
 
@@ -13,11 +15,15 @@ db.version(1).stores({
 });
 
 export default function Home() {
-  document.title = "Portfolio";
+  document.title = "Portfolio | v0.0.2";
 
   return (
     <div className="container">
       <Notes db={db} />
+
+      <Help />
+
+      <Settings db={db} />
 
       <div className="journal">
         <RecoilRoot>

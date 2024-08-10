@@ -4,18 +4,11 @@ import { useDB } from "@/hooks/useDB";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { idState, allTagsState, allChainsState } from "./store";
-import Dexie from 'dexie';
 import SubmitButton from "@/components/SubmitButton";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import dayjs from "dayjs";
 
-const db = new Dexie("porfolio");
-db.version(1).stores({
-  tokens: "&token, amount",
-  journal: "++id, daterange, text, tokens, income, tags, transaction, status, chain, link"
-});
-
-export default function EditForm({ position = { id: 0, status: "active" } }) {
+export default function EditForm({ db, position = { id: 0, status: "active" } }) {
   const [form] = Form.useForm();
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
   const [, setId] = useRecoilState(idState);

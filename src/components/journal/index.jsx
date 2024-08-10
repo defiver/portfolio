@@ -8,7 +8,7 @@ import EditForm from './EditForm';
 import PositionList from './PositionList';
 
 export default function Journal({ db }) {
-  const journal = useLiveQuery(() => db.journal.toArray(), [], [])
+  const journal = useLiveQuery(() => db.journal.reverse().toArray(), [], [])
   const [, setJournal] = useRecoilState(journalState);
   const id = useRecoilValue(idState);
 
@@ -23,7 +23,7 @@ export default function Journal({ db }) {
       title={false}
       extra={<Header />}
     >
-      {id === 0 && <EditForm />}
+      {id === 0 && <EditForm db={db} />}
 
       <PositionList db={db} />
     </Card>

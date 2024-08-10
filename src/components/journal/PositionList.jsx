@@ -16,7 +16,7 @@ export default function PositionList({ db }) {
 
   return filteredJournal.map((o) => (
     o.id === id
-      ? <EditForm key={o.id} position={o} />
+      ? <EditForm key={o.id} position={o} db={db} />
       : <Collapse
         className={"card-item"}
         size={"small"}
