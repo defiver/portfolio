@@ -44,10 +44,12 @@ a {
   gap: 10px;
 }
 
+.merkl .ant-drawer-header,
 .notes .ant-drawer-header {
   display: none;
 }
 
+.merkl .ant-drawer-body,
 .notes .ant-drawer-body {
   padding: 10px;
 }
@@ -56,6 +58,7 @@ a {
   height: 40px;
 }
 
+.merkl-list .ant-card-body,
 .tokens-list .ant-card-body,
 .journal-card .ant-card-body,
 .note-list .ant-card-body {

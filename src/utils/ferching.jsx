@@ -24,3 +24,7 @@ const ferchingGet = async (url) => {
 export const getQuotes = () => {
   return ferchingGet("https://cryptorates.ai/files/standard.json");
 };
+
+export const getMerkl = () => {
+  return ferchingGet("https://api.merkl.xyz/v3/opportunity?campaigns=false&testTokens=false");
+};

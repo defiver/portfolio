@@ -10,9 +10,7 @@ export default function Settings({ db }) {
   const inputRef = useRef();
 
   const [clearData, isClearDataLoading] = useDB(async () => {
-    await db.notes.clear();
-    await db.tokens.clear();
-    await db.journal.clear();
+    await db.tables.forEach((table) => db[table.name].clear());
   }, false);
 
   const saveData = async (blob) => {
