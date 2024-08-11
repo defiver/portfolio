@@ -5,22 +5,22 @@ import EditForm from './EditForm';
 import NotesList from './NotesList';
 
 export default function Notes({ db }) {
-  const [swowNotes, setSwowNotes] = useState(false);
+  const [swowDrawer, setSwowDrawer] = useState(false);
   const [id, setId] = useState(null);
 
   return (
     <>
       <FloatButton
-        onClick={() => setSwowNotes(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 120 }}
+        onClick={() => setSwowDrawer(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 168 }}
       />
 
       <Drawer
         title={false}
-        open={swowNotes}
+        open={swowDrawer}
         className="notes"
         placement={"left"}
-        onClose={() => setSwowNotes(false)}
+        onClose={() => setSwowDrawer(false)}
       >
         <Card
           size="small"
