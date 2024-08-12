@@ -35,7 +35,7 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
   }, false);
 
   const tokensSelector = (name) => (
-    <Form.Item name={[name, "token"]} noStyle rules={[{ required: true, message: '' }]}>
+    <Form.Item name={[name, "token"]} noStyle>
       <Select style={{ width: 100 }}>
         {tokens.map(o => <Select.Option key={o.token} value={o.token}>{o.token}</Select.Option>)}
       </Select>
@@ -54,77 +54,55 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
         <Form.Item name="id" hidden>
           <Input />
         </Form.Item>
+
         <Form.Item name="text">
-          <Input.TextArea autoSize={{ minRows: 3, maxRows: 10 }} />
+          <Input.TextArea placeholder={"Note"} autoSize={{ minRows: 1, maxRows: 10 }} />
         </Form.Item>
-        <Row gutter={[8, 8]}>
-          <Col span={10}>
-            <Form.Item
-              name="daterange"
-              getValueProps={(value) => ({
-                value: [value && value[0] && dayjs(value[0].$d), value && value[1] && dayjs(value[1].$d)]
-              })}
-            >
-              <DatePicker.RangePicker
-                allowClear
-                locale={locale}
-                style={{ width: "100%" }}
-                allowEmpty={[true, true]}
-                needConfirm={false}
-                showNow
-              />
-            </Form.Item>
-          </Col>
-          <Col span={7}>
-            <Form.Item name="transaction">
-              <Input placeholder="Transaction link" />
-            </Form.Item>
-          </Col>
-          <Col span={7}>
-            <Form.Item name="link">
-              <Input placeholder="Position link" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={[8, 8]}>
-          <Col span={10}>
-            <Form.Item name="tags">
-              <Select
-                mode="tags"
-                style={{ width: "100%" }}
-                placeholder="Tags"
-                options={tags.map((i) => new Object({ label: i, value: i }))}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={7}>
-            <Form.Item name="chain">
-              <Select
-                mode="tags"
-                style={{ width: "100%" }}
-                placeholder="Chain"
-                options={chains.map((i) => new Object({ label: i, value: i }))}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={7}>
-            <Form.Item name="income">
-              <InputNumber placeholder="Income ($)" />
-            </Form.Item>
-          </Col>
-        </Row>
+
+        <Form.Item name="transactions">
+          <Input.TextArea
+            placeholder={"Transactions"}
+            autoSize={{ minRows: 1, maxRows: 10 }}
+            style={{ whiteSpace: "pre", overflowX: "hidden" }}
+          />
+        </Form.Item>
+
+        <Flex gap={8}>
+          <Form.Item
+            name="daterange"
+            getValueProps={(value) => ({
+              value: [value && value[0] && dayjs(value[0].$d), value && value[1] && dayjs(value[1].$d)]
+            })}
+          >
+            <DatePicker.RangePicker
+              allowClear
+              locale={locale}
+              style={{ width: "100%" }}
+              allowEmpty={[true, true]}
+              needConfirm={false}
+              showNow
+            />
+          </Form.Item>
+
+          <Form.Item name="tags">
+            <Select
+              mode="tags"
+              style={{ width: "100%" }}
+              placeholder="Tags"
+              options={tags.map((i) => new Object({ label: i, value: i }))}
+            />
+          </Form.Item>
+        </Flex>
+
         <Row gutter={[8, 8]}>
           <Col span={10}>
             <Form.Item>
-              <Form.List name="tokens" rules={[{ required: true, message: '' }]}>
+              <Form.List name="tokens">
                 {(subFields, subOpt) => (
-                  <Flex vertical={true} gap={8}>
+                  <Flex vertical={true} >
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
-                        <Form.Item
-                          name={[subField.name, "amount"]}
-                          rules={[{ required: true, message: '' }]}
-                        >
+                        <Form.Item name={[subField.name, "amount"]}>
                           <InputNumber
                             placeholder={"1000"}
                             addonAfter={tokensSelector(subField.name)}
@@ -143,19 +121,50 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
               </Form.List>
             </Form.Item>
           </Col>
-          <Col span={10}>
-            <Form.Item name="status">
-              <Segmented options={["active", "completed"]} block />
-            </Form.Item>
-          </Col>
-          <Col span={4}>
-            <Form.Item>
-              <Flex gap={8} justify="end">
-                <Button ghost danger type="primary" icon={<CloseOutlined />} onClick={closeForm} />
 
-                <SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
-              </Flex>
-            </Form.Item>
+          <Col span={14}>
+            <Row gutter={[8, 8]}>
+              <Col span={12}>
+                <Form.Item name="link">
+                  <Input placeholder="Position link" />
+                </Form.Item>
+              </Col>
+
+              <Col span={12}>
+                <Form.Item name="chain">
+                  <Select
+                    mode="tags"
+                    style={{ width: "100%" }}
+                    placeholder="Chain"
+                    options={chains.map((i) => new Object({ label: i, value: i }))}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={[8, 8]}>
+              <Col span={12}>
+                <Form.Item name="status">
+                  <Segmented options={["active", "completed"]} block />
+                </Form.Item>
+              </Col>
+
+              <Col span={7}>
+                <Form.Item name="income">
+                  <InputNumber placeholder="Income ($)" />
+                </Form.Item>
+              </Col>
+
+              <Col span={5}>
+                <Form.Item>
+                  <Flex gap={8} justify="end">
+                    <Button ghost danger type="primary" icon={<CloseOutlined />} onClick={closeForm} />
+
+                    <SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
+                  </Flex>
+                </Form.Item>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Flex>

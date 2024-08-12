@@ -30,11 +30,6 @@ export default function Children({ position, db }) {
               {date.join(" - ")}
             </Typography.Text>
           )}
-          {position.transaction && position.transaction.match(/^https?:\/\/([^/?#]+)/i) && (
-            <Typography.Link code href={position.transaction} target="_blank">
-              {position.transaction.match(/^https?:\/\/([^/?#]+)/i)[1]}
-            </Typography.Link>
-          )}
           {position.link && position.link.match(/^https?:\/\/([^/?#]+)/i) && (
             <Typography.Link code href={position.link} target="_blank">
               {position.link.match(/^https?:\/\/([^/?#]+)/i)[1]}

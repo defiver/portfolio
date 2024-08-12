@@ -14,7 +14,7 @@ export default function TokensList({ db }) {
   }
 
   const used = {}
-  journal.map(j => j.tokens.forEach(o => {
+  journal.map(j => j.tokens && j.tokens.forEach(o => {
     used[o.token] = (used[o.token] ?? 0) + o.amount;
   }));
 
