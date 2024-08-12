@@ -12,7 +12,7 @@ db.version(1).stores({
   journal: "++id, daterange, text, tokens, income, tags, transaction, status, chain, link",
   tokens: "&token, amount, quote, previous",
   notes: "++id, text, finish",
-  merkl: "&id, name, url, fresh",
+  merkl: "&id, name, url, apr, fresh",
 });
 
 export default function Home() {
