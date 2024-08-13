@@ -4,7 +4,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { localeNumber, formatPercent } from "@/utils/number";
 import EditForm from "./EditForm";
 
-export default function TokensList({ db }) {
+export default function TokensList({ db, inputAmount }) {
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
   const journal = useLiveQuery(() => db.journal.where({ status: "active" }).toArray(), [], []);
   const [token, setToken] = useState(null);
@@ -36,7 +36,7 @@ export default function TokensList({ db }) {
             </Col>
 
             <Col span={4}>
-              <span>{localeNumber(o.amount * o.quote)} </span>
+              <span>{localeNumber((inputAmount > 0 ? inputAmount : o.amount) * o.quote)} </span>
             </Col>
 
             <Col span={4} style={{ textAlign: "right" }}>
