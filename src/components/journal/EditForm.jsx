@@ -67,6 +67,14 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
           />
         </Form.Item>
 
+        <Form.Item name="links">
+          <Input.TextArea
+            placeholder={"Links"}
+            autoSize={{ minRows: 1, maxRows: 10 }}
+            style={{ whiteSpace: "pre", overflowX: "hidden" }}
+          />
+        </Form.Item>
+
         <Flex gap={8}>
           <Form.Item
             name="daterange"
@@ -95,7 +103,7 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
         </Flex>
 
         <Row gutter={[8, 8]}>
-          <Col span={10}>
+          <Col span={12}>
             <Form.Item>
               <Form.List name="tokens">
                 {(subFields, subOpt) => (
@@ -122,14 +130,8 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
             </Form.Item>
           </Col>
 
-          <Col span={14}>
+          <Col span={12}>
             <Row gutter={[8, 8]}>
-              <Col span={12}>
-                <Form.Item name="link">
-                  <Input placeholder="Position link" />
-                </Form.Item>
-              </Col>
-
               <Col span={12}>
                 <Form.Item name="chain">
                   <Select
@@ -140,27 +142,27 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
                   />
                 </Form.Item>
               </Col>
+
+              <Col span={12}>
+                <Form.Item name="income">
+                  <InputNumber placeholder="Income ($)" />
+                </Form.Item>
+              </Col>
             </Row>
 
             <Row gutter={[8, 8]}>
-              <Col span={12}>
+              <Col span={18}>
                 <Form.Item name="status">
                   <Segmented options={["active", "completed"]} block />
                 </Form.Item>
               </Col>
 
-              <Col span={7}>
-                <Form.Item name="income">
-                  <InputNumber placeholder="Income ($)" />
-                </Form.Item>
-              </Col>
-
-              <Col span={5}>
+              <Col span={6}>
                 <Form.Item>
                   <Flex gap={8} justify="end">
-                    <Button ghost danger type="primary" icon={<CloseOutlined />} onClick={closeForm} />
+                    <Button icon={<CloseOutlined />} onClick={closeForm} />
 
-                    <SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
+                    <SubmitButton icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
                   </Flex>
                 </Form.Item>
               </Col>

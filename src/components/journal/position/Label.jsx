@@ -13,7 +13,7 @@ export default function Label({ position }) {
         </Typography.Paragraph>
       </Col>
       <Col span={10}>
-        {position.tags && position.tags.slice(0, 2).map((tag) => (
+        {position.tags && position.tags.map((tag) => (
           <Typography.Text code key={tag} style={stringToColour(tag)}>
             {tag}
           </Typography.Text>

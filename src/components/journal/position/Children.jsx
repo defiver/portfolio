@@ -30,9 +30,14 @@ export default function Children({ position, db }) {
               {date.join(" - ")}
             </Typography.Text>
           )}
-          {position.link && position.link.match(/^https?:\/\/([^/?#]+)/i) && (
-            <Typography.Link code href={position.link} target="_blank">
-              {position.link.match(/^https?:\/\/([^/?#]+)/i)[1]}
+          {position.transactions && position.transactions.match(/^https?:\/\/([^/?#\s]+)/i) && (
+            <Typography.Link code href={position.transactions.match(/^([^\s]+)/i)[1]} target="_blank">
+              {position.transactions.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
+            </Typography.Link>
+          )}
+          {position.links && position.links.match(/^https?:\/\/([^/?#\s]+)/i) && (
+            <Typography.Link code href={position.links.match(/^([^\s]+)/i)[1]} target="_blank">
+              {position.links.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
             </Typography.Link>
           )}
         </Space>
@@ -43,7 +48,7 @@ export default function Children({ position, db }) {
             okText="Yes"
             cancelText="No"
           >
-            <Button danger loading={isDeletePositionLoading} icon={<DeleteOutlined />} />
+            <Button loading={isDeletePositionLoading} icon={<DeleteOutlined />} style={{ color: "red" }} />
           </Popconfirm>
           <Button
             icon={<EditOutlined />}
