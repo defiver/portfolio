@@ -54,7 +54,11 @@ export default function NotesList({ db }) {
                       okText="Yes"
                       cancelText="No"
                     >
-                      <Button danger loading={isDeleteNoteLoading} icon={<DeleteOutlined />} />
+                      <Button
+                        loading={isDeleteNoteLoading}
+                        icon={<DeleteOutlined />}
+                        style={{ color: "red" }}
+                      />
                     </Popconfirm>
 
                     <Button icon={<EditOutlined />} onClick={() => setId(o.id)} />

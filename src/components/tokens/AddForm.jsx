@@ -29,9 +29,9 @@ export default function EditForm({ setAdd, db }) {
 
         <Form.Item>
           <Flex gap={8} justify="end">
-            <Button ghost danger type="primary" icon={<CloseOutlined />} onClick={closeForm} />
+            <Button icon={<CloseOutlined />} onClick={closeForm} />
 
-            <SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
+            <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
           </Flex>
         </Form.Item>
       </Space>

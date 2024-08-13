@@ -48,9 +48,9 @@ export default function EditForm({ setId, db, note = {} }) {
           <Col xs={{ span: 8 }} lg={{ span: 8 }}>
             <Form.Item>
               <Flex gap={8} justify="end">
-                <Button ghost danger type="primary" icon={<CloseOutlined />} onClick={closeForm} />
+                <Button icon={<CloseOutlined />} onClick={closeForm} />
 
-                <SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditNoteLoading} />
+                <SubmitButton icon={<CheckOutlined />} form={form} loading={isEditNoteLoading} />
               </Flex>
             </Form.Item>
           </Col>

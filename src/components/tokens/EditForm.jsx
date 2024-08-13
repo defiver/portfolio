@@ -55,10 +55,10 @@ export default function EditForm({ token, setToken, db }) {
 							okText="Yes"
 							cancelText="No"
 						>
-							<Button ghost danger loading={isDeleteTokenLoading} icon={<MinusOutlined />} />
+							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} style={{ color: "red" }} />
 						</Popconfirm>
 
-						<Button ghost type="primary" icon={<CloseOutlined />} onClick={closeForm} />
+						<Button icon={<CloseOutlined />} onClick={closeForm} />
 					</Flex>
 				</Form.Item>
 			</Space>

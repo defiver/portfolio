@@ -15,7 +15,7 @@ export default function SubmitButton(props) {
 
 	return (
 		<Button
-			// style={{ color: "green" }}
+			style={{ color: "green" }}
 			icon={props.icon}
 			htmlType="submit"
 			disabled={!submitForm}

@@ -27,7 +27,7 @@ export default function Tokens({ db }) {
     });
   }, false);
 
-  const sum = tokens.map(o => o.amount * o.quote).reduce((a, b) => a + b, 0)
+  const sum = tokens.map(o => o.amount * (o.quote ?? 0)).reduce((a, b) => a + b, 0)
   const earned = journal.filter(o => o.income).map(o => o.income).reduce((a, b) => a + b, 0)
 
   return (
