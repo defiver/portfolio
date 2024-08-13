@@ -9,7 +9,7 @@ import Dexie from 'dexie';
 
 const db = new Dexie("porfolio");
 db.version(1).stores({
-  journal: "++id, daterange, text, tokens, income, tags, transactions, status, chain, link",
+  journal: "++id, daterange, text, tokens, income, tags, transactions, status, chain, links",
   tokens: "&token, amount, quote, previous",
   notes: "++id, text, finish",
   merkl: "&id, name, url, apr, fresh",
