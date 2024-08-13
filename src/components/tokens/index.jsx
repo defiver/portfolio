@@ -2,7 +2,7 @@ import { getQuotes } from "@/utils/ferching";
 import { localeNumber } from "@/utils/number";
 import { useFetching } from "@/hooks/useFetching";
 import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
-import { Card, Space, Button } from "antd";
+import { Card, Space, Button, InputNumber } from "antd";
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useDB } from "@/hooks/useDB";
@@ -11,6 +11,7 @@ import TokensList from './TokensList';
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
+  const [inputAmount, setInputAmount] = useState(null);
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
   const journal = useLiveQuery(() => db.journal.toArray(), [], []);
 
@@ -40,6 +41,13 @@ export default function Tokens({ db }) {
       </>}
       extra={
         <Space>
+          <InputNumber
+            style={{ maxWidth: 120 }}
+            placeholder={"Amount"}
+            value={inputAmount}
+            onChange={setInputAmount}
+            min={0}
+          />
           <Button
             loading={isQuotesLoading}
             icon={<ReloadOutlined />}
@@ -54,7 +62,7 @@ export default function Tokens({ db }) {
     >
       {add && <AddForm position={{ id: 0, status: "active" }} setAdd={setAdd} db={db} />}
 
-      <TokensList db={db} />
+      <TokensList db={db} inputAmount={inputAmount} />
     </Card>
   );
 }
