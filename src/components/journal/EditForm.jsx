@@ -8,7 +8,7 @@ import SubmitButton from "@/components/SubmitButton";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import dayjs from "dayjs";
 
-export default function EditForm({ db, position = { id: 0, status: "active" } }) {
+export default function EditForm({ db, position = { id: 0, status: "active", daterange: [dayjs()] } }) {
   const [form] = Form.useForm();
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
   const [, setId] = useRecoilState(idState);
@@ -88,7 +88,8 @@ export default function EditForm({ db, position = { id: 0, status: "active" } })
               style={{ width: "100%" }}
               allowEmpty={[true, true]}
               needConfirm={false}
-              showNow
+              showTime
+              format="DD.MM.YYYY HH:mm:ss"
             />
           </Form.Item>
 

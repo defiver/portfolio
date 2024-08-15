@@ -41,7 +41,14 @@ export default function EditForm({ setId, db, note = {} }) {
         <Row gutter={[8, 8]} justify="space-between">
           <Col xs={{ span: 16 }} lg={{ span: 16 }}>
             <Form.Item name="finish" getValueProps={(value) => ({ value: value && dayjs(value.$d) })}>
-              <DatePicker allowClear style={{ width: "100%" }} locale={locale} showTime />
+              <DatePicker
+                showNow
+                allowClear
+                style={{ width: "100%" }}
+                locale={locale}
+                showTime
+                format="DD.MM.YYYY HH:mm:ss"
+              />
             </Form.Item>
           </Col>
 
