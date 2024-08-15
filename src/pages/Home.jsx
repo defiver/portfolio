@@ -16,7 +16,7 @@ db.version(1).stores({
 });
 
 export default function Home() {
-  document.title = "Portfolio | v0.0.4";
+  document.title = "Portfolio";
 
   return (
     <div className="container">
