@@ -12,12 +12,9 @@ export default function Children({ position, db }) {
     await db.journal.delete(id)
   }, false);
 
-  let date = [];
+  let age = 0;
   if (position?.daterange && position.daterange[0] && dayjs(position.daterange[0].$d).isValid()) {
-    date.push(dayjs(position.daterange[0].$d).format("DD.MM.YYYY"));
-  }
-  if (position?.daterange && position.daterange[1] && dayjs(position.daterange[1].$d).isValid()) {
-    date.push(dayjs(position.daterange[1].$d).format("DD.MM.YYYY"));
+    age = dayjs().diff(position.daterange[0].$d, 'day', true).toFixed(2);
   }
 
   return (
@@ -25,11 +22,7 @@ export default function Children({ position, db }) {
       <Typography.Paragraph>{position.text}</Typography.Paragraph>
       <Flex justify={"space-between"} align={"center"}>
         <Space>
-          {date.length > 0 && (
-            <Typography.Text code>
-              {date.join(" - ")}
-            </Typography.Text>
-          )}
+          <Typography.Text code>Age: {age} days</Typography.Text>
           {position.transactions && position.transactions.match(/^https?:\/\/([^/?#\s]+)/i) && (
             <Typography.Link code href={position.transactions.match(/^([^\s]+)/i)[1]} target="_blank">
               {position.transactions.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
