@@ -34,7 +34,7 @@ export default function Tokens({ db }) {
   return (
     <Card
       size="small"
-      className="token-list"
+      className="tokens-list"
       title={<>
         <span>${localeNumber(sum)}</span>
         <span style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>
