@@ -38,7 +38,7 @@ export default function EditForm({ token, setToken, db }) {
 				</Form.Item>
 
 				<Form.Item name="amount" rules={[{ required: true, message: '' }]}>
-					<Input disabled />
+					<Input />
 				</Form.Item>
 
 				<Form.Item name="token" hidden rules={[{ required: true, message: '' }]}>
