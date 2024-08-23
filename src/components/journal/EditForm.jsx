@@ -10,7 +10,9 @@ import dayjs from "dayjs";
 
 export default function EditForm({ db, position = { id: 0, status: "active", daterange: [dayjs()] } }) {
   const [form] = Form.useForm();
-  const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
+  let tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
+  tokens = tokens.sort((a, b) => (a.amount * a.quote) < (b.amount * b.quote));
+
   const [, setId] = useRecoilState(idState);
   const tags = useRecoilValue(allTagsState);
   const chains = useRecoilValue(allChainsState);

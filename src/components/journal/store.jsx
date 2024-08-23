@@ -49,8 +49,7 @@ export const tagsState = selector({
   key: "Tags",
   get: ({ get }) => {
     const journal = get(filteredJournalState);
-    const tags = parseTags(journal);
-    return tags.sort((a, b) => a.localeCompare(b));
+    return parseTags(journal);
   },
 });
 
@@ -58,8 +57,7 @@ export const tokensState = selector({
   key: "Tokens",
   get: ({ get }) => {
     let journal = get(filteredJournalState);
-    const tokens = parseTokens(journal);
-    return tokens.sort((a, b) => a.localeCompare(b));
+    return parseTokens(journal);
   },
 });
 
@@ -67,8 +65,7 @@ export const chainsState = selector({
   key: "Chains",
   get: ({ get }) => {
     let journal = get(filteredJournalState);
-    const chains = parseChains(journal);
-    return chains.sort((a, b) => a.localeCompare(b));
+    return parseChains(journal);
   },
 });
 
@@ -76,7 +73,7 @@ export const allTagsState = selector({
   key: "AllTags",
   get: ({ get }) => {
     const journal = get(journalState);
-    return parseTags(journal).sort((a, b) => a.localeCompare(b));
+    return parseTags(journal);
   },
 });
 
@@ -84,6 +81,6 @@ export const allChainsState = selector({
   key: "AllChains",
   get: ({ get }) => {
     const journal = get(journalState);
-    return parseChains(journal).sort((a, b) => a.localeCompare(b));
+    return parseChains(journal);
   },
 });

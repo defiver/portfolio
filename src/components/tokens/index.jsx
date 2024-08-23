@@ -12,7 +12,7 @@ import TokensList from './TokensList';
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
   const [inputAmount, setInputAmount] = useState(null);
-  const tokens = useLiveQuery(() => db.tokens.toArray(), [], []);
+  const tokens = useLiveQuery(() => db.tokens.toArray(), [], [])
   const journal = useLiveQuery(() => db.journal.toArray(), [], []);
 
   const [editTonen] = useDB(async (data) => {
