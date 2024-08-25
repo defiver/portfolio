@@ -20,6 +20,7 @@ export default function Notes({ db }) {
         open={swowDrawer}
         className="notes"
         placement={"left"}
+        width={500}
         onClose={() => setSwowDrawer(false)}
       >
         <Card

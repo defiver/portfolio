@@ -33,7 +33,7 @@ export default function NotesList({ db }) {
             label: (
               <Flex justify={"space-between"}>
                 <span>
-                  {o?.text?.length > 23 ? `${o.text.match(/^.{1,20}/)}...` : o.text}
+                  {o?.text?.length > 58 ? `${o.text.match(/^((?:.|\n)*?){1,55}/g)}...` : o.text}
                 </span>
                 {o?.finish?.$d && (
                   <span className={dayjs(o.finish.$d).diff(dayjs()) < 259_200_000 ? "soon" : ""}>
