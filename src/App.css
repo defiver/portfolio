@@ -55,16 +55,16 @@ a {
   color: inherit !important;
 }
 
-.ant-card-head {
-  height: 40px;
-}
-
 .merkl-list .ant-card-body,
 .tokens-list .ant-card-body,
 .journal-card .ant-card-body,
 .note-list .ant-card-body {
   height: calc(100vh - 40px - 10px - 10px - 1px);
   overflow-y: auto;
+}
+
+.ant-card-head {
+  height: 40px;
 }
 
 .card-item {

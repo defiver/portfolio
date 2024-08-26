@@ -36,7 +36,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
     closeForm();
   }, false);
 
-  const tokensSelector = (name) => (
+  const TokensSelector = (name) => (
     <Form.Item name={[name, "token"]} noStyle>
       <Select style={{ width: 100 }}>
         {tokens.map(o => <Select.Option key={o.token} value={o.token}>{o.token}</Select.Option>)}
@@ -116,7 +116,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
                         <Form.Item name={[subField.name, "amount"]}>
                           <InputNumber
                             placeholder={"1000"}
-                            addonAfter={tokensSelector(subField.name)}
+                            addonAfter={<TokensSelector name={subField.name} />}
                             style={{ width: "100%" }}
                           />
                         </Form.Item>
