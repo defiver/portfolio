@@ -21,6 +21,7 @@ lerna-debug.log*
 /dist-ssr
 
 # misc
+*.php
 .DS_Store
 .env
 .env.development
