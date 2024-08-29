@@ -18,9 +18,10 @@ export default function Merkl({ db }) {
         .filter(o => o.status === "live")
         .map(o => {
           let fresh = !allOpp.some(m => o.id === m.id);
-          let chain = chainIds[o.chainId];
-          let url = `https://merkl.angle.money/${chain}/${o.action}/${o.id.replace("_", "/")}`;
-          return { id: o.id, name: o.name, url, apr: o.apr, fresh };
+          let chainId = chainIds[o.chainId] !== undefined ? o.chainId : "0";
+          let chainName = chainIds[chainId].name;
+          let url = `https://merkl.angle.money/${chainName}/${o.action}/${o.id.replace("_", "/")}`;
+          return { id: o.id, name: o.name, url, apr: o.apr, fresh, chain: chainId };
         });
       db.transaction('rw', db.merkl, function () {
         db.merkl.clear();

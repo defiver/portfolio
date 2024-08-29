@@ -2,6 +2,7 @@ import { ReloadOutlined } from "@ant-design/icons";
 import { Button, List, Typography, Input, Flex, Select } from "antd";
 import { useFilterList } from '@/hooks/useFilterList';
 import { useState, useDeferredValue } from "react";
+import chainIds from './chainIds.json';
 
 export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 	const [swowFresh, setSwowFresh] = useState(true);
@@ -41,7 +42,12 @@ export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 			}
 			renderItem={(item) => (
 				<List.Item>
-					<Typography.Text ellipsis><a href={item.url}>{item.name}</a></Typography.Text>
+					<Flex gap={8} align="center">
+						<img src={chainIds[item.chain] ? chainIds[item.chain].icon : chainIds["0"].icon} />
+						<Typography.Text ellipsis>
+							<a href={item.url}> {item.name}</a>
+						</Typography.Text>
+					</Flex>
 					<Typography.Text>{parseInt(item.apr)}%</Typography.Text>
 				</List.Item>
 			)}

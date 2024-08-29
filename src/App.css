@@ -67,6 +67,11 @@ a {
   overflow-y: auto;
 }
 
+.merkl-list img {
+  width: 18px;
+  height: 18px;
+}
+
 .tool-card {
   width: 188px !important;
 }
