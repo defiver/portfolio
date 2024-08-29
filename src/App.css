@@ -41,26 +41,42 @@ a {
   max-width: 30%;
 }
 
+.tools .ant-drawer-header,
 .merkl .ant-drawer-header,
 .notes .ant-drawer-header {
   display: none;
 }
 
+.tools .ant-drawer-body,
 .merkl .ant-drawer-body,
 .notes .ant-drawer-body {
   padding: 10px;
 }
 
+.tool-card a,
 .merkl .ant-list-item a {
   color: inherit !important;
 }
 
+.tools-list .ant-card-body,
 .merkl-list .ant-card-body,
 .tokens-list .ant-card-body,
 .journal-card .ant-card-body,
 .note-list .ant-card-body {
   height: calc(100vh - 40px - 10px - 10px - 1px);
   overflow-y: auto;
+}
+
+.tool-card {
+  width: 188px !important;
+}
+
+.tool-card .ant-card-body {
+  padding: 20px 10px;
+}
+
+.tool-card .ant-card-meta {
+  align-items: center;
 }
 
 .ant-card-head {

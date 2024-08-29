@@ -5,6 +5,7 @@ import Tokens from "@/components/tokens";
 import Help from "@/components/help";
 import Settings from "@/components/settings";
 import Merkl from "@/components/merkl";
+import Tools from "@/components/tools";
 import Dexie from 'dexie';
 
 const db = new Dexie("porfolio");
@@ -20,6 +21,8 @@ export default function Home() {
 
   return (
     <div className="container">
+      <Tools />
+
       <Notes db={db} />
 
       <Merkl db={db} />
