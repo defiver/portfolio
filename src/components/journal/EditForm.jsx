@@ -39,7 +39,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
   const tokensSelector = (name) => (
     <Form.Item name={[name, "token"]} noStyle>
-      <Select style={{ width: 100 }}>
+      <Select style={{ width: 100 }} virtual={false}>
         {tokens.map(o => <Select.Option key={o.token} value={o.token}>{o.token}</Select.Option>)}
       </Select>
     </Form.Item>
@@ -102,6 +102,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
               style={{ width: "100%" }}
               placeholder="Tags"
               options={tags.map((i) => new Object({ label: i, value: i }))}
+              virtual={false}
             />
           </Form.Item>
         </Flex>
@@ -143,6 +144,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
                     style={{ width: "100%" }}
                     placeholder="Chain"
                     options={chains.map((i) => new Object({ label: i, value: i }))}
+                    virtual={false}
                   />
                 </Form.Item>
               </Col>

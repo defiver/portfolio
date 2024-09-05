@@ -1,4 +1,4 @@
-import { getQuotes } from "@/utils/ferching";
+import { fetchingGet } from "@/utils/fetching";
 import { localeNumber } from "@/utils/number";
 import { useFetching } from "@/hooks/useFetching";
 import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
@@ -8,6 +8,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { useDB } from "@/hooks/useDB";
 import AddForm from './AddForm';
 import TokensList from './TokensList';
+
+const LINK = "https://api.coinpaprika.com/v1/tickers";
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
@@ -20,12 +22,15 @@ export default function Tokens({ db }) {
   }, false);
 
   const [fetchQuotes, isQuotesLoading] = useFetching(async () => {
-    let quotes = await getQuotes();
-    quotes.forEach(q => {
-      tokens.forEach(t => {
-        q.symbol === t.token && editTonen({ ...t, previous: t?.quote ?? 0, quote: q.rateUsd ?? 0 });
-      })
-    });
+    let quotes = await fetchingGet(LINK);
+    for (const t of tokens) {
+      for (const q of quotes) {
+        if (q.symbol === t.token) {
+          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.quotes.USD.price ?? 0 });
+          break;
+        }
+      }
+    }
   }, false);
 
   const sum = tokens.map(o => o.amount * (o.quote ?? 0)).reduce((a, b) => a + b, 0)

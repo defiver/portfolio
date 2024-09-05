@@ -25,7 +25,7 @@ export default function Tools() {
     <>
       <FloatButton
         onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 216 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 210 }}
         icon={<AppstoreAddOutlined />}
       />
 

@@ -11,12 +11,12 @@ export default function EditForm({ token, setToken, db }) {
 		setToken(null);
 	};
 
-	const [deleteToken, isDeleteTokenLoading] = useDB(async (token) => {
-		await db.tokens.delete(token);
+	const [deleteToken, isDeleteTokenLoading] = useDB(async () => {
+		await db.tokens.delete(token.token);
 		closeForm();
 	}, false);
 
-	const [editTonen, isAddTokenLoading] = useDB(async () => {
+	const [editTonen, isEditTokenLoading] = useDB(async () => {
 		await db.tokens.put(form.getFieldValue());
 		closeForm();
 	}, false);
@@ -47,14 +47,9 @@ export default function EditForm({ token, setToken, db }) {
 
 				<Form.Item>
 					<Flex gap={8} justify="end">
-						<SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isAddTokenLoading} />
+						<SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditTokenLoading} />
 
-						<Popconfirm
-							title="Delete the token?"
-							onConfirm={() => deleteToken(token.token)}
-							okText="Yes"
-							cancelText="No"
-						>
+						<Popconfirm title="Delete the token?" onConfirm={deleteToken} okText="Yes" cancelText="No">
 							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} style={{ color: "red" }} />
 						</Popconfirm>
 

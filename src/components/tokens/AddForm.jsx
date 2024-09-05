@@ -3,7 +3,7 @@ import { Form, Button, InputNumber, Space, Input, Flex } from "antd";
 import { useDB } from "@/hooks/useDB";
 import SubmitButton from "@/components/SubmitButton";
 
-export default function EditForm({ setAdd, db }) {
+export default function AddForm({ setAdd, db }) {
   const [form] = Form.useForm();
 
   const closeForm = () => {

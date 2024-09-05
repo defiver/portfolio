@@ -12,7 +12,7 @@ export default function Notes({ db }) {
     <>
       <FloatButton
         onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 168 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 160 }}
       />
 
       <Drawer

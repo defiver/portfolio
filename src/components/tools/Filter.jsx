@@ -25,6 +25,7 @@ export default function Filter({ tools, favorites, setFilterTools }) {
 					onChange={setCategory}
 					style={{ width: "100%" }}
 					options={categories.map(i => { return { value: i, label: i } })}
+					virtual={false}
 				/>
 			</Col>
 			<Col span={12}>
@@ -35,6 +36,7 @@ export default function Filter({ tools, favorites, setFilterTools }) {
 					onChange={setChain}
 					style={{ width: "100%" }}
 					options={chains.map(i => { return { value: i, label: i } })}
+					virtual={false}
 				/>
 			</Col>
 		</Row>

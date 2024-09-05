@@ -5,6 +5,7 @@ export const localeNumber = (number, suffix = "", fixed = 0) => {
 	number = parseFloat(number);
 	suffix = suffix ? ` ${suffix}` : "";
 	const positive = Math.abs(number);
+	const fraction = fixed > 0 ? fixed : 4;
 
 	if (fixed > 0) {
 		number = number.toFixed(fixed);
@@ -20,14 +21,15 @@ export const localeNumber = (number, suffix = "", fixed = 0) => {
 		number = number.toFixed(4);
 	}
 
-	return (+number).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(/,?0*$/, '') + suffix;
+	return (+number).toLocaleString(undefined, { minimumFractionDigits: fraction }).replace(/,?0*$/, '') + suffix;
 }
 
-export const formatPercent = (n1, n2) => {
+export const formatPercent = (n1, n2, fixed = 1) => {
 	n1 = parseFloat(n1 ?? 0);
 	n2 = parseFloat(n2 ?? 0);
 
-	const percent = n2 !== 0 ? (100 * (n1 - n2) / n2).toFixed(1) : 0.0;
+
+	const percent = n2 !== 0 ? (100 * (n1 - n2) / n2).toFixed(fixed) : 0.0;
 	const icon = percent > 0
 		? <ArrowUpOutlined style={{ color: "green" }} />
 		: percent < 0

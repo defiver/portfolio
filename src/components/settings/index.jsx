@@ -10,7 +10,7 @@ export default function Settings({ db }) {
     <>
       <FloatButton
         onClick={() => setSwowModal(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 72 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 60 }}
         icon={<DownloadOutlined />}
       />
 
