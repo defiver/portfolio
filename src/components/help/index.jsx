@@ -9,7 +9,7 @@ export default function Help() {
     <>
       <FloatButton
         onClick={() => setSwowModal(true)}
-        style={{ insetBlockEnd: 24, insetInlineStart: 24 }}
+        style={{ insetBlockEnd: 10, insetInlineStart: 24 }}
         icon={<QuestionCircleOutlined />}
       />
 

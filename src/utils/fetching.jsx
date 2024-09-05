@@ -10,9 +10,9 @@ const handlingErrors = (error) => {
   return [];
 };
 
-const ferchingGet = async (url) => {
+export const fetchingGet = async (url, headers = {}) => {
   return await axios
-    .get(url)
+    .get(url, { headers })
     .then((response) => {
       return response.data;
     })
@@ -20,11 +20,12 @@ const ferchingGet = async (url) => {
       return handlingErrors(error);
     });
 };
+// mode: 'cors',
+export const fetchingPost = async (url, data, headers = {}) => {
+  return await axios.post(url, data, { headers }).then((response) => {
+    return response.data;
+  }).catch((error) => {
+    return handlingErrors(error)
+  })
+}
 
-export const getQuotes = () => {
-  return ferchingGet("https://cryptorates.ai/files/standard.json");
-};
-
-export const getMerkl = () => {
-  return ferchingGet("https://api.merkl.xyz/v3/opportunity?campaigns=false&testTokens=false");
-};

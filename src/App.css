@@ -41,12 +41,14 @@ a {
   max-width: 30%;
 }
 
+.pools .ant-drawer-header,
 .tools .ant-drawer-header,
 .merkl .ant-drawer-header,
 .notes .ant-drawer-header {
   display: none;
 }
 
+.pools .ant-drawer-body,
 .tools .ant-drawer-body,
 .merkl .ant-drawer-body,
 .notes .ant-drawer-body {
@@ -58,6 +60,7 @@ a {
   color: inherit !important;
 }
 
+.pools-list .ant-card-body,
 .tools-list .ant-card-body,
 .merkl-list .ant-card-body,
 .tokens-list .ant-card-body,
