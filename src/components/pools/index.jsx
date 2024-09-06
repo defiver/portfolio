@@ -12,7 +12,7 @@ export default function Pools({ db }) {
     <>
       <FloatButton
         onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockStart: 10 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
         icon={<LineChartOutlined />}
       />
 

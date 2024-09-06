@@ -9,7 +9,7 @@ import { useDB } from "@/hooks/useDB";
 import AddForm from './AddForm';
 import TokensList from './TokensList';
 
-const LINK = "https://api.coinpaprika.com/v1/tickers";
+const LINK = "https://cryptorates.ai/files/standard.json";
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
@@ -26,7 +26,7 @@ export default function Tokens({ db }) {
     for (const t of tokens) {
       for (const q of quotes) {
         if (q.symbol === t.token) {
-          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.quotes.USD.price ?? 0 });
+          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.rateUsd ?? 0 });
           break;
         }
       }

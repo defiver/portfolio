@@ -12,16 +12,15 @@ import Dexie from 'dexie';
 export default function Home() {
   document.title = "Portfolio";
 
-  const params = new URLSearchParams(window.location.search);
+  // const params = new URLSearchParams(window.location.search);
+  // params.get("extend") !== undefined
+
   const stores = {
     journal: "++id, daterange, text, tokens, income, tags, transactions, status, chain, links",
     tokens: "&token, amount, quote, previous",
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
-  }
-
-  if (params.get("extend") !== undefined) {
-    stores.pools = "&address, name, chain, price, previous, range"
+    pools: "&address, name, chain, price, previous, range",
   }
 
   const db = new Dexie("porfolio");
@@ -29,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      {params.get("extend") !== undefined && <Pools db={db} />}
+      <Pools db={db} />
 
       <Tools />
 
