@@ -1,7 +1,7 @@
 import { EditOutlined, DeleteOutlined, } from "@ant-design/icons";
 import { Collapse, Empty, Flex, Typography, Space, Popconfirm, Button } from "antd";
 import { useState } from "react";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import EditForm from "./EditForm";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ export default function NotesList({ db }) {
   const notes = useLiveQuery(() => db.notes.toArray(), [], []);
   const [id, setId] = useState(null);
 
-  const [deleteNote, isDeleteNoteLoading] = useDB(async (id) => {
+  const [deleteNote, isDeleteNoteLoading] = useLoading(async (id) => {
     await db.notes.delete(id)
   }, false);
 

@@ -1,0 +1,24 @@
+.journal a {
+  color: #2a94ff !important;
+}
+
+.journal .ant-card-extra {
+  width: 100%;
+}
+
+.journal .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.journal .ant-card-head {
+  height: 40px;
+}
+
+.journal .card-item {
+  margin-bottom: 8px;
+}
+
+.journal .edit-form {
+  margin: 0 0 16px 0;
+}

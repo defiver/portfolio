@@ -1,13 +1,13 @@
 import { Button, Flex, Popconfirm } from "antd";
 import { useRef } from "react";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import { importInto, exportDB } from "dexie-export-import";
 import test from './test.json';
 
 export default function Backup({ db }) {
 	const inputRef = useRef();
 
-	const [clearData, isClearDataLoading] = useDB(async () => {
+	const [clearData, isClearDataLoading] = useLoading(async () => {
 		await db.tables.forEach((table) => db[table.name].clear());
 		await db.delete({ disableAutoOpen: false });
 	}, false);
@@ -29,14 +29,14 @@ export default function Backup({ db }) {
 		};
 	};
 
-	const [importData, isImportDataLoading] = useDB(async (data) => {
+	const [importData, isImportDataLoading] = useLoading(async (data) => {
 		const bytes = new TextEncoder().encode(JSON.stringify(data));
 		const blob = new Blob([bytes], { type: "application/json;charset=utf-8" });
 		await clearData();
 		await importInto(db, blob);
 	}, false);
 
-	const [exportData, isExportDataLoading] = useDB(async () => {
+	const [exportData, isExportDataLoading] = useLoading(async () => {
 		const blob = await exportDB(db);
 		await saveData(blob)
 	}, false);

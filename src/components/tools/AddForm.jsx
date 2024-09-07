@@ -1,6 +1,6 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, Row, Col, Input, Flex, Select } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
 
 export default function EditForm({ setAdd, db }) {
@@ -11,7 +11,7 @@ export default function EditForm({ setAdd, db }) {
 		setAdd(false);
 	};
 
-	const [addTool, isAddToolLoading] = useDB(async () => {
+	const [addTool, isAddToolLoading] = useLoading(async () => {
 		let values = form.getFieldValue();
 		values.favorite = false;
 		values.links = values.links.map(o => o.link);

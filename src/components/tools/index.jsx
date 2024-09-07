@@ -5,6 +5,7 @@ import { useState } from "react";
 import Filter from './Filter';
 import ToolCard from './ToolCard';
 import tools from './tools.json';
+import "./style.css";
 
 export default function Tools() {
   const [swowDrawer, setSwowDrawer] = useState(false);

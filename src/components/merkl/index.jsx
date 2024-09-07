@@ -2,10 +2,11 @@ import { MediumOutlined } from "@ant-design/icons";
 import { FloatButton, Drawer } from "antd";
 import { useState } from "react";
 import { fetchingGet } from "@/utils/fetching";
-import { useFetching } from "@/hooks/useFetching";
+import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import OppList from './OppList';
 import chainIds from './chainIds.json';
+import "./style.css";
 
 const LINK = "https://api.merkl.xyz/v3/opportunity?campaigns=false&testTokens=false";
 
@@ -13,7 +14,7 @@ export default function Merkl({ db }) {
   const [swowDrawer, setSwowDrawer] = useState(false);
   const allOpp = useLiveQuery(() => db.merkl.toArray(), [], []);
 
-  const [fetchOpp, isOppLoading] = useFetching(async () => {
+  const [fetchOpp, isOppLoading] = useLoading(async () => {
     const opportunities = await fetchingGet(LINK);
     if (Object.keys(opportunities).length > 0) {
       const live = Object.values(opportunities)

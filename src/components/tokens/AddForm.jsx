@@ -1,6 +1,6 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, InputNumber, Space, Input, Flex } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
 
 export default function AddForm({ setAdd, db }) {
@@ -11,7 +11,7 @@ export default function AddForm({ setAdd, db }) {
     setAdd(false);
   };
 
-  const [addNote, isAddNoteLoading] = useDB(async () => {
+  const [addNote, isAddNoteLoading] = useLoading(async () => {
     await db.tokens.add(form.getFieldValue());
     closeForm();
   }, false);

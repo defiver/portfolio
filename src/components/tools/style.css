@@ -1,0 +1,28 @@
+.tools .ant-drawer-header {
+  display: none;
+}
+
+.tools .ant-drawer-body {
+  padding: 10px;
+}
+
+.tools .tool-card a {
+  color: inherit !important;
+}
+
+.tools .tools-list .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.tools .tool-card {
+  width: 188px !important;
+}
+
+.tools .tool-card .ant-card-body {
+  padding: 20px 10px;
+}
+
+.tools .tool-card .ant-card-meta {
+  align-items: center;
+}

@@ -23,80 +23,14 @@
   gap: 2%;
 }
 
-a {
-  color: #2a94ff !important;
-}
-
-.journal {
+.center {
   min-width: 52%;
   max-width: 52%;
-}
-
-.journal .ant-card-extra {
-  width: 100%;
 }
 
 .widgets {
   min-width: 30%;
   max-width: 30%;
-}
-
-.pools .ant-drawer-header,
-.tools .ant-drawer-header,
-.merkl .ant-drawer-header,
-.notes .ant-drawer-header {
-  display: none;
-}
-
-.pools .ant-drawer-body,
-.tools .ant-drawer-body,
-.merkl .ant-drawer-body,
-.notes .ant-drawer-body {
-  padding: 10px;
-}
-
-.tool-card a,
-.merkl .ant-list-item a {
-  color: inherit !important;
-}
-
-.pools-list .ant-card-body,
-.tools-list .ant-card-body,
-.merkl-list .ant-card-body,
-.tokens-list .ant-card-body,
-.journal-card .ant-card-body,
-.note-list .ant-card-body {
-  height: calc(100vh - 40px - 10px - 10px - 1px);
-  overflow-y: auto;
-}
-
-.merkl-list img {
-  width: 18px;
-  height: 18px;
-}
-
-.tool-card {
-  width: 188px !important;
-}
-
-.tool-card .ant-card-body {
-  padding: 20px 10px;
-}
-
-.tool-card .ant-card-meta {
-  align-items: center;
-}
-
-.ant-card-head {
-  height: 40px;
-}
-
-.card-item {
-  margin-bottom: 8px;
-}
-
-.edit-form {
-  margin: 0 0 16px 0;
 }
 
 .soon {
@@ -105,15 +39,6 @@ a {
 
 .blur {
   opacity: 0.5;
-}
-
-.badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  padding: 4px;
-  border-radius: 50%;
-  background-color: #d84a1b;
 }
 
 .ant-col-grid {
@@ -165,6 +90,10 @@ a {
 .ant-input-number,
 .ant-input {
   width: 100% !important;
+}
+
+.ant-btn-default {
+  box-shadow: none;
 }
 
 .close-notification {

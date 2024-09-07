@@ -3,6 +3,7 @@ import { Button, Card, Space, FloatButton, Drawer } from "antd";
 import { useState } from "react";
 import EditForm from './EditForm';
 import NotesList from './NotesList';
+import "./style.css";
 
 export default function Notes({ db }) {
   const [swowDrawer, setSwowDrawer] = useState(false);

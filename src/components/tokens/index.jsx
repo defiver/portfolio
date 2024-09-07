@@ -1,13 +1,13 @@
 import { fetchingGet } from "@/utils/fetching";
 import { localeNumber } from "@/utils/number";
-import { useFetching } from "@/hooks/useFetching";
 import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Card, Space, Button, InputNumber } from "antd";
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import AddForm from './AddForm';
 import TokensList from './TokensList';
+import "./style.css";
 
 const LINK = "https://cryptorates.ai/files/standard.json";
 
@@ -17,11 +17,11 @@ export default function Tokens({ db }) {
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], [])
   const journal = useLiveQuery(() => db.journal.toArray(), [], []);
 
-  const [editTonen] = useDB(async (data) => {
+  const [editTonen] = useLoading(async (data) => {
     await db.tokens.put(data);
   }, false);
 
-  const [fetchQuotes, isQuotesLoading] = useFetching(async () => {
+  const [fetchQuotes, isQuotesLoading] = useLoading(async () => {
     let quotes = await fetchingGet(LINK);
     for (const t of tokens) {
       for (const q of quotes) {
@@ -39,7 +39,7 @@ export default function Tokens({ db }) {
   return (
     <Card
       size="small"
-      className="tokens-list"
+      className="tokens"
       title={<>
         <span>${localeNumber(sum)}</span>
         <span style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Header from "./Header";
 import EditForm from './EditForm';
 import PositionList from './PositionList';
+import "./style.css";
 
 export default function Journal({ db }) {
   const journal = useLiveQuery(() => db.journal.reverse().toArray(), [], [])
@@ -19,7 +20,7 @@ export default function Journal({ db }) {
   return (
     <Card
       size="small"
-      className="journal-card"
+      className="journal"
       title={false}
       extra={<Header />}
     >

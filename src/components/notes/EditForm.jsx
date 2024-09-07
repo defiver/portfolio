@@ -1,6 +1,6 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, DatePicker, Row, Col, Flex, Input, } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import dayjs from 'dayjs';
@@ -13,7 +13,7 @@ export default function EditForm({ setId, db, note = {} }) {
     setId(null);
   };
 
-  const [editNote, isEditNoteLoading] = useDB(async () => {
+  const [editNote, isEditNoteLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { id } = form.getFieldValue();
 

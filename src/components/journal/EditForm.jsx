@@ -1,6 +1,6 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, DatePicker, Row, Col, Flex, Input, Space, Segmented, Select, InputNumber } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { idState, allTagsState, allChainsState } from "./store";
@@ -23,7 +23,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
     setId(null);
   };
 
-  const [editPosition, isEditPositionLoading] = useDB(async () => {
+  const [editPosition, isEditPositionLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { id } = values;
 

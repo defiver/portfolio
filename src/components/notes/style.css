@@ -1,0 +1,20 @@
+.notes .ant-drawer-header {
+  display: none;
+}
+
+.notes .ant-drawer-body {
+  padding: 10px;
+}
+
+.notes .note-list .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.notes .card-item {
+  margin-bottom: 8px;
+}
+
+.notes .edit-form {
+  margin: 0 0 16px 0;
+}

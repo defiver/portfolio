@@ -2,13 +2,13 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Flex, Popconfirm, Space, Typography } from "antd";
 import { useRecoilState } from "recoil";
 import { idState } from "../store";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import dayjs from "dayjs";
 
 export default function Children({ position, db }) {
   const [, setId] = useRecoilState(idState);
 
-  const [deletePosition, isDeletePositionLoading] = useDB(async (id) => {
+  const [deletePosition, isDeletePositionLoading] = useLoading(async (id) => {
     await db.journal.delete(id)
   }, false);
 

@@ -1,6 +1,6 @@
 import { CloseOutlined, CheckOutlined, MinusOutlined } from "@ant-design/icons";
 import { Form, Button, InputNumber, Space, Input, Flex, Popconfirm } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
 
 export default function EditForm({ token, setToken, db }) {
@@ -11,12 +11,12 @@ export default function EditForm({ token, setToken, db }) {
 		setToken(null);
 	};
 
-	const [deleteToken, isDeleteTokenLoading] = useDB(async () => {
+	const [deleteToken, isDeleteTokenLoading] = useLoading(async () => {
 		await db.tokens.delete(token.token);
 		closeForm();
 	}, false);
 
-	const [editTonen, isEditTokenLoading] = useDB(async () => {
+	const [editTonen, isEditTokenLoading] = useLoading(async () => {
 		await db.tokens.put(form.getFieldValue());
 		closeForm();
 	}, false);

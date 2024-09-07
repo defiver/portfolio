@@ -1,0 +1,21 @@
+.merkl .ant-drawer-header {
+  display: none;
+}
+
+.merkl .ant-drawer-body {
+  padding: 10px;
+}
+
+.merkl .ant-list-item a {
+  color: inherit !important;
+}
+
+.merkl .merkl-list .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.merkl .merkl-list img {
+  width: 18px;
+  height: 18px;
+}
