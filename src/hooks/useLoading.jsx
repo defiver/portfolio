@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { openNotification } from "@/utils/notification";
 
-export const useDB = (callback, loading = false) => {
+export const useLoading = (callback, loading = false) => {
   const [isLoading, setIsLoading] = useState(loading);
 
   const fetching = async (...args) => {

@@ -20,7 +20,7 @@ export default function Home() {
     tokens: "&token, amount, quote, previous",
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
-    pools: "&address, name, chain, price, previous, range",
+    pools: "&address, name, chain, price, previous, range, prices",
   }
 
   const db = new Dexie("porfolio");
@@ -28,7 +28,9 @@ export default function Home() {
 
   return (
     <div className="container">
-      <Pools db={db} />
+      <RecoilRoot>
+        <Pools db={db} />
+      </RecoilRoot>
 
       <Tools />
 
@@ -40,7 +42,7 @@ export default function Home() {
 
       <Help />
 
-      <div className="journal">
+      <div className="center">
         <RecoilRoot>
           <Journal db={db} />
         </RecoilRoot>
