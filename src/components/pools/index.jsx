@@ -1,12 +1,25 @@
-import { DownOutlined, UpOutlined, LineChartOutlined } from "@ant-design/icons";
+import { DownOutlined, UpOutlined, LineChartOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Card, Space, FloatButton, Drawer } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { formAddressState, poolsListState } from "./store";
+import { useLiveQuery } from "dexie-react-hooks";
+import { usePrices } from './usePrices';
 import EditForm from './EditForm';
 import PoolsList from './PoolsList';
+import "./style.css";
 
 export default function Pools({ db }) {
   const [swowDrawer, setSwowDrawer] = useState(false);
-  const [pool, setPool] = useState(null);
+  const [formAddress, setFormAddress] = useRecoilState(formAddressState);
+
+  const pools = useLiveQuery(() => db.pools.toArray(), [], []);
+  const [, setPoolsList] = useRecoilState(poolsListState);
+  const [updatePrices, isUpdatePricesLoading] = usePrices(pools, db);
+
+  useEffect(() => {
+    setPoolsList(pools);
+  }, [pools]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -27,19 +40,20 @@ export default function Pools({ db }) {
         <Card
           size="small"
           title="Price in pools"
-          className="note-list"
+          className="pools-list"
           extra={
             <Space>
+              <Button loading={isUpdatePricesLoading} icon={<ReloadOutlined />} onClick={updatePrices} />
               <Button
-                icon={pool ? <UpOutlined /> : <DownOutlined />}
-                onClick={() => setPool(!pool)}
+                icon={formAddress === 0 ? <UpOutlined /> : <DownOutlined />}
+                onClick={() => setFormAddress(formAddress === 0 ? null : 0)}
               />
             </Space>
           }
         >
-          {pool && <EditForm db={db} pool={pool} setPool={setPool} />}
+          {formAddress === 0 && <EditForm db={db} pool={null} />}
 
-          <PoolsList db={db} setPool={setPool} />
+          <PoolsList db={db} />
         </Card>
       </Drawer >
     </>

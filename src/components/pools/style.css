@@ -1,0 +1,32 @@
+.pools .ant-drawer-header {
+  display: none;
+}
+
+.pools .ant-drawer-body {
+  padding: 10px;
+}
+
+.pools .pools-list .ant-card-body {
+  height: calc(100vh - 40px - 10px - 10px - 1px);
+  overflow-y: auto;
+}
+
+.pools .pools-list .price-chart {
+  height: 100px;
+  background-color: #141414;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.pools .card-item {
+  margin-bottom: 8px;
+}
+
+.pools .edit-form {
+  margin: 0 0 16px 0;
+}
+
+.pools .ant-collapse-header {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}

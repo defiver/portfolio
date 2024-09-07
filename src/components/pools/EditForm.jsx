@@ -1,7 +1,9 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, Row, Col, Input, Flex, Select, InputNumber } from "antd";
-import { useDB } from "@/hooks/useDB";
+import { useLoading } from "@/hooks/useLoading";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { formAddressState } from "./store";
 import SubmitButton from "@/components/SubmitButton";
 
 const chains = [
@@ -17,15 +19,16 @@ const chains = [
   { "name": "zkSync", "chain": "zksync" },
 ];
 
-export default function EditForm({ db, pool, setPool }) {
+export default function EditForm({ db, pool }) {
   const [form] = Form.useForm();
+  const [, setFormAddress] = useRecoilState(formAddressState);
 
   const closeForm = () => {
     form.resetFields();
-    setPool(null);
+    setFormAddress(null);
   };
 
-  const [addNote, isAddNoteLoading] = useDB(async () => {
+  const [addNote, isAddNoteLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { range1, range2 } = values;
     values.range = [range1 || 0, range2 || 10 ** 9];
