@@ -3,11 +3,11 @@
 }
 
 .notes .ant-drawer-body {
-  padding: 10px;
+  padding: 8px;
 }
 
 .notes .note-list .ant-card-body {
-  height: calc(100vh - 40px - 10px - 10px - 1px);
+  height: calc(100vh - 40px - 16px);
   overflow-y: auto;
 }
 
