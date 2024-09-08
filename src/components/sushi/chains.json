@@ -1,0 +1,126 @@
+[
+  {
+    "name": "Arbitrum Nova",
+    "chainId": 42170
+  },
+  {
+    "name": "Arbitrum",
+    "chainId": 42161
+  },
+  {
+    "name": "Avalanche",
+    "chainId": 43114
+  },
+  {
+    "name": "Base",
+    "chainId": 8453
+  },
+  {
+    "name": "BitTorrent",
+    "chainId": 199
+  },
+  {
+    "name": "Blast",
+    "chainId": 81457
+  },
+  {
+    "name": "Boba",
+    "chainId": 288
+  },
+  {
+    "name": "Boba BNB",
+    "chainId": 56288
+  },
+  {
+    "name": "BSC",
+    "chainId": 56
+  },
+  {
+    "name": "Celo",
+    "chainId": 42220
+  },
+  {
+    "name": "Core",
+    "chainId": 1116
+  },
+  {
+    "name": "Ethereum",
+    "chainId": 1
+  },
+  {
+    "name": "Fantom",
+    "chainId": 250
+  },
+  {
+    "name": "Filecoin",
+    "chainId": 314
+  },
+  {
+    "name": "Fuse",
+    "chainId": 122
+  },
+  {
+    "name": "Gnosis",
+    "chainId": 100
+  },
+  {
+    "name": "Haqq",
+    "chainId": 11235
+  },
+  {
+    "name": "Harmony",
+    "chainId": 1666600000
+  },
+  {
+    "name": "Kava",
+    "chainId": 2222
+  },
+  {
+    "name": "Linea",
+    "chainId": 59144
+  },
+  {
+    "name": "Metis",
+    "chainId": 1088
+  },
+  {
+    "name": "MoonBeam",
+    "chainId": 1284
+  },
+  {
+    "name": "MoonRiver",
+    "chainId": 1285
+  },
+  {
+    "name": "Optimism",
+    "chainId": 10
+  },
+  {
+    "name": "Polygon",
+    "chainId": 137
+  },
+  {
+    "name": "Polygon ZkEVM",
+    "chainId": 1101
+  },
+  {
+    "name": "Rootstock",
+    "chainId": 30
+  },
+  {
+    "name": "Scroll",
+    "chainId": 534352
+  },
+  {
+    "name": "Skale Europa",
+    "chainId": 2046399126
+  },
+  {
+    "name": "ThunderCore",
+    "chainId": 108
+  },
+  {
+    "name": "Zetachain",
+    "chainId": 7000
+  }
+]

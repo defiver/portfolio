@@ -1,0 +1,21 @@
+.sushi .ant-drawer-header {
+  display: none;
+}
+
+.sushi .ant-drawer-body {
+  padding: 8px;
+}
+
+.sushi .ant-list-item a {
+  color: inherit !important;
+}
+
+.sushi .sushi-list .ant-card-body {
+  height: calc(100vh - 40px - 16px);
+  overflow-y: auto;
+}
+
+.sushi .sushi-list .ant-list-item .ant-tag {
+  margin-inline-end: 0;
+  padding-inline: 5px;
+}

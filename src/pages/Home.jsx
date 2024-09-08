@@ -7,6 +7,7 @@ import Settings from "@/components/settings";
 import Merkl from "@/components/merkl";
 import Tools from "@/components/tools";
 import Pools from "@/components/pools";
+import Sushi from "@/components/sushi";
 import Dexie from 'dexie';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices",
+    sushi: "&address, name, link, chainId, params",
   }
 
   const db = new Dexie("porfolio");
@@ -28,6 +30,8 @@ export default function Home() {
 
   return (
     <div className="container">
+      <Sushi db={db} />
+
       <RecoilRoot>
         <Pools db={db} />
       </RecoilRoot>
