@@ -20,7 +20,6 @@ export default function Header() {
           value={filter.tag}
           onChange={(value) => setFilterState({ ...filter, tag: value })}
           options={tags.map((i) => new Object({ label: i, value: i }))}
-          virtual={false}
         />
         <Select
           allowClear
@@ -29,7 +28,6 @@ export default function Header() {
           value={filter.token}
           onChange={(value) => setFilterState({ ...filter, token: value })}
           options={tokens.map((i) => new Object({ label: i, value: i }))}
-          virtual={false}
         />
         <Select
           allowClear
@@ -38,7 +36,6 @@ export default function Header() {
           value={filter.chain}
           onChange={(value) => setFilterState({ ...filter, chain: value })}
           options={chains.map((i) => new Object({ label: i, value: i }))}
-          virtual={false}
         />
       </Flex>
       <Flex gap={4} justify="end">

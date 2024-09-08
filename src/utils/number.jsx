@@ -25,9 +25,8 @@ export const localeNumber = (number, suffix = "", fixed = 0) => {
 }
 
 export const formatPercent = (n1, n2, fixed = 1) => {
-	n1 = parseFloat(n1 ?? 0);
-	n2 = parseFloat(n2 ?? 0);
-
+	n1 = parseFloat(n1 || 0);
+	n2 = parseFloat(n2 || 0);
 
 	const percent = n2 !== 0 ? (100 * (n1 - n2) / n2).toFixed(fixed) : 0.0;
 	const icon = percent > 0
