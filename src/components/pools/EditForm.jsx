@@ -4,6 +4,7 @@ import { useLoading } from "@/hooks/useLoading";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { formAddressState } from "./store";
+import { getDecimals } from './helper';
 import SubmitButton from "@/components/SubmitButton";
 
 const chains = [
@@ -31,7 +32,10 @@ export default function EditForm({ db, pool }) {
   const [addNote, isAddNoteLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { range1, range2 } = values;
+
     values.range = [range1 || 0, range2 || 10 ** 9];
+    values.decimals = await getDecimals(values.address, values.chain);
+
     if (pool) {
       await db.pools.put(values);
     } else {

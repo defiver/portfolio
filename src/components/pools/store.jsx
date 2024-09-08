@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export const poolsListState = atom({
   key: "PoolsList",
@@ -13,4 +13,12 @@ export const formAddressState = atom({
 export const loadingPoolState = atom({
   key: "LoadingPool",
   default: undefined,
+});
+
+export const sortPoolsListState = selector({
+  key: "SortPoolsList",
+  get: ({ get }) => {
+    const pools = get(poolsListState);
+    return [...pools].sort((a, b) => a.name.localeCompare(b.name));
+  },
 });

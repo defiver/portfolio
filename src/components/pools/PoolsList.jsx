@@ -1,12 +1,12 @@
 import { Empty, Collapse } from "antd";
 import { useRecoilValue } from "recoil";
-import { poolsListState, formAddressState } from "./store";
-import PriceChart from "./PriceChart";
-import PoolRow from './PoolRow';
+import { sortPoolsListState, formAddressState } from "./store";
+import PriceChart from "./pool/PriceChart";
+import PoolRow from './pool/PoolRow';
 import EditForm from './EditForm';
 
 export default function PoolsList({ db }) {
-  const pools = useRecoilValue(poolsListState);
+  const pools = useRecoilValue(sortPoolsListState);
   const formAddress = useRecoilValue(formAddressState);
 
   if (pools.length === 0) {

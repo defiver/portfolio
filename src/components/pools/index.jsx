@@ -1,10 +1,10 @@
 import { DownOutlined, UpOutlined, LineChartOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Card, Space, FloatButton, Drawer } from "antd";
 import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { formAddressState, poolsListState } from "./store";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { formAddressState, poolsListState, sortPoolsListState } from "./store";
 import { useLiveQuery } from "dexie-react-hooks";
-import { usePrices } from './usePrices';
+import { usePrices } from './helper';
 import EditForm from './EditForm';
 import PoolsList from './PoolsList';
 import "./style.css";
@@ -12,10 +12,12 @@ import "./style.css";
 export default function Pools({ db }) {
   const [swowDrawer, setSwowDrawer] = useState(false);
   const [formAddress, setFormAddress] = useRecoilState(formAddressState);
-
   const pools = useLiveQuery(() => db.pools.toArray(), [], []);
+
   const [, setPoolsList] = useRecoilState(poolsListState);
-  const [updatePrices, isUpdatePricesLoading] = usePrices(pools, db);
+  const sortPools = useRecoilValue(sortPoolsListState);
+
+  const [updatePrices, isUpdatePricesLoading] = usePrices(sortPools, db);
 
   useEffect(() => {
     setPoolsList(pools);

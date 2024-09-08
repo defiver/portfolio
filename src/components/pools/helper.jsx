@@ -1,7 +1,15 @@
 import { useRecoilState } from "recoil";
+import { fetchTokens, fetchDecimals, fetchEvents } from "./ferching";
 import { loadingPoolState } from "./store";
-import { fetchGraphql } from "./ferching";
 import { useLoading } from "@/hooks/useLoading";
+
+export const getDecimals = async (address, chain) => {
+	const tokens = await fetchTokens(address, chain);
+	const d1 = tokens[0] ? await fetchDecimals(tokens[0], chain) : 0;
+	const d2 = tokens[1] ? await fetchDecimals(tokens[1], chain) : 0;
+
+	return (10 ** parseInt(d1)) / (10 ** parseInt(d2));
+};
 
 export const usePrices = (pools, db) => {
 	const [, setLoadingPool] = useRecoilState(loadingPoolState);
@@ -10,14 +18,11 @@ export const usePrices = (pools, db) => {
 		for (const pool of pools) {
 			setLoadingPool(pool.address);
 
-			const graphql = await fetchGraphql(pool.address, pool.chain);
+			const events = await fetchEvents(pool.address, pool.chain);
 
-			const logs = graphql["data"]["contract"]["logs"];
-			const prices = !(logs instanceof Array) ? [] : logs.map(arr => {
+			const prices = events.map(arr => {
 				const contract = JSON.parse(arr["data"]);
-				const price = contract ? Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
-				// For example, 1 WETH actually represents 10 ** 18 WETH in the contract whereas USDC is 10 ** 6
-				return (price < (1 / 10 ** 6)) ? (price * 10 ** 12) : price;
+				return contract ? parseFloat(pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
 			})
 
 			await db.pools.update(pool.address, {
