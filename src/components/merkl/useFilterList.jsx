@@ -14,11 +14,11 @@ const useSortByKey = (arr, key) => {
 
 const useFilterByQuery = (arr, query) => {
 	return useMemo(() => {
-		return query ? arr.filter(o => o.name.toLowerCase().includes(query)) : arr;
+		let clearquery = query.toLowerCase().trim().replace(/ +/, ' ');
+		return clearquery ? arr.filter(o => o.name.toLowerCase().includes(clearquery)) : arr;
 	}, [arr, query]);
 }
 
 export const useFilterList = (arr, fresh, query, sortKey = null) => {
-	query = query.toLowerCase().trim().replace(/ +/, ' ');
 	return useSortByKey(useFilterByQuery(useFilterByType(arr, fresh), query), sortKey);
 }
