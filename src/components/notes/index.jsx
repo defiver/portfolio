@@ -6,23 +6,23 @@ import NotesList from './NotesList';
 import "./style.css";
 
 export default function Notes({ db }) {
-  const [swowDrawer, setSwowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const [id, setId] = useState(null);
 
   return (
     <>
       <FloatButton
-        onClick={() => setSwowDrawer(true)}
+        onClick={() => setShowDrawer(true)}
         style={{ insetInlineStart: 24, insetBlockEnd: 160 }}
       />
 
       <Drawer
         title={false}
-        open={swowDrawer}
+        open={showDrawer}
         className="notes"
         placement={"left"}
         width={500}
-        onClose={() => setSwowDrawer(false)}
+        onClose={() => setShowDrawer(false)}
       >
         <Card
           size="small"

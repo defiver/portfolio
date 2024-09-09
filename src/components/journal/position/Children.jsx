@@ -41,7 +41,7 @@ export default function Children({ position, db }) {
             okText="Yes"
             cancelText="No"
           >
-            <Button loading={isDeletePositionLoading} icon={<DeleteOutlined />} style={{ color: "red" }} />
+            <Button loading={isDeletePositionLoading} icon={<DeleteOutlined />} className="warning" />
           </Popconfirm>
           <Button
             icon={<EditOutlined />}

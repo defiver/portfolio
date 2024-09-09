@@ -1,9 +1,8 @@
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 
-export const localeNumber = (number, suffix = "", fixed = 0) => {
+export const localeNumber = (number, fixed = 0) => {
 	number = number ? number : 0;
 	number = parseFloat(number);
-	suffix = suffix ? ` ${suffix}` : "";
 	const positive = Math.abs(number);
 	const fraction = fixed > 0 ? fixed : 4;
 
@@ -21,7 +20,7 @@ export const localeNumber = (number, suffix = "", fixed = 0) => {
 		number = number.toFixed(4);
 	}
 
-	return (+number).toLocaleString(undefined, { minimumFractionDigits: fraction }).replace(/,?0*$/, '') + suffix;
+	return (+number).toLocaleString(undefined, { minimumFractionDigits: fraction }).replace(/,?0*$/, '');
 }
 
 export const formatPercent = (n1, n2, fixed = 1) => {
@@ -30,9 +29,9 @@ export const formatPercent = (n1, n2, fixed = 1) => {
 
 	const percent = n2 !== 0 ? (100 * (n1 - n2) / n2).toFixed(fixed) : 0.0;
 	const icon = percent > 0
-		? <ArrowUpOutlined style={{ color: "green" }} />
+		? <ArrowUpOutlined className="warning" />
 		: percent < 0
-			? <ArrowDownOutlined style={{ color: "red" }} />
+			? <ArrowDownOutlined className="good" />
 			: <></>
 
 	return <>{icon}{(Math.abs(percent)).toLocaleString(undefined, { minimumFractionDigits: 1 }) + "%"}</>;

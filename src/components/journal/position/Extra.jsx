@@ -9,7 +9,7 @@ export default function Extra({ position }) {
     );
   } else if (position?.daterange && position.daterange[1] && position.status === "active") {
     return (
-      <span className={dayjs(position.daterange[1].$d).diff(dayjs()) < 259_200_000 ? "soon" : ""}>
+      <span className={dayjs(position.daterange[1].$d).diff(dayjs()) < 259_200_000 ? "warning" : ""}>
         {dayjs(position.daterange[1].$d).format("DD.MM.YYYY")}
       </span>
     );

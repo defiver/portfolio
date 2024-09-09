@@ -10,7 +10,7 @@ import PoolsList from './PoolsList';
 import "./style.css";
 
 export default function Pools({ db }) {
-  const [swowDrawer, setSwowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const [formAddress, setFormAddress] = useRecoilState(formAddressState);
   const pools = useLiveQuery(() => db.pools.toArray(), [], []);
 
@@ -26,18 +26,18 @@ export default function Pools({ db }) {
   return (
     <>
       <FloatButton
-        onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
+        onClick={() => setShowDrawer(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 210 }}
         icon={<LineChartOutlined />}
       />
 
       <Drawer
         title={false}
-        open={swowDrawer}
+        open={showDrawer}
         className="pools"
         placement={"left"}
         width={500}
-        onClose={() => setSwowDrawer(false)}
+        onClose={() => setShowDrawer(false)}
       >
         <Card
           size="small"

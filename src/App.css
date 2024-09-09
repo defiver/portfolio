@@ -33,8 +33,12 @@
   max-width: 30%;
 }
 
-.soon {
-  color: #d84a1b;
+.warning {
+  color: #dc4446;
+}
+
+.good {
+  color: #008000;
 }
 
 .blur {

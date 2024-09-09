@@ -23,7 +23,6 @@ export default function NotesList({ db }) {
       ? <EditForm key={o.id} note={o} setId={setId} db={db} />
       : <Collapse
         className={"card-item"}
-        bordered={false}
         size={"small"}
         key={o.id}
         items={[
@@ -36,7 +35,7 @@ export default function NotesList({ db }) {
                   {o?.text?.length > 58 ? `${o.text.match(/^((?:.|\n)*?){1,55}/g)}...` : o.text}
                 </span>
                 {o?.finish?.$d && (
-                  <span className={dayjs(o.finish.$d).diff(dayjs()) < 259_200_000 ? "soon" : ""}>
+                  <span className={dayjs(o.finish.$d).diff(dayjs()) < 259_200_000 ? "warning" : ""}>
                     {dayjs(o.finish.$d).format("DD.MM.YYYY")}
                   </span>
                 )}
@@ -57,7 +56,7 @@ export default function NotesList({ db }) {
                       <Button
                         loading={isDeleteNoteLoading}
                         icon={<DeleteOutlined />}
-                        style={{ color: "red" }}
+                        className="warning"
                       />
                     </Popconfirm>
 

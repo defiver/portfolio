@@ -1,4 +1,3 @@
-import { MediumOutlined } from "@ant-design/icons";
 import { FloatButton, Drawer } from "antd";
 import { useState } from "react";
 import { fetchingGet } from "@/utils/fetching";
@@ -6,12 +5,13 @@ import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import OppList from './OppList';
 import chainIds from './chainIds.json';
+import icon from './icon.svg';
 import "./style.css";
 
 const LINK = "https://api.merkl.xyz/v3/opportunity?campaigns=false&testTokens=false";
 
 export default function Merkl({ db }) {
-  const [swowDrawer, setSwowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const allOpp = useLiveQuery(() => db.merkl.toArray(), [], []);
 
   const [fetchOpp, isOppLoading] = useLoading(async () => {
@@ -36,18 +36,18 @@ export default function Merkl({ db }) {
   return (
     <>
       <FloatButton
-        onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 110 }}
-        icon={<MediumOutlined />}
+        onClick={() => setShowDrawer(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
+        icon={<img style={{ width: 18, height: 18 }} src={icon} />}
       />
 
       <Drawer
         title={false}
-        open={swowDrawer}
+        open={showDrawer}
         className="merkl"
         placement={"left"}
         width={500}
-        onClose={() => setSwowDrawer(false)}
+        onClose={() => setShowDrawer(false)}
       >
         <OppList allOpp={allOpp} fetchOpp={fetchOpp} isOppLoading={isOppLoading} />
       </Drawer >

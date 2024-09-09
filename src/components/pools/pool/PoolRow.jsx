@@ -8,16 +8,16 @@ import { usePrices } from '../helper';
 export default function PoolRow({ db, pool }) {
 	const loadingPool = useRecoilValue(loadingPoolState);
 	const [updatePrice] = usePrices([pool], db);
-	const inRange = pool.price > pool.range[0] & pool.price < pool.range[1];
+	const inRange = pool?.range && pool.price > pool.range[0] & pool.price < pool.range[1];
 
 	return (
 		<Row gutter={[16, 16]} justify={"space-between"} align={"middle"}>
 			<Col span={8}>
-				<Tag color={inRange ? "default" : "error"}>{pool.name}</Tag>
+				<Tag color={inRange ? "default" : "error"}>{pool?.name}</Tag>
 			</Col>
 
 			<Col span={8}>
-				<span>{localeNumber(pool.price, "", 6)}</span>
+				<span>{localeNumber(pool.price, 6)}</span>
 			</Col>
 
 			<Col span={6} style={{ fontSize: 12, alignSelf: "center" }}>

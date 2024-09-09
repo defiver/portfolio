@@ -5,23 +5,23 @@ import PoolsList from './PoolsList';
 import "./style.css";
 
 export default function Sushi({ db }) {
-  const [swowDrawer, setSwowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
 
   return (
     <>
       <FloatButton
-        onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
+        onClick={() => setShowDrawer(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
         icon={<img style={{ width: 18, height: 18 }} src={icon} />}
       />
 
       <Drawer
         title={false}
-        open={swowDrawer}
+        open={showDrawer}
         className="sushi"
         placement={"left"}
         width={500}
-        onClose={() => setSwowDrawer(false)}
+        onClose={() => setShowDrawer(false)}
       >
         <PoolsList db={db} />
       </Drawer >

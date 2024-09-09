@@ -27,7 +27,7 @@ export default function PoolsList({ db, pool }) {
 		}]
 	};
 
-	pool.range[0] > 0 && data.datasets.push({
+	pool?.range && pool.range[0] > 0 && data.datasets.push({
 		label: "Down range",
 		data: new Array(datapoints.length).fill(pool.range[0]),
 		fill: false,
@@ -37,7 +37,7 @@ export default function PoolsList({ db, pool }) {
 		borderDash: [2, 2],
 	});
 
-	pool.range[1] > 0 && pool.range[1] < 10 ** 9 && data.datasets.push({
+	pool?.range && pool.range[1] > 0 && pool.range[1] < 10 ** 9 && data.datasets.push({
 		label: "Top range",
 		data: new Array(datapoints.length).fill(pool.range[1]),
 		fill: false,
@@ -72,11 +72,11 @@ export default function PoolsList({ db, pool }) {
 
 			<Flex justify={"end"} gap={8}>
 				<Popconfirm title="Delete the token?" onConfirm={deletePool} okText="Yes" cancelText="No">
-					<Button loading={isDeletePollLoading} icon={<DeleteOutlined />} style={{ color: "red" }} />
+					<Button loading={isDeletePollLoading} icon={<DeleteOutlined />} className="warning" />
 				</Popconfirm>
 
 				<Button icon={<EditOutlined />} onClick={() => setFormAddress(pool.address)} />
 			</Flex>
-		</Flex >
+		</Flex>
 	)
 }

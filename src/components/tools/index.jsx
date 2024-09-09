@@ -8,7 +8,7 @@ import tools from './tools.json';
 import "./style.css";
 
 export default function Tools() {
-  const [swowDrawer, setSwowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const [filterTools, setFilterTools] = useState(tools.sort((a, b) => a.name.localeCompare(b.name)));
   const [favorites, setFavorites] = useState(loadStorage("favorite_tools"));
 
@@ -25,18 +25,18 @@ export default function Tools() {
   return (
     <>
       <FloatButton
-        onClick={() => setSwowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 210 }}
+        onClick={() => setShowDrawer(true)}
+        style={{ insetInlineStart: 24, insetBlockEnd: 110 }}
         icon={<AppstoreAddOutlined />}
       />
 
       <Drawer
         title={false}
-        open={swowDrawer}
+        open={showDrawer}
         className="tools"
         placement={"left"}
         width={600}
-        onClose={() => setSwowDrawer(false)}
+        onClose={() => setShowDrawer(false)}
       >
         <Flex vertical gap={20}>
           <Filter tools={tools} favorites={favorites} setFilterTools={setFilterTools} />
