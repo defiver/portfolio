@@ -1,0 +1,36 @@
+.revert .ant-drawer-header {
+  display: none;
+}
+
+.revert .ant-drawer-body {
+  padding: 8px;
+}
+
+.revert .revert-list .ant-card-body {
+  height: calc(100vh - 40px - 16px);
+  overflow-y: auto;
+}
+
+.revert .card-item {
+  margin-bottom: 8px;
+}
+
+.revert .edit-form {
+  margin: 0 0 16px 0;
+}
+
+.revert .ant-collapse-header {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.revert .revert-list img {
+  width: 18px;
+  height: 18px;
+}
+
+.revert .revert-list span .underline {
+  font-size: 9px;
+  line-height: 6px;
+  margin-bottom: 5px;
+}
