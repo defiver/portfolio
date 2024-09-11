@@ -3,10 +3,12 @@ import { Button, Card, Space, FloatButton, Drawer, Input } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import { useState, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { fetchPositions } from './ferching';
+import { fetchingGet } from "@/utils/fetching";
 import PositionsList from './PositionsList';
 import icon from './icon.svg';
 import "./style.css";
+
+const LINK = "https://cors-anywhere.herokuapp.com/https://api.revert.finance/v1/positions/uniswapv3/account/";
 
 export default function Revert({ db }) {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -16,7 +18,7 @@ export default function Revert({ db }) {
 
   const [fetchPos, isFetchPosLoading] = useLoading(async () => {
     for (const account of revert) {
-      const positions = await fetchPositions(account.address);
+      const positions = await fetchingGet(LINK + account.address);
       await db.revert.put({ address: account.address, positions: positions?.data || [] });
     }
   }, false);

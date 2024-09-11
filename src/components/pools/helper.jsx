@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { fetchTokens, fetchDecimals, fetchEvents } from "./ferching";
+import { fetchTokens, fetchDecimals, fetchEvents } from "./fetching";
 import { loadingPoolState } from "./store";
 import { useLoading } from "@/hooks/useLoading";
 

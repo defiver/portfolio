@@ -20,7 +20,7 @@ export const fetchingGet = async (url, headers = {}) => {
       return handlingErrors(error);
     });
 };
-// mode: 'cors',
+
 export const fetchingPost = async (url, data, headers = {}) => {
   return await axios.post(url, data, { headers }).then((response) => {
     return response.data;

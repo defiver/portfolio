@@ -3,12 +3,9 @@ import { fetchingPost } from "@/utils/fetching";
 const fetchGraphql = (data) => {
 	const headers = {
 		"Accept": "*/*",
-		"Referer": "https://app.parsec.finance/",
-		"Origin": "https://app.parsec.finance/",
 		"content-type": "application/json",
 		"authorization": "GUEST",
-		"session-uuid": crypto.randomUUID(),
-		"Sec-Fetch-Mode": "cors"
+		"session-uuid": crypto.randomUUID()
 	}
 
 	return fetchingPost("https://api.parsec.finance/graphql", data, headers);

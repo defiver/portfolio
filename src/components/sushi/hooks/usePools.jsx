@@ -1,4 +1,4 @@
-import { fetchGraphql, fetchPool } from "../ferching";
+import { fetchGraphql, fetchPool } from "../fetching";
 import { useLoading } from "@/hooks/useLoading";
 import chains from '../chains.json';
 

@@ -13,7 +13,7 @@ export default function Children({ position }) {
 				<Flex vertical>
 					<Text code>Min price: {localeNumber(position.price_lower, 8)}</Text>
 					<Text code>Max price: {localeNumber(position.price_upper, 8)}</Text>
-					<Text code className="warning">Cur price: {localeNumber(position.pool_price, 8)}</Text>
+					<Text code>Cur price: {localeNumber(position.pool_price, 8)}</Text>
 				</Flex>
 			</Col>
 			<Col span={12}>
