@@ -32,9 +32,9 @@ export default function Home() {
 
   return (
     <div className="container">
-      <Revert db={db} />
+      {/* <Revert db={db} /> */}
 
-      <Sushi db={db} />
+      {/* <Sushi db={db} /> */}
 
       <RecoilRoot>
         <Pools db={db} />

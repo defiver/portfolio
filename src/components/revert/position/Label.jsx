@@ -8,8 +8,9 @@ export default function Label({ position }) {
 	const apr = localeNumber(position.performance.hodl.pool_apr, 2);
 	const value = localeNumber(position.deposits_value);
 	const owner = `0x${position.real_owner.slice(2, 6)}...${position.real_owner.slice(-4)}`;
-	const pnl24 = localeNumber(position.deltas_24h.pnl, 1);
-	const apr24 = position.deltas_24h.apr;
+	const pnl24 = localeNumber(position?.deltas_24h?.pnl || 0, 1);
+	const apr24 = position?.deltas_24h?.apr || 0;
+
 	const chainIcon = chainIcons[position.network] || chainIcons["unknown"];
 	const isRange = position.in_range;
 
@@ -35,7 +36,7 @@ export default function Label({ position }) {
 			<Col span={3}>
 				<Flex vertical>
 					<span>{apr}%</span>
-					<span className={parseFloat(apr24) > 0 ? "underline" : "underline warning"}>
+					<span className={parseFloat(apr24) < 0 ? "underline warning" : "underline"}>
 						{localeNumber(apr24, 1)}%
 					</span>
 				</Flex>
