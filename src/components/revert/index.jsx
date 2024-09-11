@@ -18,7 +18,7 @@ export default function Revert({ db }) {
 
   const [fetchPos, isFetchPosLoading] = useLoading(async () => {
     for (const pos of revert) {
-      const positions = await fetchingGet(LINK + pos.address);
+      const positions = await fetchingGet(LINK + pos.address, { "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Sec-Fetch-Site": "same-site" });
       await db.revert.put({ address: pos.address, positions: positions?.data || [] });
     }
   }, false);
