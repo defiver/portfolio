@@ -19,3 +19,9 @@
   margin-inline-end: 0;
   padding-inline: 5px;
 }
+
+.sushi .sushi-list .ant-list-item .border code {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(221, 221, 221, 0.33);
+}

@@ -20,7 +20,7 @@ export default function Sushi({ db }) {
         open={showDrawer}
         className="sushi"
         placement={"left"}
-        width={500}
+        width={600}
         onClose={() => setShowDrawer(false)}
       >
         <PoolsList db={db} />

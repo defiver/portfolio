@@ -5,6 +5,7 @@ import { useLoading } from "@/hooks/useLoading";
 
 export const getDecimals = async (address, chain) => {
 	const tokens = await fetchTokens(address, chain);
+
 	const d1 = tokens[0] ? await fetchDecimals(tokens[0], chain) : 0;
 	const d2 = tokens[1] ? await fetchDecimals(tokens[1], chain) : 0;
 
@@ -17,13 +18,14 @@ export const usePrices = (pools, db) => {
 	return useLoading(async () => {
 		for (const pool of pools) {
 			setLoadingPool(pool.address);
-
 			const events = await fetchEvents(pool.address, pool.chain);
 
 			const prices = events.map(arr => {
 				const contract = JSON.parse(arr["data"]);
-				return contract ? parseFloat(pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
-			})
+				const price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
+
+				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals * 2 : price;
+			});
 
 			await db.pools.update(pool.address, {
 				previous: pool.price,

@@ -19,6 +19,7 @@ export const fetchEvents = async (address, chain) => {
 
 	const events = await fetchGraphql(data);
 	const logs = events?.data?.contract?.logs;
+
 	return (logs instanceof Array) ? logs : [];
 };
 

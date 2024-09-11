@@ -1,11 +1,13 @@
 import { ReloadOutlined } from "@ant-design/icons";
-import { Button, List, Typography, Input, Flex, Select, Tag } from "antd";
+import { Button, List, Typography, Input, Flex, Select, Row, Col } from "antd";
 import { useFilterList } from './hooks/useFilterList';
 import { usePools } from './hooks/usePools';
 import { localeNumber } from '@/utils/number';
 import { useState, useDeferredValue } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import chains from './chains.json';
+
+const { Text } = Typography;
 
 export default function PoolsList({ db }) {
 	const pools = useLiveQuery(() => db.sushi.toArray(), [], []);
@@ -64,18 +66,33 @@ export default function PoolsList({ db }) {
 				</Flex>
 			}
 			renderItem={(pool) => (
-				<List.Item>
-					<Flex gap={8} align="center">
-						<Typography.Text ellipsis>
-							<a href={pool.link}>{pool.name}</a>
-						</Typography.Text>
-					</Flex>
-
-					<Flex gap={8} align="center" justify="end">
-						<Tag>TVL: ${localeNumber(pool.params.tvl)}</Tag>
-						<Tag>APR (d,w,m): {pool.params.apr1d}%, {pool.params.apr1w}%, {pool.params.apr1m}%</Tag>
-					</Flex>
-				</List.Item>
+				<List.Item style={{ display: "block" }}>
+					<Row justify={"space-between"}>
+						<Col span={10}>
+							<Text ellipsis><a href={pool.link}>{pool.name}</a></Text>
+						</Col>
+						<Col span={5}>
+							<Text code ellipsis className={param === "tvl" ? "border" : ""}>
+								${localeNumber(pool.params.tvl)}
+							</Text>
+						</Col>
+						<Col span={3} style={{ textAlign: "end" }}>
+							<Text code ellipsis className={param === "apr1d" ? "border" : ""}>
+								{pool.params.apr1d}%
+							</Text>
+						</Col>
+						<Col span={3} style={{ textAlign: "end" }}>
+							<Text code ellipsis className={param === "apr1w" ? "border" : ""}>
+								{pool.params.apr1w}%
+							</Text>
+						</Col>
+						<Col span={3} style={{ textAlign: "end" }}>
+							<Text code ellipsis className={param === "apr1m" ? "border" : ""}>
+								{pool.params.apr1m}%
+							</Text>
+						</Col>
+					</Row>
+				</ List.Item>
 			)}
 		/>
 	)
