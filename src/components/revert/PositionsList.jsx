@@ -3,7 +3,8 @@ import Label from './position/Label';
 import Children from "./position/Children";
 
 export default function PositionsList({ revert }) {
-  const positions = revert.map(a => a.positions).flat(1).sort((a, b) => b.deposits_value - a.deposits_value)
+  let positions = revert.map(a => a.positions).flat(1);
+  positions = positions.sort((a, b) => b.deposits_value - a.deposits_value)
 
   if (positions.length === 0) {
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
