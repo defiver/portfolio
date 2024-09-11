@@ -2,13 +2,11 @@ import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Card, Space, FloatButton, Drawer, Input } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import { useState, useEffect } from "react";
-import { fetchingGet } from "@/utils/fetching";
 import { useLiveQuery } from "dexie-react-hooks";
+import { fetchPositions } from './ferching';
 import PositionsList from './PositionsList';
 import icon from './icon.svg';
 import "./style.css";
-
-const LINK = "https://api.revert.finance/v1/positions/uniswapv3/account/";
 
 export default function Revert({ db }) {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -17,9 +15,9 @@ export default function Revert({ db }) {
   const revert = useLiveQuery(() => db.revert.toArray(), [], []);
 
   const [fetchPos, isFetchPosLoading] = useLoading(async () => {
-    for (const pos of revert) {
-      const positions = await fetchingGet(LINK + pos.address, { "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Sec-Fetch-Site": "same-site" });
-      await db.revert.put({ address: pos.address, positions: positions?.data || [] });
+    for (const account of revert) {
+      const positions = await fetchPositions(account.address);
+      await db.revert.put({ address: account.address, positions: positions?.data || [] });
     }
   }, false);
 

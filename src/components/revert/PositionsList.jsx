@@ -4,7 +4,8 @@ import Children from "./position/Children";
 
 export default function PositionsList({ revert }) {
   let positions = revert.map(a => a.positions).flat(1);
-  positions = positions.sort((a, b) => b.deposits_value - a.deposits_value)
+  positions = positions.filter(p => p?.performance.hodl?.fee_apr > 0 || p?.age < 1);
+  positions = positions.sort((a, b) => b?.deposits_value - a?.deposits_value)
 
   if (positions.length === 0) {
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;

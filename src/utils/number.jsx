@@ -29,9 +29,9 @@ export const formatPercent = (n1, n2, fixed = 1) => {
 
 	const percent = n2 !== 0 ? (100 * (n1 - n2) / n2).toFixed(fixed) : 0.0;
 	const icon = percent > 0
-		? <ArrowUpOutlined className="warning" />
+		? <ArrowUpOutlined className="good" />
 		: percent < 0
-			? <ArrowDownOutlined className="good" />
+			? <ArrowDownOutlined className="warning" />
 			: <></>
 
 	return <>{icon}{(Math.abs(percent)).toLocaleString(undefined, { minimumFractionDigits: 1 }) + "%"}</>;
