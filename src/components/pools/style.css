@@ -30,3 +30,8 @@
   padding-top: 4px !important;
   padding-bottom: 4px !important;
 }
+
+.pools .ant-card-head .ant-progress-inner {
+  width: 28px;
+  height: 28px;
+}

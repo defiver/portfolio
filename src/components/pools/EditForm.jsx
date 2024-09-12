@@ -32,13 +32,13 @@ export default function EditForm({ db, pool }) {
   const [addNote, isAddNoteLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { range1, range2 } = values;
-
     values.range = [range1 || 0, range2 || 10 ** 9];
-    values.decimals = await getDecimals(values.address, values.chain);
 
     if (pool) {
       await db.pools.put(values);
     } else {
+      values.inRange = true;
+      values.decimals = await getDecimals(values.address, values.chain);
       await db.pools.add(values);
     }
     closeForm();
