@@ -8,10 +8,9 @@ import { useInterval } from "@/hooks/useInterval";
 import { usePrices } from './helper';
 import EditForm from './EditForm';
 import PoolsList from './PoolsList';
-
 import "./style.css";
 
-const INTERVAL = 10;
+const INTERVAL = 600;
 
 export default function Pools({ db }) {
   const pools = useLiveQuery(() => db.pools.toArray(), [], []);

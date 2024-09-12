@@ -2,6 +2,12 @@ import { useRecoilState } from "recoil";
 import { fetchTokens, fetchDecimals, fetchEvents } from "./fetching";
 import { loadingPoolState } from "./store";
 import { useLoading } from "@/hooks/useLoading";
+import mp3 from './sonar.mp3';
+
+const playSonar = async () => {
+	const snd = new Audio(mp3);
+	await snd.play();
+}
 
 export const getDecimals = async (address, chain) => {
 	const tokens = await fetchTokens(address, chain);
@@ -20,18 +26,20 @@ export const usePrices = (pools, db) => {
 			setLoadingPool(pool.address);
 			const events = await fetchEvents(pool.address, pool.chain);
 
-			const prices = events.map(arr => {
+			var prices = events.map(arr => {
 				const contract = JSON.parse(arr["data"]);
 				const price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
 
 				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals * 2 : price;
-			});
+			}).reverse();
 
-			await db.pools.update(pool.address, {
-				previous: pool.price,
-				price: prices.length ? prices[0] : 0,
-				prices: prices.reverse()
-			});
+			if (prices.length) {
+				let price = prices.length ? prices[0] : 0;
+				let inRange = pool?.range && pool.price > pool.range[0] & pool.price < pool.range[1];
+
+				!inRange && pool.notify && await playSonar();
+				await db.pools.update(pool.address, { previous: pool.price, price, prices, inRange });
+			}
 
 			setLoadingPool(undefined);
 		}

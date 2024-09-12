@@ -22,7 +22,7 @@ export default function Home() {
     tokens: "&token, amount, quote, previous",
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
-    pools: "&address, name, chain, price, previous, range, prices, inRange",
+    pools: "&address, name, chain, price, previous, range, prices, inRange, notify",
     sushi: "&address, name, link, chainId, params",
     revert: "&address, positions",
   }

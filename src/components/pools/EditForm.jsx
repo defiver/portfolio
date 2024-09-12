@@ -37,6 +37,7 @@ export default function EditForm({ db, pool }) {
     if (pool) {
       await db.pools.put(values);
     } else {
+      values.notify = true;
       values.inRange = true;
       values.decimals = await getDecimals(values.address, values.chain);
       await db.pools.add(values);
