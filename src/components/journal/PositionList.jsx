@@ -18,6 +18,7 @@ export default function PositionList({ db }) {
     o.id === id
       ? <EditForm key={o.id} position={o} db={db} />
       : <Collapse
+        destroyInactivePanel={true}
         className={"card-item"}
         size={"small"}
         key={o.id}

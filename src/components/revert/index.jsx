@@ -8,7 +8,7 @@ import PositionsList from './PositionsList';
 import icon from './icon.svg';
 import "./style.css";
 
-const LINK = "https://cors-anywhere.herokuapp.com/https://api.revert.finance/v1/positions/uniswapv3/account/";
+const LINK = "https://proxy.cors.sh/https://api.revert.finance/v1/positions/uniswapv3/account/";
 
 export default function Revert({ db }) {
   const [showDrawer, setShowDrawer] = useState(false);

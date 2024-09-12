@@ -29,7 +29,7 @@ export default function Label({ position }) {
 			<Col span={5}>
 				<Flex vertical>
 					<span>${value}</span>
-					<span className="underline">${pnl24}</span>
+					<span className={parseFloat(pnl24) < 0 ? "underline warning" : "underline"}>{pnl24}</span>
 				</Flex>
 			</Col>
 
