@@ -27,15 +27,15 @@ export const usePrices = (pools, db) => {
 			const events = await fetchEvents(pool.address, pool.chain);
 
 			var prices = events.map(arr => {
-				const contract = JSON.parse(arr["data"]);
-				const price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
+				let contract = JSON.parse(arr["data"]);
+				let price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
 
 				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals * 2 : price;
 			}).reverse();
 
 			if (prices.length) {
-				let price = prices.length ? prices[0] : 0;
-				let inRange = pool?.range && pool.price > pool.range[0] & pool.price < pool.range[1];
+				let price = prices.length ? prices.at(-1) : 0;
+				let inRange = pool?.range && price > pool.range[0] & price < pool.range[1];
 
 				!inRange && pool.notify && await playSonar();
 				await db.pools.update(pool.address, { previous: pool.price, price, prices, inRange });
