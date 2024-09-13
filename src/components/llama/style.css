@@ -1,0 +1,43 @@
+.llama .ant-drawer-header {
+  display: none;
+}
+
+.llama .ant-drawer-body {
+  padding: 8px;
+}
+
+.llama .ant-list-item a {
+  color: inherit !important;
+}
+
+.llama .ant-select {
+  width: 100% !important;
+}
+
+.llama .llama-list .ant-card-body {
+  height: calc(100vh - 40px - 16px);
+  overflow-y: auto;
+}
+
+.llama .llama-list .ant-list-item .ant-tag {
+  margin-inline-end: 0;
+  padding-inline: 5px;
+}
+
+.llama .llama-list .underline {
+  font-size: 10px;
+}
+
+.llama .llama-list .right {
+  text-align: right;
+}
+
+.llama .llama-list .cap {
+  text-transform: capitalize;
+}
+
+.llama .llama-list img {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+}

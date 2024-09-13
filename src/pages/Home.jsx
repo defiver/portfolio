@@ -8,6 +8,7 @@ import Merkl from "@/components/merkl";
 import Tools from "@/components/tools";
 import Pools from "@/components/pools";
 import Sushi from "@/components/sushi";
+import Llama from "@/components/llama";
 // import Revert from "@/components/revert";
 import Dexie from 'dexie';
 
@@ -24,6 +25,7 @@ export default function Home() {
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify",
     sushi: "&address, name, link, chainId, params",
+    llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
     // revert: "&address, positions",
   }
 
@@ -33,6 +35,10 @@ export default function Home() {
   return (
     <div className="container">
       {/* <Revert db={db} /> */}
+
+      <RecoilRoot>
+        <Llama db={db} />
+      </RecoilRoot>
 
       <Sushi db={db} />
 
