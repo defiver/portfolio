@@ -42,7 +42,7 @@ export default function Revert({ db }) {
     <>
       <FloatButton
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 360 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 410 }}
         icon={<img style={{ width: 18, height: 18 }} src={icon} />}
       />
 
