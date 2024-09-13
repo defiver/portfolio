@@ -43,7 +43,10 @@ export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 			renderItem={(item) => (
 				<List.Item>
 					<Flex gap={8} align="center">
-						<img src={chainIds[item.chain] ? chainIds[item.chain].icon : chainIds["0"].icon} />
+						<img
+							title={chainIds[item.chain] ? chainIds[item.chain].name : chainIds["0"].name}
+							src={chainIds[item.chain] ? chainIds[item.chain].icon : chainIds["0"].icon}
+						/>
 						<Typography.Text ellipsis>
 							<a href={item.url}> {item.name}</a>
 						</Typography.Text>

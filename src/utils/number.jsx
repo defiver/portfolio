@@ -1,12 +1,12 @@
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 
-export const localeNumber = (number, fixed = 0) => {
+export const localeNumber = (number, fixed = -1) => {
 	number = number ? number : 0;
 	number = parseFloat(number);
 	const positive = Math.abs(number);
 	const fraction = fixed > 0 ? fixed : 4;
 
-	if (fixed > 0) {
+	if (fixed > -1) {
 		number = number.toFixed(fixed);
 	} else if (positive >= 1000) {
 		number = parseInt(number);

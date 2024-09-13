@@ -25,7 +25,7 @@ export default function PoolsList({ db }) {
 	];
 
 	const deferredQuery = useDeferredValue(inputQuery);
-	const filterPools = useFilterList(pools, chainId, deferredQuery, param, isFetchPoolsLoading);
+	const filterPools = useFilterList(pools, chainId, deferredQuery, param);
 
 	return (
 		<List

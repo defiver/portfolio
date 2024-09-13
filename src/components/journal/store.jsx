@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { parseTags, parseTokens, parseChains } from "@/utils/parse";
+import { parseTags, parseTokens, parseChains } from "./helper";
 
 export const journalState = atom({
   key: "Journal",
@@ -12,7 +12,7 @@ export const idState = atom({
 });
 
 export const filterState = atom({
-  key: "Filter",
+  key: "JournalFilter",
   default: {
     tag: null,
     token: null,
@@ -46,7 +46,7 @@ export const filteredJournalState = selector({
 });
 
 export const tagsState = selector({
-  key: "Tags",
+  key: "JournalTags",
   get: ({ get }) => {
     const journal = get(filteredJournalState);
     return parseTags(journal);
@@ -54,7 +54,7 @@ export const tagsState = selector({
 });
 
 export const tokensState = selector({
-  key: "Tokens",
+  key: "JournalTokens",
   get: ({ get }) => {
     let journal = get(filteredJournalState);
     return parseTokens(journal);
@@ -62,7 +62,7 @@ export const tokensState = selector({
 });
 
 export const chainsState = selector({
-  key: "Chains",
+  key: "JournalChains",
   get: ({ get }) => {
     let journal = get(filteredJournalState);
     return parseChains(journal);
@@ -70,7 +70,7 @@ export const chainsState = selector({
 });
 
 export const allTagsState = selector({
-  key: "AllTags",
+  key: "JournalAllTags",
   get: ({ get }) => {
     const journal = get(journalState);
     return parseTags(journal);
@@ -78,7 +78,7 @@ export const allTagsState = selector({
 });
 
 export const allChainsState = selector({
-  key: "AllChains",
+  key: "JournalAllChains",
   get: ({ get }) => {
     const journal = get(journalState);
     return parseChains(journal);

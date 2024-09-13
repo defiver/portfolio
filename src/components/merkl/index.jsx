@@ -26,9 +26,9 @@ export default function Merkl({ db }) {
           let url = `https://merkl.angle.money/${chainName}/${o.action}/${o.id.replace("_", "/")}`;
           return { id: o.id, name: o.name, url, apr: o.apr, fresh, chain: chainId };
         });
-      db.transaction('rw', db.merkl, function () {
-        db.merkl.clear();
-        db.merkl.bulkPut(live);
+      await db.transaction('rw', db.merkl, async function () {
+        await db.merkl.clear();
+        await db.merkl.bulkPut(live);
       });
     }
   }, false);
@@ -38,7 +38,7 @@ export default function Merkl({ db }) {
       <FloatButton
         onClick={() => setShowDrawer(true)}
         style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
-        icon={<img style={{ width: 18, height: 18 }} src={icon} />}
+        icon={<img style={{ width: 19, height: 19 }} src={icon} />}
       />
 
       <Drawer
