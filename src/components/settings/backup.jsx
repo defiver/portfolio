@@ -4,6 +4,8 @@ import { useLoading } from "@/hooks/useLoading";
 import { importInto, exportDB } from "dexie-export-import";
 import test from './test.json';
 
+const filterTables = ["merkl", "llama", "sushi"];
+
 export default function Backup({ db }) {
 	const inputRef = useRef();
 
@@ -37,7 +39,7 @@ export default function Backup({ db }) {
 	}, false);
 
 	const [exportData, isExportDataLoading] = useLoading(async () => {
-		const blob = await exportDB(db);
+		const blob = await exportDB(db, { filter: (table) => !filterTables.includes(table) });
 		await saveData(blob)
 	}, false);
 
