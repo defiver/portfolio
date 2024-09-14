@@ -21,7 +21,7 @@ export default function Llama({ db }) {
     <>
       <FloatButton
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 360 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
         icon={<img style={{ width: 16, height: 16 }} src={icon} />}
       />
 

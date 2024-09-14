@@ -7,7 +7,7 @@ import Settings from "@/components/settings";
 import Merkl from "@/components/merkl";
 import Tools from "@/components/tools";
 import Pools from "@/components/pools";
-import Sushi from "@/components/sushi";
+// import Sushi from "@/components/sushi";
 import Llama from "@/components/llama";
 // import Revert from "@/components/revert";
 import Dexie from 'dexie';

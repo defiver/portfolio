@@ -37,7 +37,7 @@ export default function Merkl({ db }) {
     <>
       <FloatButton
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
         icon={<img style={{ width: 19, height: 19 }} src={icon} />}
       />
 
