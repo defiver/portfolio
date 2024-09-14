@@ -13,6 +13,7 @@ export const fetchGraphql = (chain, page = 1) => {
 		"Priority": "u=0",
 	}
 
+	// CORS!
 	return fetchingPost("https://data.sushi.com/graphql", data, headers);
 };
 

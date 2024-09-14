@@ -24,7 +24,7 @@ export default function Home() {
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify",
-    sushi: "&address, name, link, chainId, params",
+    // sushi: "&address, name, link, chainId, params",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
     // revert: "&address, positions",
   }
@@ -40,7 +40,7 @@ export default function Home() {
         <Llama db={db} />
       </RecoilRoot>
 
-      <Sushi db={db} />
+      {/* <Sushi db={db} /> */}
 
       <RecoilRoot>
         <Pools db={db} />
