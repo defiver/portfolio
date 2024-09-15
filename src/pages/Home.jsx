@@ -1,3 +1,4 @@
+import { Row, Col } from "antd";
 import { RecoilRoot } from "recoil";
 import Journal from "@/components/journal/";
 import Notes from "@/components/notes";
@@ -34,38 +35,38 @@ export default function Home() {
   db.version(1).stores(stores);
 
   return (
-    <div className="container">
-      {/* <Revert db={db} /> */}
-
-      <RecoilRoot>
-        <Llama db={db} />
-      </RecoilRoot>
-
-      {/* <Sushi db={db} /> */}
-
-      <RecoilRoot>
-        <Pools db={db} />
-      </RecoilRoot>
-
-      <Tools />
-
-      <Notes db={db} />
-
-      <Merkl db={db} />
-
-      <Settings db={db} />
-
-      <Help />
-
-      <div className="center">
-        <RecoilRoot>
-          <Journal db={db} />
-        </RecoilRoot>
-      </div>
-
+    <>
       <div className="widgets">
-        <Tokens db={db} />
+        {/* <Revert db={db} /> */}
+        {/* <Sushi db={db} /> */}
+
+        <RecoilRoot>
+          <Llama db={db} />
+          <Pools db={db} />
+        </RecoilRoot>
+
+        <Tools />
+        <Notes db={db} />
+        <Merkl db={db} />
+        <Settings db={db} />
+        <Help />
       </div>
-    </div>
+
+      <Row justify={{ md: "end", lg: "center" }}>
+        <Col span={22} lg={20}>
+          <Row gutter={[24, 24]}>
+            <Col span={24} lg={15}>
+              <RecoilRoot>
+                <Journal db={db} />
+              </RecoilRoot>
+            </Col>
+
+            <Col span={22} lg={9}>
+              <Tokens db={db} />
+            </Col>
+          </Row>
+        </Col>
+      </Row >
+    </>
   );
 }
