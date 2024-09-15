@@ -7,8 +7,8 @@ import Settings from "@/components/settings";
 import Merkl from "@/components/merkl";
 import Tools from "@/components/tools";
 import Pools from "@/components/pools";
-// import Sushi from "@/components/sushi";
 import Llama from "@/components/llama";
+// import Sushi from "@/components/sushi";
 // import Revert from "@/components/revert";
 import Dexie from 'dexie';
 
@@ -25,8 +25,8 @@ export default function Home() {
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify",
-    // sushi: "&address, name, link, chainId, params",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
+    // sushi: "&address, name, link, chainId, params",
     // revert: "&address, positions",
   }
 
