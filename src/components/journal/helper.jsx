@@ -1,3 +1,4 @@
+// уникализирует и сортирует массив по количеству повторений элемента
 function sortByFrequency(array) {
 	var frequency = {};
 

@@ -5,6 +5,7 @@ export default function Filter({ tools, favorites, setFilterTools }) {
 	const chains = [...new Set(tools.map(o => [...o.chains]).flat(1))];
 	const categories = [...new Set(tools.map(o => [...o.categories]).flat(1))];
 
+	// если есть фавориты, то добавляем их в начало списка категорий и при первой загрузке выводим их
 	favorites.length && categories.unshift("Favorites");
 
 	const [chain, setChain] = useState(undefined);

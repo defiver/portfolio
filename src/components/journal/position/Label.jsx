@@ -1,6 +1,7 @@
 import { stringToColour } from "@/utils/colour";
 import { Col, Row, Typography, Tag } from "antd";
 
+// левый и центральные блоки в заголоке позиции
 export default function Label({ position }) {
   const chain = position?.chain.length ? position.chain[0].toLowerCase() : "";
 
@@ -14,16 +15,13 @@ export default function Label({ position }) {
           }
         </Typography.Paragraph>
       </Col>
+
       <Col span={10}>
         {position.tags && position.tags.slice(0, 3).map((tag) => (
-          <Typography.Text code key={tag} style={stringToColour(tag)}>
-            {tag}
-          </Typography.Text>
+          <Typography.Text code key={tag} style={stringToColour(tag)}>{tag}</Typography.Text>
         ))}
-        {chain && <Typography.Text code style={stringToColour(chain)}>
-          {chain}
-        </Typography.Text>
-        }
+
+        {chain && <Typography.Text code style={stringToColour(chain)}>{chain}</Typography.Text>}
       </Col>
     </Row>
   );

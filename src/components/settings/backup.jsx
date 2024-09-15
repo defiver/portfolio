@@ -4,6 +4,7 @@ import { useLoading } from "@/hooks/useLoading";
 import { importInto, exportDB } from "dexie-export-import";
 import test from './test.json';
 
+// таблицы, которые не экспортируются, так как имеют большой размер и в них нет пользовательских данных
 const filterTables = ["merkl", "llama", "sushi"];
 
 export default function Backup({ db }) {
@@ -14,6 +15,7 @@ export default function Backup({ db }) {
 		await db.delete({ disableAutoOpen: false });
 	}, false);
 
+	// сохранение базы через blob в json
 	const saveData = async (blob) => {
 		const link = document.createElement('a');
 		link.href = URL.createObjectURL(blob);
@@ -23,6 +25,7 @@ export default function Backup({ db }) {
 		document.body.removeChild(link);
 	}
 
+	// загрузка данных из json
 	const uploadData = (e) => {
 		const fileReader = new FileReader();
 		fileReader.readAsText(e.target.files[0], "UTF-8");

@@ -17,6 +17,7 @@ export default function EditForm({ setId, db, note = {} }) {
     let values = form.getFieldValue();
     let { id } = form.getFieldValue();
 
+    // проверяем, создаётся ли новая позиция или редактируется уже имеющаяся
     if (id > 0) {
       await db.notes.put(values);
     } else {

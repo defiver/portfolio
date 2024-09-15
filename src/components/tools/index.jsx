@@ -10,6 +10,7 @@ import "./style.css";
 export default function Tools() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [filterTools, setFilterTools] = useState(tools.sort((a, b) => a.name.localeCompare(b.name)));
+  // фавориты подтягиваются с localStorage
   const [favorites, setFavorites] = useState(loadStorage("favorite_tools"));
 
   const cardList = filterTools.map(o =>

@@ -8,6 +8,7 @@ import { formAddressState } from "../store";
 
 CJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
+// компонент для отрисовки графика изменения цены в пуле
 export default function PoolsList({ db, pool }) {
 	const [, setFormAddress] = useRecoilState(formAddressState);
 
@@ -27,6 +28,7 @@ export default function PoolsList({ db, pool }) {
 		}]
 	};
 
+	// отрисовка горизонтальных линий диапазона
 	pool?.range && pool.range[0] > 0 && data.datasets.push({
 		label: "Down range",
 		data: new Array(datapoints.length).fill(pool.range[0]),
@@ -37,6 +39,7 @@ export default function PoolsList({ db, pool }) {
 		borderDash: [2, 2],
 	});
 
+	// отрисовка горизонтальных линий диапазона
 	pool?.range && pool.range[1] > 0 && pool.range[1] < 10 ** 9 && data.datasets.push({
 		label: "Top range",
 		data: new Array(datapoints.length).fill(pool.range[1]),

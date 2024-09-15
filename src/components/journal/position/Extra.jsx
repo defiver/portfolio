@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
 
+// крайний правый блок в заголовке позиции
 export default function Extra({ position }) {
+  // если позиция неактивна, выводим прибыль
+  // если позиция активна и есть дата окончания, выводим дату
   if (position.status !== "active" && position.income) {
     return (
       <span>

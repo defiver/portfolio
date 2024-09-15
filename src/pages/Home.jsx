@@ -18,6 +18,7 @@ export default function Home() {
   // const params = new URLSearchParams(window.location.search);
   // params.get("extend") !== undefined
 
+  // поля для IndexedDB
   const stores = {
     journal: "++id, daterange, text, tokens, income, tags, transactions, status, chain, links",
     tokens: "&token, amount, quote, previous",

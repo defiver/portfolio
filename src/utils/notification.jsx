@@ -1,6 +1,7 @@
 import { notification } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
+// уведомления
 export const openNotification = (type, title, description) => {
   notification[type]({
     duration: 0,

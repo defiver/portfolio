@@ -14,6 +14,7 @@ export default function Merkl({ db }) {
   const [showDrawer, setShowDrawer] = useState(false);
   const allOpp = useLiveQuery(() => db.merkl.toArray(), [], []);
 
+  // получаем новые пулы, удаляем все старые, записываем новые по нужным полям
   const [fetchOpp, isOppLoading] = useLoading(async () => {
     const opportunities = await fetchingGet(LINK);
     if (Object.keys(opportunities).length > 0) {

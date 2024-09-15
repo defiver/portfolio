@@ -29,7 +29,9 @@ export default function Revert({ db }) {
       let newAdds = textArea.toLowerCase().split("\n").filter(a => a);
       let prevAdds = revert.map(o => o.address);
 
+      // если в textarea нет какого-то адреса из базы, то он удалется
       prevAdds.filter(x => !newAdds.includes(x)).forEach(a => db.revert.delete(a));
+      // если в textarea появился новый адрес, то он добавляется в базу
       newAdds.filter(x => !prevAdds.includes(x)).forEach(a => db.revert.add({ address: a, positions: [] }));
     }
   }, [showTextArea]); // eslint-disable-line react-hooks/exhaustive-deps

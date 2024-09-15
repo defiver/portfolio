@@ -13,7 +13,7 @@ export default function TokensList({ db, inputAmount }) {
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   }
 
-  const used = {}
+  const used = {} // массив с тем, какая часть актива используется в активных позициях
   journal.map(j => j.tokens && j.tokens.forEach(o => {
     used[o.token] = (used[o.token] ?? 0) + o.amount;
   }));

@@ -1,5 +1,6 @@
 import { fetchingGet, fetchingPost } from "@/utils/fetching";
 
+// получаем список пулов для конкретной сети с пагинацией 100
 export const fetchGraphql = (chain, page = 1) => {
 	const data = {
 		"query": "query Pools($chainId: PoolChainId!, $page: Int, $search: [String], $orderBy: PoolsOrderBy, $orderDirection: OrderDirection, $protocols: [Protocol], $onlyIncentivized: Boolean, $onlySmartPools: Boolean) {\n\tpools(\n\t\tchainId: $chainId\n\t\tpage: $page\n\t\tsearch: $search\n\t\tprotocols: $protocols\n\t\tonlyIncentivized: $onlyIncentivized\n\t\tonlySmartPools: $onlySmartPools\n\t\torderBy: $orderBy\n\t\torderDirection: $orderDirection\n\t) {\n\t\tcount\n\t\tdata { name, address, liquidityUSD }\n\t}\n}", "variables": { "chainId": chain, "search": [], "onlyIncentivized": false, "onlySmartPools": false, "protocols": ["SUSHISWAP_V3", "SUSHISWAP_V2"], "orderDirection": "desc", "page": page }, "operationName": "Pools"

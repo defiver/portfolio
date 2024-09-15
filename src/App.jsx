@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import "./App.css";
 
 export default function App() {
+  // удаляем иконку загрузки приложения
   useEffect(() => {
     const loaderElement = document.querySelector(".app-loader");
     loaderElement && loaderElement.remove();

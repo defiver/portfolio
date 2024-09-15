@@ -3,6 +3,7 @@ import { saveStorage } from '@/utils/storage';
 import { Card, Avatar, Popover, Badge, Space } from "antd";
 
 export default function ToolCard({ item, favorites, setFavorites }) {
+	// записываем фаворитов в массив в localStorage
 	const setFavorite = () => {
 		let nfavs = favorites.includes(item.name)
 			? favorites.filter(i => i !== item.name)
@@ -10,6 +11,7 @@ export default function ToolCard({ item, favorites, setFavorites }) {
 		saveStorage("favorite_tools", nfavs) && setFavorites(nfavs);
 	}
 
+	// проставляем для ссылок соответсвующие иконки
 	const actions = item.links.map(url => {
 		if (url.toLowerCase().includes("twitter.") || url.toLowerCase().includes("/x.com")) {
 			return <a href={url} key={"twitter"}><XOutlined /></a>

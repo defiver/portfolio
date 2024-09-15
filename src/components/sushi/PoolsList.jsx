@@ -12,7 +12,7 @@ const { Text } = Typography;
 export default function PoolsList({ db }) {
 	const pools = useLiveQuery(() => db.sushi.toArray(), [], []);
 	const [inputQuery, setInputQuery] = useState("");
-	const [chainId, setChainId] = useState(42161);
+	const [chainId, setChainId] = useState(42161); // arbitrum
 	const [param, setParam] = useState("apr1w");
 
 	const [fetchPools, isFetchPoolsLoading] = usePools(chainId, db);

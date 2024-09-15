@@ -10,6 +10,7 @@ import EditForm from './EditForm';
 import PoolsList from './PoolsList';
 import "./style.css";
 
+// интервал таймера для авто обновления
 const INTERVAL = 600;
 
 export default function Pools({ db }) {
@@ -22,12 +23,14 @@ export default function Pools({ db }) {
   const [formAddress, setFormAddress] = useRecoilState(formAddressState);
   const [updatePrices, isUpdatePricesLoading] = usePrices(sortPools, db);
 
+  // число для иконки прогресса
   const percent = 100 * timer / INTERVAL;
 
   useEffect(() => {
     setPoolsList(pools);
   }, [pools]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // хук, отвечающий за автообновление по таймеру
   useInterval(async () => {
     setTimer(timer + 1);
     if (timer === INTERVAL) {

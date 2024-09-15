@@ -2,6 +2,7 @@ import { fetchGraphql, fetchPool } from "../fetching";
 import { useLoading } from "@/hooks/useLoading";
 import chains from '../chains.json';
 
+// хут парсит все пулы конкретной сети, а потом поочереди получет информацию для каждого пула
 export const usePools = (chainId, db) => {
 	return useLoading(async () => {
 		const chain = chains.find(o => o.chainId === chainId).name.toLowerCase().replace(" ", "-");
@@ -12,10 +13,11 @@ export const usePools = (chainId, db) => {
 			const response = await fetchGraphql(chainId, page++);
 			var newpools = response?.data?.pools?.data || []
 			pools.push(...newpools);
-		} while (newpools.length === 100);
+		} while (newpools.length === 100); // пагинация 100
 
 		for (const pool of pools) {
 			const tvl = parseInt(pool.liquidityUSD) || 0;
+			// только те пулы, TVL в которых больше $1000
 			if (tvl < 1000) {
 				continue;
 			}

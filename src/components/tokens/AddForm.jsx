@@ -11,13 +11,13 @@ export default function AddForm({ setAdd, db }) {
     setAdd(false);
   };
 
-  const [addNote, isAddNoteLoading] = useLoading(async () => {
+  const [addToken, isAddTokenLoading] = useLoading(async () => {
     await db.tokens.add(form.getFieldValue());
     closeForm();
   }, false);
 
   return (
-    <Form form={form} onFinish={addNote} className="edit-form" autoComplete="off">
+    <Form form={form} onFinish={addToken} className="edit-form" autoComplete="off">
       <Space gap={8}>
         <Form.Item name="token" rules={[{ required: true, message: '' }]}>
           <Input placeholder="ETH" />
@@ -31,7 +31,7 @@ export default function AddForm({ setAdd, db }) {
           <Flex gap={8} justify="end">
             <Button icon={<CloseOutlined />} onClick={closeForm} />
 
-            <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
+            <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddTokenLoading} />
           </Flex>
         </Form.Item>
       </Space>

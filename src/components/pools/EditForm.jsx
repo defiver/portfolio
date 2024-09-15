@@ -32,11 +32,13 @@ export default function EditForm({ db, pool }) {
   const [addNote, isAddNoteLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { range1, range2 } = values;
+    // если границы диапазона не указаны, то он будет максимально широким
     values.range = [range1 || 0, range2 || 10 ** 9];
 
     if (pool) {
       await db.pools.put(values);
     } else {
+      // если пул новый, то узнаём отношение разрядностей токенов в пуле
       values.notify = true;
       values.inRange = true;
       values.decimals = await getDecimals(values.address, values.chain);

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useLayoutEffect } from "react";
 
+// хук для запуска функции по таймеру
 export function useInterval(callback, delay) {
   const savedCallback = useRef(callback);
 

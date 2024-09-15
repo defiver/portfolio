@@ -12,6 +12,7 @@ const LINK = "https://yields.llama.fi/pools";
 export default function PoolsList({ db }) {
 	const filteredPools = useRecoilValue(filteredPoolsState);
 
+	// получаем новые пулы, удаляем все старые, записываем новые по нужным полям
 	const [fetchPools, isPoolsLoading] = useLoading(async () => {
 		const response = await fetchingGet(LINK);
 		if (response?.status === "success") {

@@ -3,8 +3,11 @@ import Label from './position/Label';
 import Children from "./position/Children";
 
 export default function PositionsList({ revert }) {
+  // преобразование позиций разных адресов в один массив
   let positions = revert.map(a => a.positions).flat(1);
+  // иногда позиций на revert не отмечается, как закрытая, поэтому нужно отдельно фильтровать
   positions = positions.filter(p => p?.performance.hodl?.fee_apr > 0 || p?.age < 1);
+  // сортировка позиций по $ стоимости
   positions = positions.sort((a, b) => b?.deposits_value - a?.deposits_value);
 
   if (positions.length === 0) {

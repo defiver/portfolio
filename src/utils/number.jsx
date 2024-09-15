@@ -1,5 +1,6 @@
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 
+// функция для преобразования чисел в читаемый вид
 export const localeNumber = (number, fixed = -1) => {
 	number = number ? number : 0;
 	number = parseFloat(number);
@@ -23,6 +24,7 @@ export const localeNumber = (number, fixed = -1) => {
 	return (+number).toLocaleString(undefined, { minimumFractionDigits: fraction }).replace(/,?0*$/, '');
 }
 
+// функция для преобразования отношений чисел в проценты
 export const formatPercent = (n1, n2, fixed = 1) => {
 	n1 = parseFloat(n1 || 0);
 	n2 = parseFloat(n2 || 0);

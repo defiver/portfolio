@@ -1,3 +1,4 @@
+// функция для разукрашивания background в зависимости от строки
 export const stringToColour = (str) => {
   let hash = 0;
   str.split("").forEach((char) => {

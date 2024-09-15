@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 
 export default function NotesList({ db }) {
   const notes = useLiveQuery(() => db.notes.toArray(), [], []);
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(null);  // устанавливает note id в форму редактирования
 
   const [deleteNote, isDeleteNoteLoading] = useLoading(async (id) => {
     await db.notes.delete(id)

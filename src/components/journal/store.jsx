@@ -21,6 +21,7 @@ export const filterState = atom({
   },
 });
 
+// список позиций, отфильтрованный элементами в Header
 export const filteredJournalState = selector({
   key: "FilteredJournal",
   get: ({ get }) => {
@@ -45,6 +46,7 @@ export const filteredJournalState = selector({
   },
 });
 
+// теги, сети, токены для Header
 export const tagsState = selector({
   key: "JournalTags",
   get: ({ get }) => {
@@ -69,6 +71,7 @@ export const chainsState = selector({
   },
 });
 
+// теги, сети, токены для EditForm
 export const allTagsState = selector({
   key: "JournalAllTags",
   get: ({ get }) => {

@@ -5,7 +5,9 @@ import { idState } from "../store";
 import { useLoading } from "@/hooks/useLoading";
 import dayjs from "dayjs";
 
+// дополнительная информация позиции
 export default function Children({ position, db }) {
+  // устанавливает position id в форму редактирования
   const [, setId] = useRecoilState(idState);
 
   const [deletePosition, isDeletePositionLoading] = useLoading(async (id) => {
@@ -13,8 +15,19 @@ export default function Children({ position, db }) {
   }, false);
 
   let age = 0;
+  // расчёт возраста позиции из объекта dayjs
   if (position?.daterange && position.daterange[0] && dayjs(position.daterange[0].$d).isValid()) {
     age = dayjs().diff(position.daterange[0].$d, 'day', true).toFixed(2);
+  }
+
+  // проверка, если ли в ссылки в тексте из textarea
+  const checkFirstLink = (links) => links && links.match(/^https?:\/\/([^/?#\s]+)/i);
+
+  // отисовка домена первой ссылки
+  const getFirstLink = (links) => {
+    return <Typography.Link code href={links.match(/^([^\s]+)/i)[1]} target="_blank" >
+      {links.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
+    </Typography.Link>
   }
 
   return (
@@ -23,16 +36,8 @@ export default function Children({ position, db }) {
       <Flex justify={"space-between"} align={"center"}>
         <Space>
           <Typography.Text code>Age: {age} days</Typography.Text>
-          {position.transactions && position.transactions.match(/^https?:\/\/([^/?#\s]+)/i) && (
-            <Typography.Link code href={position.transactions.match(/^([^\s]+)/i)[1]} target="_blank">
-              {position.transactions.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
-            </Typography.Link>
-          )}
-          {position.links && position.links.match(/^https?:\/\/([^/?#\s]+)/i) && (
-            <Typography.Link code href={position.links.match(/^([^\s]+)/i)[1]} target="_blank">
-              {position.links.match(/^https?:\/\/([^/?#\s]+)/i)[1]}
-            </Typography.Link>
-          )}
+          {checkFirstLink(position.transactions) && getFirstLink(position.transactions)}
+          {checkFirstLink(position.links) && getFirstLink(position.links)}
         </Space>
         <Space>
           <Popconfirm

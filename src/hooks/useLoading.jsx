@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { openNotification } from "@/utils/notification";
 
+// хук для асинхронного запуска функций с отображением loading
 export const useLoading = (callback, loading = false) => {
   const [isLoading, setIsLoading] = useState(loading);
 

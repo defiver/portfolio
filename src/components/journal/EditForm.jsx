@@ -10,11 +10,12 @@ import dayjs from "dayjs";
 
 export default function EditForm({ db, position = { id: 0, status: "active", daterange: [dayjs()] } }) {
   const [form] = Form.useForm();
+  // сортируем токены по их $ стоимости
   const tokens = useLiveQuery(() => db.tokens.toArray(), [], []).sort((a, b) =>
     (a.amount * a.quote) < (b.amount * b.quote)
   );
 
-  const [, setId] = useRecoilState(idState);
+  const [, setId] = useRecoilState(idState); // устанавливает position id в форму редактирования
   const tags = useRecoilValue(allTagsState);
   const chains = useRecoilValue(allChainsState);
 
@@ -27,6 +28,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
     let values = form.getFieldValue();
     let { id } = values;
 
+    // проверяем, создаётся ли новая позиция или редактируется уже имеющаяся
     if (id > 0) {
       await db.journal.put(values);
     } else {
@@ -37,6 +39,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
     closeForm();
   }, false);
 
+  // для выбора нескольких токенов в позицию
   const tokensSelector = (name) => (
     <Form.Item name={[name, "token"]} noStyle>
       <Select style={{ width: 100 }}>

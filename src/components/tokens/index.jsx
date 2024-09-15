@@ -9,7 +9,7 @@ import AddForm from './AddForm';
 import TokensList from './TokensList';
 import "./style.css";
 
-const LINK = "https://cryptorates.ai/files/standard.json";
+const LINK = "https://cryptorates.ai/files/standard.json"; // ресурс с котировками
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
@@ -23,6 +23,7 @@ export default function Tokens({ db }) {
 
   const [fetchQuotes, isQuotesLoading] = useLoading(async () => {
     let quotes = await fetchingGet(LINK);
+    // обновляем цены тех токенов, которые есть в общем списке с котировками
     for (const t of tokens) {
       for (const q of quotes) {
         if (q.symbol === t.token) {
@@ -33,8 +34,10 @@ export default function Tokens({ db }) {
     }
   }, false);
 
-  const sum = tokens.map(o => o.amount * (o.quote ?? 0)).reduce((a, b) => a + b, 0)
-  const earned = journal.filter(o => o.income).map(o => o.income).reduce((a, b) => a + b, 0)
+  // сумма всех ативов в $
+  const sum = tokens.map(o => o.amount * (o.quote ?? 0)).reduce((a, b) => a + b, 0);
+  // доход со всех позиций в $
+  const earned = journal.filter(o => o.income).map(o => o.income).reduce((a, b) => a + b, 0);
 
   return (
     <Card

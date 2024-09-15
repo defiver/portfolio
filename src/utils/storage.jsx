@@ -1,3 +1,5 @@
+// функции для работы с localStorage
+
 export const loadStorage = (key) => {
 	try {
 		const serialized = localStorage.getItem(key);
