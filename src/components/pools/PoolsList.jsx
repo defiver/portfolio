@@ -16,7 +16,7 @@ export default function PoolsList({ db }) {
   return pools.map(o => formAddress === o.address
     ? <EditForm key={o.address} db={db} pool={o} />
     : <Collapse
-      className={"card-item"}
+      className={formAddress ? "card-item blur" : "card-item"}
       bordered={false}
       size={"small"}
       key={o.address}

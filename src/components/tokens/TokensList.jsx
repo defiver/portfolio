@@ -23,7 +23,7 @@ export default function TokensList({ db, inputAmount }) {
       {tokens.map((o) => (
         o.token === token?.token
           ? <EditForm key={o.token} token={token} setToken={setToken} db={db} />
-          : <Row key={o.token} gutter={[16, 16]} justify={"space-between"}>
+          : <Row key={o.token} gutter={[16, 16]} className={token?.token ? "blur" : ""}>
             <Col span={4} style={{ cursor: "pointer" }} onClick={() => setToken(o)}>
               <Tag>{o.token}</Tag>
             </Col>

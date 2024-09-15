@@ -22,7 +22,7 @@ export default function NotesList({ db }) {
     o.id === id
       ? <EditForm key={o.id} note={o} setId={setId} db={db} />
       : <Collapse
-        className={"card-item"}
+        className={id ? "card-item blur" : "card-item"}
         size={"small"}
         key={o.id}
         items={[
