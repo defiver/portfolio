@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 export default function EditForm({ db, position = { id: 0, status: "active", daterange: [dayjs()] } }) {
   const [form] = Form.useForm();
   // сортируем токены по их $ стоимости
-  const tokens = useLiveQuery(() => db.tokens.toArray(), [], []).sort((a, b) =>
+  const tokens = [...useLiveQuery(() => db.tokens.toArray(), [], [])].sort((a, b) =>
     (a.amount * a.quote) < (b.amount * b.quote)
   );
 

@@ -11,7 +11,7 @@ export default function Sushi({ db }) {
     <>
       <FloatButton
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
+        style={{ insetInlineStart: 24, insetBlockEnd: 410 }}
         icon={<img style={{ width: 18, height: 18 }} src={icon} />}
       />
 
