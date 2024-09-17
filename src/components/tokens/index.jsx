@@ -9,7 +9,7 @@ import AddForm from './AddForm';
 import TokensList from './TokensList';
 import "./style.css";
 
-const LINK = "https://cryptorates.ai/files/standard.json"; // ресурс с котировками
+const LINK = "https://api.cryptorank.io/v0/coins/v2?locale=ru&lifeCycle=traded"; // ресурс с котировками
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
@@ -23,11 +23,12 @@ export default function Tokens({ db }) {
 
   const [fetchQuotes, isQuotesLoading] = useLoading(async () => {
     let quotes = await fetchingGet(LINK);
+    let prices = quotes?.data || [];
     // обновляем цены тех токенов, которые есть в общем списке с котировками
     for (const t of tokens) {
-      for (const q of quotes) {
+      for (const q of prices) {
         if (q.symbol === t.token) {
-          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.rateUsd ?? 0 });
+          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.price.USD ?? 0 });
           break;
         }
       }
