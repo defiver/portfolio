@@ -61,7 +61,7 @@ export default function Home() {
               </RecoilRoot>
             </Col>
 
-            <Col span={22} lg={9}>
+            <Col span={24} lg={9}>
               <Tokens db={db} />
             </Col>
           </Row>
