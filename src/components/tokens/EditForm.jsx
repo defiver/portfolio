@@ -33,7 +33,7 @@ export default function EditForm({ token, setToken, db }) {
 				<Form.Item>
 					<InputNumber
 						placeholder="100"
-						onChange={(v) => form.setFieldsValue({ amount: token.amount + v })}
+						onChange={(v) => form.setFieldsValue({ amount: Number(token.amount) + Number(v) })}
 					/>
 				</Form.Item>
 
