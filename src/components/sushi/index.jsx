@@ -1,4 +1,4 @@
-import { FloatButton, Drawer } from "antd";
+import { Button, Drawer } from "antd";
 import { useState } from "react";
 import icon from './icon.svg';
 import PoolsList from './PoolsList';
@@ -9,10 +9,13 @@ export default function Sushi({ db }) {
 
   return (
     <>
-      <FloatButton
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
+        icon={<img style={{ width: 16, height: 16 }} src={icon} />}
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 410 }}
-        icon={<img style={{ width: 18, height: 18 }} src={icon} />}
       />
 
       <Drawer

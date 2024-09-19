@@ -35,38 +35,34 @@ export default function Home() {
   db.version(1).stores(stores);
 
   return (
-    <>
-      <div className="widgets">
-        {/* <Revert db={db} /> */}
-        {/* <Sushi db={db} /> */}
+    <Row gutter={[24, 16]}>
+      <Col span={24} lg={2}>
+        <div className="widgets">
+          {/* <Revert db={db} /> */}
+          {/* <Sushi db={db} /> */}
 
+          <Merkl db={db} />
+          <RecoilRoot>
+            <Llama db={db} />
+            <Pools db={db} />
+          </RecoilRoot>
+
+          <Notes db={db} />
+          <Tools />
+          <Settings db={db} />
+          <Help />
+        </div>
+      </Col>
+
+      <Col span={24} lg={13}>
         <RecoilRoot>
-          <Llama db={db} />
-          <Pools db={db} />
+          <Journal db={db} />
         </RecoilRoot>
+      </Col>
 
-        <Tools />
-        <Notes db={db} />
-        <Merkl db={db} />
-        <Settings db={db} />
-        <Help />
-      </div>
-
-      <Row justify={{ md: "end", lg: "center" }}>
-        <Col span={22} lg={20}>
-          <Row gutter={[24, 24]}>
-            <Col span={24} lg={15}>
-              <RecoilRoot>
-                <Journal db={db} />
-              </RecoilRoot>
-            </Col>
-
-            <Col span={24} lg={9}>
-              <Tokens db={db} />
-            </Col>
-          </Row>
-        </Col>
-      </Row >
-    </>
+      <Col span={24} lg={7}>
+        <Tokens db={db} />
+      </Col>
+    </Row>
   );
 }

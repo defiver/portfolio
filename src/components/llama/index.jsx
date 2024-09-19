@@ -1,4 +1,4 @@
-import { FloatButton, Drawer } from "antd";
+import { Button, Drawer } from "antd";
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect } from "react";
@@ -19,10 +19,13 @@ export default function Llama({ db }) {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 310 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<img style={{ width: 16, height: 16 }} src={icon} />}
+        onClick={() => setShowDrawer(true)}
       />
 
       <Drawer

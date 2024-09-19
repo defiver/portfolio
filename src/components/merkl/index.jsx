@@ -1,4 +1,4 @@
-import { FloatButton, Drawer } from "antd";
+import { Button, Drawer } from "antd";
 import { useState } from "react";
 import { fetchingGet } from "@/utils/fetching";
 import { useLoading } from "@/hooks/useLoading";
@@ -36,10 +36,13 @@ export default function Merkl({ db }) {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 260 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<img style={{ width: 19, height: 19 }} src={icon} />}
+        onClick={() => setShowDrawer(true)}
       />
 
       <Drawer

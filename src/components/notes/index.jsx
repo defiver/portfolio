@@ -1,5 +1,6 @@
+import { FileTextOutlined } from "@ant-design/icons";
 import { DownOutlined, UpOutlined, } from "@ant-design/icons";
-import { Button, Card, Space, FloatButton, Drawer } from "antd";
+import { Button, Card, Space, Drawer } from "antd";
 import { useState } from "react";
 import EditForm from './EditForm';
 import NotesList from './NotesList';
@@ -11,9 +12,13 @@ export default function Notes({ db }) {
 
   return (
     <>
-      <FloatButton
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
+        icon={<FileTextOutlined />}
         onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 160 }}
       />
 
       <Drawer

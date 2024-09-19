@@ -1,5 +1,5 @@
 import { AppstoreAddOutlined } from "@ant-design/icons";
-import { FloatButton, Drawer, Flex, Row, Col, Empty } from "antd";
+import { Button, Drawer, Flex, Row, Col, Empty } from "antd";
 import { loadStorage } from '@/utils/storage';
 import { useState } from "react";
 import Filter from './Filter';
@@ -25,10 +25,13 @@ export default function Tools() {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 110 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<AppstoreAddOutlined />}
+        onClick={() => setShowDrawer(true)}
       />
 
       <Drawer

@@ -1,5 +1,5 @@
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { FloatButton, Modal, Collapse } from "antd";
+import { Button, Modal, Collapse } from "antd";
 import { useState } from "react";
 
 export default function Help() {
@@ -70,10 +70,13 @@ export default function Help() {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setSwowModal(true)}
-        style={{ insetBlockEnd: 10, insetInlineStart: 24 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<QuestionCircleOutlined />}
+        onClick={() => setSwowModal(true)}
       />
 
       <Modal

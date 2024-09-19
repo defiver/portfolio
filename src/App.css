@@ -29,6 +29,28 @@
   opacity: 0.5;
 }
 
+.widgets {
+  display: flex;
+  gap: 8px;
+  height: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: start;
+}
+
+@media screen and (min-width: 992px) {
+  .widgets {
+    height: calc(100vh - 20px);
+    flex-direction: column;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
+}
+
+.widget-button {
+  background-color: #1f1f1f;
+}
+
 .ant-col-grid {
   display: grid;
 }

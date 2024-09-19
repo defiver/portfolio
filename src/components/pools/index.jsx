@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined, LineChartOutlined, ReloadOutlined, HistoryOutlined } from "@ant-design/icons";
-import { Button, Card, Space, FloatButton, Drawer, Progress } from "antd";
+import { Button, Card, Space, Drawer, Progress } from "antd";
 import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { formAddressState, poolsListState, sortPoolsListState } from "./store";
@@ -41,10 +41,13 @@ export default function Pools({ db }) {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 210 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<LineChartOutlined />}
+        onClick={() => setShowDrawer(true)}
       />
 
       <Drawer

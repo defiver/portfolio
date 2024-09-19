@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
-import { Button, Card, Space, FloatButton, Drawer, Input } from "antd";
+import { Button, Card, Space, Drawer, Input } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import { useState, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -42,10 +42,13 @@ export default function Revert({ db }) {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setShowDrawer(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 410 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<img style={{ width: 18, height: 18 }} src={icon} />}
+        onClick={() => setShowDrawer(true)}
       />
 
       <Drawer

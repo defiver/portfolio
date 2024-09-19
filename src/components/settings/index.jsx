@@ -1,5 +1,5 @@
 import { DownloadOutlined } from "@ant-design/icons";
-import { FloatButton, Modal } from "antd";
+import { Button, Modal } from "antd";
 import { useState } from "react";
 import Backup from './backup';
 
@@ -8,10 +8,13 @@ export default function Settings({ db }) {
 
   return (
     <>
-      <FloatButton
-        onClick={() => setSwowModal(true)}
-        style={{ insetInlineStart: 24, insetBlockEnd: 60 }}
+      <Button
+        type={"text"}
+        size={"large"}
+        shape={"circle"}
+        className={"widget-button"}
         icon={<DownloadOutlined />}
+        onClick={() => setSwowModal(true)}
       />
 
       <Modal
