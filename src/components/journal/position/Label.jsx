@@ -3,7 +3,7 @@ import { Col, Row, Typography, Tag } from "antd";
 
 // левый и центральные блоки в заголоке позиции
 export default function Label({ position }) {
-  const chain = position?.chain.length ? position.chain[0].toLowerCase() : "";
+  const chain = position?.chain && position.chain.length ? position.chain[0].toLowerCase() : "";
 
   return (
     <Row gutter={[8, 8]}>
