@@ -34,9 +34,10 @@ export const usePrices = (pools, db) => {
 				let contract = JSON.parse(arr["data"]);
 				// формула для вычисления цены из sqrtPriceX96 с учётом отношения в разрядностях токенов
 				let price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
+				console.log(price, pool);
 
 				// иногда токены в пуле перепутаны местами, из-за чего цена получается аномальной
-				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals * 2 : price;
+				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals ** 2 : price;
 			}).reverse();
 
 			if (prices.length) {

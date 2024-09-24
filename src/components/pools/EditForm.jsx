@@ -34,13 +34,14 @@ export default function EditForm({ db, pool }) {
     let { range1, range2 } = values;
     // если границы диапазона не указаны, то он будет максимально широким
     values.range = [range1 || 0, range2 || 10 ** 9];
+    values.address = values.address.toLowerCase();
 
     if (pool) {
       await db.pools.put(values);
     } else {
-      // если пул новый, то узнаём отношение разрядностей токенов в пуле
       values.notify = true;
       values.inRange = true;
+      // если пул новый, то узнаём отношение разрядностей токенов в пуле
       values.decimals = await getDecimals(values.address, values.chain);
       await db.pools.add(values);
     }
@@ -56,7 +57,7 @@ export default function EditForm({ db, pool }) {
       <Row gutter={[8, 8]}>
         <Col span={8}>
           <Form.Item name="address" rules={[{ required: true, message: '' }]}>
-            <Input placeholder="Address (0x123...)" />
+            <Input placeholder="Address (0x123...)" disabled={pool} />
           </Form.Item>
         </Col>
 
