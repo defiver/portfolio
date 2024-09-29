@@ -12,8 +12,8 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
   const [form] = Form.useForm();
   // сортируем токены по их $ стоимости
   const tokens = [...useLiveQuery(() => db.tokens.toArray(), [], [])].sort((a, b) =>
-    (a.amount * a.quote) < (b.amount * b.quote)
-  );
+    (a.amount * a.quote) > (b.amount * b.quote)
+  ).reverse();
 
   const [, setId] = useRecoilState(idState); // устанавливает position id в форму редактирования
   const tags = useRecoilValue(allTagsState);

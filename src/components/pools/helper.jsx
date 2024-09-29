@@ -16,7 +16,7 @@ export const getDecimals = async (address, chain) => {
 	const tokens = await fetchTokens(address, chain);
 
 	const d1 = tokens[0] ? await fetchDecimals(tokens[0], chain) : 0;
-	const d2 = tokens[1] ? await fetchDecimals(tokens[1], chain) : 0;
+	const d2 = tokens[1] ? await fetchDecimals(tokens[1], chain) : d1;
 
 	return (10 ** parseInt(d1)) / (10 ** parseInt(d2));
 };
@@ -34,7 +34,6 @@ export const usePrices = (pools, db) => {
 				let contract = JSON.parse(arr["data"]);
 				// формула для вычисления цены из sqrtPriceX96 с учётом отношения в разрядностях токенов
 				let price = contract ? (1 / pool.decimals) * Number(contract.sqrtPriceX96) ** 2 / 2 ** 192 : 0;
-				console.log(price, pool);
 
 				// иногда токены в пуле перепутаны местами, из-за чего цена получается аномальной
 				return price < 10 ** -9 || price > 10 ** 9 ? price * pool.decimals ** 2 : price;
