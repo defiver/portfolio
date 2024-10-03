@@ -160,14 +160,14 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
             <Row gutter={[8, 8]}>
               <Col span={18}>
                 <Form.Item name="status">
-                  <Segmented options={["active", "completed"]} block />
+                  <Segmented options={["active", "completed"]} block title="Position status" />
                 </Form.Item>
               </Col>
 
               <Col span={6}>
                 <Form.Item>
                   <Flex gap={8} justify="end">
-                    <Button icon={<CloseOutlined />} onClick={closeForm} />
+                    <Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
 
                     <SubmitButton icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
                   </Flex>

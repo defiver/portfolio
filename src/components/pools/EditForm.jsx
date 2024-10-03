@@ -92,7 +92,7 @@ export default function EditForm({ db, pool }) {
         <Col span={4}>
           <Form.Item>
             <Flex gap={8} justify="end">
-              <Button icon={<CloseOutlined />} onClick={closeForm} />
+              <Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
 
               <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
             </Flex>

@@ -45,8 +45,8 @@ export default function Tokens({ db }) {
       size="small"
       className="tokens"
       title={<>
-        <span>${localeNumber(sum)}</span>
-        <span style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>
+        <span title="Sum value">${localeNumber(sum)}</span>
+        <span title="Sum income" style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>
       </>}
       extra={
         <Space>
@@ -61,10 +61,12 @@ export default function Tokens({ db }) {
             loading={isQuotesLoading}
             icon={<ReloadOutlined />}
             onClick={fetchQuotes}
+            title="Update prices"
           />
           <Button
             icon={add ? <UpOutlined /> : <DownOutlined />}
             onClick={() => setAdd(!add)}
+            title="Add new token"
           />
         </Space>
       }

@@ -70,15 +70,15 @@ export default function PoolsList({ db }) {
 							</Flex>
 						</Col>
 
-						<Col span={2}>
+						<Col span={2} title="TVL">
 							${localeNumber(pool.tvl / 1_000_000)}<span className="underline">m</span>
 						</Col>
 
-						<Col span={4} className="right">
+						<Col span={4} className="right" title="Current APY">
 							{localeNumber(pool.apy, 2)}<span className="underline">%</span>
 						</Col>
 
-						<Col span={4} className="right">
+						<Col span={4} className="right" title="30 day APY">
 							{localeNumber(pool.apy30d, 2)}<span className="underline">%</span>
 						</Col>
 					</Row>

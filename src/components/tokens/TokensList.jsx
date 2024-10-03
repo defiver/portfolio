@@ -29,22 +29,22 @@ export default function TokensList({ db, inputAmount }) {
             </Col>
 
             <Col span={8}>
-              <span>{localeNumber(o.amount)}</span>
-              <span style={{ fontSize: 10 }}>
+              <span title="Amount">{localeNumber(o.amount)}</span>
+              <span style={{ fontSize: 10 }} title="Free amount">
                 /{localeNumber(o.amount - (used[o.token] ?? 0))}
               </span>
             </Col>
 
-            <Col span={4}>
+            <Col span={4} title="Value">
               <span>{localeNumber((inputAmount > 0 ? inputAmount : o.amount) * o.quote)} </span>
             </Col>
 
-            <Col span={4} style={{ textAlign: "right" }}>
+            <Col span={4} style={{ textAlign: "right" }} title="Price">
               <span>{localeNumber(o.quote)}</span>
             </Col>
 
             <Col span={4} style={{ fontSize: 12, textAlign: "right", alignSelf: "center" }}>
-              <span>{formatPercent(o.quote, o.previous)}</span>
+              <span title="Price change">{formatPercent(o.quote, o.previous)}</span>
             </Col>
           </Row>
       ))}

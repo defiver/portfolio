@@ -78,7 +78,7 @@ export default function PoolsList({ db, pool }) {
 					<Button loading={isDeletePollLoading} icon={<DeleteOutlined />} className="warning" />
 				</Popconfirm>
 
-				<Button icon={<EditOutlined />} onClick={() => setFormAddress(pool.address)} />
+				<Button icon={<EditOutlined />} onClick={() => setFormAddress(pool.address)} title="Edit range" />
 			</Flex>
 		</Flex>
 	)

@@ -71,6 +71,7 @@ export default function Pools({ db }) {
                 icon={<HistoryOutlined />}
                 onClick={() => setTimer(timer > 0 ? 0 : 1)}
                 disabled={isUpdatePricesLoading}
+                title="Set timer (10 min)"
               />
 
               <Button
@@ -80,11 +81,13 @@ export default function Pools({ db }) {
                   updatePrices();
                   timer && setTimer(1);
                 }}
+                title="Update all pools"
               />
 
               <Button
                 icon={formAddress === 0 ? <UpOutlined /> : <DownOutlined />}
                 onClick={() => setFormAddress(formAddress === 0 ? null : 0)}
+                title="Add pool"
               />
             </Space>
           }

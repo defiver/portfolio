@@ -93,6 +93,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 					icon={<ReloadOutlined />}
 					onClick={fetchPools}
 					loading={isPoolsLoading}
+					title="Upload pools"
 				/>
 			</Col>
 		</Row>

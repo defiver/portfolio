@@ -60,7 +60,7 @@ export default function NotesList({ db }) {
                       />
                     </Popconfirm>
 
-                    <Button icon={<EditOutlined />} onClick={() => setId(o.id)} />
+                    <Button icon={<EditOutlined />} onClick={() => setId(o.id)} title="Edit note" />
                   </Space>
                 </Flex>
               </>

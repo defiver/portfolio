@@ -43,10 +43,12 @@ export default function Header() {
           type={filter.status ? "default" : "primary"}
           icon={<FileZipOutlined />}
           onClick={() => setFilterState({ ...filter, status: !filter.status })}
+          title="Archive"
         />
         <Button
           icon={id === 0 ? <UpOutlined /> : <DownOutlined />}
           onClick={() => setId(id === 0 ? null : 0)}
+          title="Add new position"
         />
       </Flex>
     </Flex>

@@ -51,7 +51,7 @@ export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 							<a href={item.url}> {item.name}</a>
 						</Typography.Text>
 					</Flex>
-					<Typography.Text>{parseInt(item.apr)}%</Typography.Text>
+					<Typography.Text title="APR">{parseInt(item.apr)}%</Typography.Text>
 				</List.Item>
 			)}
 		/>

@@ -50,10 +50,10 @@ export default function EditForm({ token, setToken, db }) {
 						<SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditTokenLoading} />
 
 						<Popconfirm title="Delete the token?" onConfirm={deleteToken} okText="Yes" cancelText="No">
-							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} className="warning" />
+							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} className="warning" title="Delete" />
 						</Popconfirm>
 
-						<Button icon={<CloseOutlined />} onClick={closeForm} />
+						<Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
 					</Flex>
 				</Form.Item>
 			</Space>

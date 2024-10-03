@@ -51,6 +51,7 @@ export default function Children({ position, db }) {
           <Button
             icon={<EditOutlined />}
             onClick={() => setId(position.id)}
+            title="Edit position"
           />
         </Space>
       </Flex>

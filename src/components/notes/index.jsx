@@ -38,6 +38,7 @@ export default function Notes({ db }) {
               <Button
                 icon={id === 0 ? <UpOutlined /> : <DownOutlined />}
                 onClick={() => setId(id === 0 ? null : 0)}
+                title="Add new note"
               />
             </Space>
           }
