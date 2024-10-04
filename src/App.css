@@ -105,6 +105,11 @@
   box-shadow: none;
 }
 
+.ant-select-dropdown {
+  background-color: #141414;
+  border: 1px solid #303030;
+}
+
 .close-notification {
   color: rgba(255, 255, 255, 0.45);
   width: 22px;
