@@ -57,32 +57,32 @@ export default function EditForm({ db, pool }) {
       <Row gutter={[8, 8]}>
         <Col span={8}>
           <Form.Item name="address" rules={[{ required: true, message: '' }]}>
-            <Input placeholder="Address (0x123...)" disabled={pool} />
+            <Input placeholder="Адрес пула (0x123...)" disabled={pool} />
           </Form.Item>
         </Col>
 
         <Col span={8}>
           <Form.Item name="range1">
-            <InputNumber placeholder="Lower range (0)" />
+            <InputNumber placeholder="Нижняя граница (2200)" />
           </Form.Item>
         </Col>
 
         <Col span={8}>
           <Form.Item name="range2">
-            <InputNumber placeholder="Upper range (2500)" />
+            <InputNumber placeholder="Верхняя граница (2500)" />
           </Form.Item>
         </Col>
 
         <Col span={10}>
           <Form.Item name="name" rules={[{ required: true, message: '' }]}>
-            <Input placeholder="Name (Uni ETH/DAI Arb)" />
+            <Input placeholder="Название (Uni ETH/DAI Arb)" />
           </Form.Item>
         </Col>
 
         <Col span={10}>
           <Form.Item name="chain" rules={[{ required: true, message: '' }]}>
             <Select
-              placeholder="Chain"
+              placeholder="Сеть"
               style={{ width: "100%" }}
               options={chains.map(o => { return { value: o.chain, label: o.name } })}
             />
@@ -92,7 +92,7 @@ export default function EditForm({ db, pool }) {
         <Col span={4}>
           <Form.Item>
             <Flex gap={8} justify="end">
-              <Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
+              <Button icon={<CloseOutlined />} onClick={closeForm} title="Отмена" />
 
               <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
             </Flex>

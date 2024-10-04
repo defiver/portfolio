@@ -32,13 +32,13 @@ export default function EditForm({ token, setToken, db }) {
 			<Space>
 				<Form.Item>
 					<InputNumber
-						placeholder="100"
+						placeholder="Прибавить (100)"
 						onChange={(v) => form.setFieldsValue({ amount: Number(token.amount) + Number(v) })}
 					/>
 				</Form.Item>
 
 				<Form.Item name="amount" rules={[{ required: true, message: '' }]}>
-					<Input />
+					<Input placeholder="Кол-во токенов" />
 				</Form.Item>
 
 				<Form.Item name="token" hidden rules={[{ required: true, message: '' }]}>
@@ -49,11 +49,11 @@ export default function EditForm({ token, setToken, db }) {
 					<Flex gap={8} justify="end">
 						<SubmitButton ghost icon={<CheckOutlined />} form={form} loading={isEditTokenLoading} />
 
-						<Popconfirm title="Delete the token?" onConfirm={deleteToken} okText="Yes" cancelText="No">
-							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} className="warning" title="Delete" />
+						<Popconfirm title="Удалить токена?" onConfirm={deleteToken} okText="Да" cancelText="Нет">
+							<Button loading={isDeleteTokenLoading} icon={<MinusOutlined />} className="warning" title="Удалить" />
 						</Popconfirm>
 
-						<Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
+						<Button icon={<CloseOutlined />} onClick={closeForm} title="Отмена" />
 					</Flex>
 				</Form.Item>
 			</Space>

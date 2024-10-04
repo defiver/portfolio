@@ -31,14 +31,14 @@ export default function Notes({ db }) {
       >
         <Card
           size="small"
-          title="Notes"
+          title="Заметки"
           className="note-list"
           extra={
             <Space>
               <Button
                 icon={id === 0 ? <UpOutlined /> : <DownOutlined />}
                 onClick={() => setId(id === 0 ? null : 0)}
-                title="Add new note"
+                title="Добавить заметку"
               />
             </Space>
           }

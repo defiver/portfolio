@@ -16,7 +16,7 @@ export default function Header() {
         <Select
           allowClear
           style={{ width: 150 }}
-          placeholder="Tag"
+          placeholder="Тег"
           value={filter.tag}
           onChange={(value) => setFilterState({ ...filter, tag: value })}
           options={tags.map((i) => new Object({ label: i, value: i }))}
@@ -24,7 +24,7 @@ export default function Header() {
         <Select
           allowClear
           style={{ width: 100 }}
-          placeholder="Token"
+          placeholder="Токен"
           value={filter.token}
           onChange={(value) => setFilterState({ ...filter, token: value })}
           options={tokens.map((i) => new Object({ label: i, value: i }))}
@@ -32,7 +32,7 @@ export default function Header() {
         <Select
           allowClear
           style={{ width: 100 }}
-          placeholder="Chain"
+          placeholder="Сеть"
           value={filter.chain}
           onChange={(value) => setFilterState({ ...filter, chain: value })}
           options={chains.map((i) => new Object({ label: i, value: i }))}
@@ -43,12 +43,12 @@ export default function Header() {
           type={filter.status ? "default" : "primary"}
           icon={<FileZipOutlined />}
           onClick={() => setFilterState({ ...filter, status: !filter.status })}
-          title="Archive"
+          title="Архив записей"
         />
         <Button
           icon={id === 0 ? <UpOutlined /> : <DownOutlined />}
           onClick={() => setId(id === 0 ? null : 0)}
-          title="Add new position"
+          title="Добавить запись"
         />
       </Flex>
     </Flex>

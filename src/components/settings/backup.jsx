@@ -54,28 +54,28 @@ export default function Backup({ db }) {
 				onClick={exportData}
 				loading={isExportDataLoading}
 				disabled={disable}
-			>Export data</Button>
+			>Экспортировать данные</Button>
 
 			<Button
 				onClick={() => inputRef.current.click()}
 				loading={isImportDataLoading}
 				disabled={disable}
-			>Import data</Button>
+			>Импортировать данные</Button>
 			<input onChange={uploadData} multiple={false} ref={inputRef} type="file" hidden />
 
 			<Button
 				onClick={() => importData(test)}
 				loading={isImportDataLoading}
 				disabled={disable}
-			>Import test data</Button>
+			>Импортировать тестовые данные</Button>
 
 			<Popconfirm
-				title="Delete all data?"
+				title="Точно?"
 				onConfirm={() => clearData(clearData)}
-				okText="Yes"
-				cancelText="No"
+				okText="Да"
+				cancelText="Нет"
 			>
-				<Button loading={isClearDataLoading} disabled={disable}>Clear data</Button>
+				<Button loading={isClearDataLoading} disabled={disable}>Стереть данные</Button>
 			</Popconfirm>
 		</Flex>
 	);

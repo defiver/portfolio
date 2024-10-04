@@ -45,14 +45,14 @@ export default function Tokens({ db }) {
       size="small"
       className="tokens"
       title={<>
-        <span title="Sum value">${localeNumber(sum)}</span>
-        <span title="Sum income" style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>
+        <span title="Стоимость всех токенов в долларах">${localeNumber(sum)}</span>
+        <span title="Сколько долларов заработано" style={{ fontSize: 12 }}> (${localeNumber(earned)})</span>
       </>}
       extra={
         <Space>
           <InputNumber
             style={{ maxWidth: 120 }}
-            placeholder={"Amount"}
+            placeholder={"Кол-во (0.45)"}
             value={inputAmount}
             onChange={setInputAmount}
             min={0}
@@ -61,12 +61,12 @@ export default function Tokens({ db }) {
             loading={isQuotesLoading}
             icon={<ReloadOutlined />}
             onClick={fetchQuotes}
-            title="Update prices"
+            title="Обновить цены"
           />
           <Button
             icon={add ? <UpOutlined /> : <DownOutlined />}
             onClick={() => setAdd(!add)}
-            title="Add new token"
+            title="Добавить токен"
           />
         </Space>
       }

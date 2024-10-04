@@ -20,7 +20,7 @@ export default function PoolsList({ db, pool }) {
 	const data = {
 		labels: datapoints.map(i => i.toString()),
 		datasets: [{
-			label: "Price",
+			label: "Цена",
 			data: datapoints,
 			borderWidth: 1,
 			borderColor: "#d4d4d4",
@@ -30,7 +30,7 @@ export default function PoolsList({ db, pool }) {
 
 	// отрисовка горизонтальных линий диапазона
 	pool?.range && pool.range[0] > 0 && data.datasets.push({
-		label: "Down range",
+		label: "Нижняя граница",
 		data: new Array(datapoints.length).fill(pool.range[0]),
 		fill: false,
 		radius: 0,
@@ -41,7 +41,7 @@ export default function PoolsList({ db, pool }) {
 
 	// отрисовка горизонтальных линий диапазона
 	pool?.range && pool.range[1] > 0 && pool.range[1] < 10 ** 9 && data.datasets.push({
-		label: "Top range",
+		label: "Верхняя граница",
 		data: new Array(datapoints.length).fill(pool.range[1]),
 		fill: false,
 		radius: 0,
@@ -74,11 +74,11 @@ export default function PoolsList({ db, pool }) {
 			</div>
 
 			<Flex justify={"end"} gap={8}>
-				<Popconfirm title="Delete the token?" onConfirm={deletePool} okText="Yes" cancelText="No">
+				<Popconfirm title="Удалить пул?" onConfirm={deletePool} okText="Да" cancelText="Нет">
 					<Button loading={isDeletePollLoading} icon={<DeleteOutlined />} className="warning" />
 				</Popconfirm>
 
-				<Button icon={<EditOutlined />} onClick={() => setFormAddress(pool.address)} title="Edit range" />
+				<Button icon={<EditOutlined />} onClick={() => setFormAddress(pool.address)} title="Изменить диапазон" />
 			</Flex>
 		</Flex>
 	)

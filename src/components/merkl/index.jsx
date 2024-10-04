@@ -43,7 +43,6 @@ export default function Merkl({ db }) {
         className={"widget-button"}
         icon={<img style={{ width: 19, height: 19 }} src={icon} />}
         onClick={() => setShowDrawer(true)}
-        title="Upload pools"
       />
 
       <Drawer

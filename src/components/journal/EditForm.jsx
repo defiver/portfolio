@@ -62,12 +62,12 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
         </Form.Item>
 
         <Form.Item name="text">
-          <Input.TextArea placeholder={"Note"} autoSize={{ minRows: 1, maxRows: 10 }} />
+          <Input.TextArea placeholder={"Описание"} autoSize={{ minRows: 1, maxRows: 10 }} />
         </Form.Item>
 
         <Form.Item name="transactions">
           <Input.TextArea
-            placeholder={"Transactions"}
+            placeholder={"Ссылки на транзакции"}
             autoSize={{ minRows: 1, maxRows: 10 }}
             style={{ whiteSpace: "pre", overflowX: "hidden" }}
           />
@@ -75,7 +75,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
         <Form.Item name="links">
           <Input.TextArea
-            placeholder={"Links"}
+            placeholder={"Ссылка на пул"}
             autoSize={{ minRows: 1, maxRows: 10 }}
             style={{ whiteSpace: "pre", overflowX: "hidden" }}
           />
@@ -103,7 +103,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
             <Select
               mode="tags"
               style={{ width: "100%" }}
-              placeholder="Tags"
+              placeholder="Теги"
               options={tags.map((i) => new Object({ label: i, value: i }))}
             />
           </Form.Item>
@@ -130,7 +130,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
                         />
                       </Space>
                     ))}
-                    <Button type="dashed" onClick={() => subOpt.add()}>Add token</Button>
+                    <Button type="dashed" onClick={() => subOpt.add()}>Добавить токен</Button>
                   </Flex>
                 )}
               </Form.List>
@@ -144,7 +144,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
                   <Select
                     mode="tags"
                     style={{ width: "100%" }}
-                    placeholder="Chain"
+                    placeholder="Сеть"
                     options={chains.map((i) => new Object({ label: i, value: i }))}
                   />
                 </Form.Item>
@@ -152,7 +152,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
               <Col span={12}>
                 <Form.Item name="income">
-                  <InputNumber placeholder="Income ($)" />
+                  <InputNumber placeholder="Доход в долларах" />
                 </Form.Item>
               </Col>
             </Row>
@@ -160,14 +160,14 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
             <Row gutter={[8, 8]}>
               <Col span={18}>
                 <Form.Item name="status">
-                  <Segmented options={["active", "completed"]} block title="Position status" />
+                  <Segmented options={[{ value: 'active', label: "Активная" }, { value: 'completed', label: "Завершённая" }]} block />
                 </Form.Item>
               </Col>
 
               <Col span={6}>
                 <Form.Item>
                   <Flex gap={8} justify="end">
-                    <Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
+                    <Button icon={<CloseOutlined />} onClick={closeForm} title="Отмена" />
 
                     <SubmitButton icon={<CheckOutlined />} form={form} loading={isEditPositionLoading} />
                   </Flex>

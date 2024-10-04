@@ -17,17 +17,17 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 	}, [deferredQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const attributes = {
-		"noil": "No IL",
-		"stable": "Stablecoins",
-		"multi": "Multi Exposure",
-		"single": "Single Exposure",
-		"nooutlier": "No Outlier",
+		"noil": "Без IL",
+		"stable": "Стейблкоины",
+		"multi": "Мульти пулы",
+		"single": "Одиночные пулы",
+		"nooutlier": "Без всплесков в APY",
 	};
 
 	const sorting = {
 		"tvl": "TVL",
 		"apy": "APY",
-		"apy30d": "Apy 30d",
+		"apy30d": "Средняя APY за месяц",
 	};
 
 	return (
@@ -35,7 +35,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 			<Col span={8}>
 				<Select
 					allowClear
-					placeholder="Chain"
+					placeholder="Сеть"
 					value={filter.chain}
 					onChange={(value) => setFilterState({ ...filter, chain: value })}
 					options={chains.map(i => { return { value: i, label: i } })}
@@ -47,7 +47,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 			<Col span={8}>
 				<Select
 					allowClear
-					placeholder="Project"
+					placeholder="Протокол"
 					value={filter.project}
 					onChange={(value) => setFilterState({ ...filter, project: value })}
 					options={projects.map(i => new Object({
@@ -61,7 +61,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 
 			<Col span={8}>
 				<Select
-					placeholder="Sorting"
+					placeholder="Сортировка"
 					value={filter.sort}
 					onChange={(value) => setFilterState({ ...filter, sort: value })}
 					options={Object.entries(sorting).map(([k, v]) => { return { value: k, label: v } })}
@@ -71,7 +71,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 			<Col span={8}>
 				<Input
 					allowClear
-					placeholder="Token"
+					placeholder="Поиск по токенам"
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 				/>
@@ -81,7 +81,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 				<Select
 					allowClear
 					mode="multiple"
-					placeholder="Attribute"
+					placeholder="Тип"
 					value={filter.attribute}
 					onChange={(value) => setFilterState({ ...filter, attribute: value })}
 					options={Object.entries(attributes).map(([k, v]) => { return { value: k, label: v } })}
@@ -93,7 +93,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 					icon={<ReloadOutlined />}
 					onClick={fetchPools}
 					loading={isPoolsLoading}
-					title="Upload pools"
+					title="Загрузить пулы"
 				/>
 			</Col>
 		</Row>

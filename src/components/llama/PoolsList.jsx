@@ -74,11 +74,11 @@ export default function PoolsList({ db }) {
 							${localeNumber(pool.tvl / 1_000_000)}<span className="underline">m</span>
 						</Col>
 
-						<Col span={4} className="right" title="Current APY">
+						<Col span={4} className="right" title="Текущая APY">
 							{localeNumber(pool.apy, 2)}<span className="underline">%</span>
 						</Col>
 
-						<Col span={4} className="right" title="30 day APY">
+						<Col span={4} className="right" title="Средняя APY за месяц">
 							{localeNumber(pool.apy30d, 2)}<span className="underline">%</span>
 						</Col>
 					</Row>

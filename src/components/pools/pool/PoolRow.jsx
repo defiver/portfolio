@@ -21,11 +21,11 @@ export default function PoolRow({ db, pool }) {
 			</Col>
 
 			<Col span={8}>
-				<span title="Price">{localeNumber(pool.price, 6)}</span>
+				<span title="Цена">{localeNumber(pool.price, 6)}</span>
 			</Col>
 
 			<Col span={6} style={{ fontSize: 12, alignSelf: "center" }}>
-				<span title="Price change">{formatPercent(pool.price, pool.previous, 3)}</span>
+				<span title="Изменение цены">{formatPercent(pool.price, pool.previous, 3)}</span>
 			</Col>
 
 			<Col span={2}>
@@ -36,7 +36,7 @@ export default function PoolRow({ db, pool }) {
 							setNotify();
 							e.stopPropagation();
 						}}
-						title="Set signaling"
+						title="Установить сигнализацию"
 					/>
 					<Button
 						loading={loadingPool === pool.address}
@@ -45,7 +45,7 @@ export default function PoolRow({ db, pool }) {
 							updatePrice();
 							e.stopPropagation();
 						}}
-						title="Update price"
+						title="Обновить цену пула"
 					/>
 				</Space>
 			</Col>

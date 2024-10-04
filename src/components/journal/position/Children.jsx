@@ -35,23 +35,23 @@ export default function Children({ position, db }) {
       <Typography.Paragraph>{position.text}</Typography.Paragraph>
       <Flex justify={"space-between"} align={"center"}>
         <Space>
-          <Typography.Text code>Age: {age} days</Typography.Text>
+          <Typography.Text code>Возраст: {age} days</Typography.Text>
           {checkFirstLink(position.transactions) && getFirstLink(position.transactions)}
           {checkFirstLink(position.links) && getFirstLink(position.links)}
         </Space>
         <Space>
           <Popconfirm
-            title="Delete the position?"
+            title="Удалить запись?"
             onConfirm={() => deletePosition(position.id)}
-            okText="Yes"
-            cancelText="No"
+            okText="Да"
+            cancelText="Нет"
           >
             <Button loading={isDeletePositionLoading} icon={<DeleteOutlined />} className="warning" />
           </Popconfirm>
           <Button
             icon={<EditOutlined />}
             onClick={() => setId(position.id)}
-            title="Edit position"
+            title="Редактировать запись"
           />
         </Space>
       </Flex>

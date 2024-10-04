@@ -24,20 +24,22 @@ export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 					<Input
 						disabled={isOppLoading}
 						onChange={e => setInputQuery(e.target.value)}
-						placeholder="Search..." allowClear
+						placeholder="Поиск" allowClear
 					/>
 					<Select
 						disabled={isOppLoading}
 						defaultValue={swowFresh ? "fresh" : "all"}
 						onChange={() => setSwowFresh(!swowFresh)}
 						style={{ minWidth: 100 }}
-						options={[{ value: "all", label: "All" }, { value: "fresh", label: "Fresh" }]}
+						options={[{ value: "all", label: "Все" }, { value: "fresh", label: "Новые" }]}
 					/>
 					<Button
 						style={{ minWidth: 32 }}
 						icon={<ReloadOutlined />}
 						onClick={fetchOpp}
-						loading={isOppLoading} />
+						loading={isOppLoading}
+						title="Загрузить пулы"
+					/>
 				</Flex>
 			}
 			renderItem={(item) => (

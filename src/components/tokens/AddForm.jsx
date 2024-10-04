@@ -20,16 +20,16 @@ export default function AddForm({ setAdd, db }) {
     <Form form={form} onFinish={addToken} className="edit-form" autoComplete="off">
       <Space gap={8}>
         <Form.Item name="token" rules={[{ required: true, message: '' }]}>
-          <Input placeholder="ETH" />
+          <Input placeholder="Тикер (ETH)" />
         </Form.Item>
 
         <Form.Item name="amount" rules={[{ required: true, message: '' }]}>
-          <InputNumber placeholder="100" />
+          <InputNumber placeholder="Кол-во (1000)" />
         </Form.Item>
 
         <Form.Item>
           <Flex gap={8} justify="end">
-            <Button icon={<CloseOutlined />} onClick={closeForm} title="Cancel" />
+            <Button icon={<CloseOutlined />} onClick={closeForm} title="Отмена" />
 
             <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddTokenLoading} />
           </Flex>

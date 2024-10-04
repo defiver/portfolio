@@ -55,12 +55,12 @@ export default function Pools({ db }) {
         open={showDrawer}
         className="pools"
         placement={"left"}
-        width={500}
+        width={600}
         onClose={() => setShowDrawer(false)}
       >
         <Card
           size="small"
-          title="Price in pools"
+          title="Цены в пулах"
           className="pools-list"
           extra={
             <Space>
@@ -71,7 +71,7 @@ export default function Pools({ db }) {
                 icon={<HistoryOutlined />}
                 onClick={() => setTimer(timer > 0 ? 0 : 1)}
                 disabled={isUpdatePricesLoading}
-                title="Set timer (10 min)"
+                title="Установить таймер (10 минут)"
               />
 
               <Button
@@ -81,13 +81,13 @@ export default function Pools({ db }) {
                   updatePrices();
                   timer && setTimer(1);
                 }}
-                title="Update all pools"
+                title="Обновить цену всех пулов"
               />
 
               <Button
                 icon={formAddress === 0 ? <UpOutlined /> : <DownOutlined />}
                 onClick={() => setFormAddress(formAddress === 0 ? null : 0)}
-                title="Add pool"
+                title="Добавить пул"
               />
             </Space>
           }

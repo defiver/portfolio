@@ -31,7 +31,7 @@ export default function Filter({ tools, favorites, setFilterTools }) {
 			<Col span={12}>
 				<Select
 					allowClear
-					placeholder="Chain"
+					placeholder="Сеть"
 					defaultValue={chain}
 					onChange={setChain}
 					style={{ width: "100%" }}

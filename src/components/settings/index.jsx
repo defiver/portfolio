@@ -18,7 +18,7 @@ export default function Settings({ db }) {
       />
 
       <Modal
-        title="Backup"
+        title="База данных"
         footer={null}
         open={swowModal}
         onOk={() => setSwowModal(false)}

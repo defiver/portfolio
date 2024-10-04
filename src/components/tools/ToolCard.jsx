@@ -36,6 +36,7 @@ export default function ToolCard({ item, favorites, setFavorites }) {
 					<StarOutlined
 						style={{ color: favorites.includes(item.name) ? "darkorange" : "#343434", cursor: "pointer" }}
 						onClick={setFavorite}
+						title={favorites.includes(item.name) ? "Удалить из избранного" : "Добавить в избранное"}
 					/>
 				</Space>
 			}

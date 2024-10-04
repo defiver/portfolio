@@ -48,10 +48,10 @@ export default function NotesList({ db }) {
                 <Flex justify={"flex-end"}>
                   <Space>
                     <Popconfirm
-                      title="Delete the note?"
+                      title="Удалить заметку?"
                       onConfirm={() => deleteNote(o.id)}
-                      okText="Yes"
-                      cancelText="No"
+                      okText="Да"
+                      cancelText="Нет"
                     >
                       <Button
                         loading={isDeleteNoteLoading}
@@ -60,7 +60,7 @@ export default function NotesList({ db }) {
                       />
                     </Popconfirm>
 
-                    <Button icon={<EditOutlined />} onClick={() => setId(o.id)} title="Edit note" />
+                    <Button icon={<EditOutlined />} onClick={() => setId(o.id)} title="Редактировать заметку" />
                   </Space>
                 </Flex>
               </>
