@@ -1,0 +1,15 @@
+.calculator .ant-drawer-header {
+  display: none;
+}
+
+.calculator .ant-drawer-body {
+  padding: 12px;
+}
+
+.calculator .ant-divider {
+  margin: 0 0 8px;
+}
+
+.calculator .ant-statistic {
+  margin-bottom: 16px;
+}

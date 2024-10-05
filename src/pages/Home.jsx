@@ -9,6 +9,7 @@ import Merkl from "@/components/merkl";
 import Tools from "@/components/tools";
 import Pools from "@/components/pools";
 import Llama from "@/components/llama";
+import Calculator from "@/components/calculator";
 // import Sushi from "@/components/sushi";
 // import Revert from "@/components/revert";
 import Dexie from 'dexie';
@@ -46,6 +47,8 @@ export default function Home() {
             <Llama db={db} />
             <Pools db={db} />
           </RecoilRoot>
+
+          <Calculator />
 
           <Notes db={db} />
           <Tools />
