@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 const { Paragraph } = Typography;
 
 const defaultResult = {
-	"avgDownPriceA": 0,
-	"avgUpPriceB": 0,
-	"downAmountA": 0,
-	"upAmountB": 0,
-	"avgDownPriceAB": 0,
-	"avgUpPriceBA": 0,
-	"poolAmountA": 0,
-	"poolAmountB": 0,
+	"avgDownPriceA": 0, // средняя цена покупки токена А при выходе цены из нижней границы
+	"avgUpPriceB": 0, // средняя цена покупки токена B при выходе цены из верхней границы
+	"downAmountA": 0, // кол-во токенов А при выходе цены из нижней границы
+	"upAmountB": 0, // кол-во токенов В при выходе цены из верхней границы
+	"avgDownPriceAB": 0, // средняя цена покупки токена А с учётом изначального кол-ва токенов
+	"avgUpPriceBA": 0, // средняя цена покупки токена B с учётом изначального кол-ва токенов
+	"poolAmountA": 0, // кол-во токенов А при добавлени ликвидности в пул
+	"poolAmountB": 0, // кол-во токенов В при добавлени ликвидности в пул
 }
 
 export default function TokensRatio({ showDesc }) {
@@ -23,11 +23,15 @@ export default function TokensRatio({ showDesc }) {
 
 	const calc = () => {
 		let ratio = 1;
+		// предполагаем, что вся ликвидность в одном токене, а кол-во второго равно нулю
 		let tempAmountA = values.amountB + values.amountA * values.price;
 		let tempAmountB = 0;
+		// считаем виртуальную ликвидность по формулам из https://ethereum.stackexchange.com/a/110452
 		let preLiquidityA = (Math.sqrt(values.price) * Math.sqrt(values.rangeUp)) / (Math.sqrt(values.rangeUp) - Math.sqrt(values.price));
 		let preLiquidityB = (Math.sqrt(values.price) - Math.sqrt(values.rangeDown));
 
+		// поэтому считаем численным методом, в каком соотношении должны быть активы,
+		// чтобы LiquidityA быть равно LiquidityB. погрешность 0.01%
 		while (ratio > 0.5) {
 			let liquidityA = tempAmountA * preLiquidityA / values.price;
 			let liquidityB = tempAmountB / preLiquidityB;
@@ -38,15 +42,18 @@ export default function TokensRatio({ showDesc }) {
 			tempAmountB += bit;
 		}
 
+		// считаем соотношение токенов в пуле при внесении ликвидности
 		let poolAmountA = tempAmountA / values.price;
 		let poolAmountB = tempAmountB;
 
+		// расчёт средней цены покупки/продажи
 		let avgDownPriceA = (values.rangeDown + values.price) / 2;
 		let avgUpPriceB = (values.rangeUp + values.price) / 2;
 
 		let downAmountA = values.amountA + values.amountB / avgDownPriceA;
 		let upAmountB = values.amountB + values.amountA * avgUpPriceB;
 
+		// расчёт средней цены покупки/продажи с учётом начальной ликвидности
 		let avgDownPriceAB = (values.amountA * values.price + (downAmountA - values.amountA) * avgDownPriceA) / downAmountA;
 		let avgUpPriceBA = (values.amountB * values.price + (upAmountB - values.amountB) * avgUpPriceB) / upAmountB;
 

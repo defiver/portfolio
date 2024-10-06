@@ -8,6 +8,7 @@ import "./style.css";
 export default function Calculator() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [form, setForm] = useState("TokensRatio");
+  // показать/скрыть описание калькуляторов
   const [showDesc, setShowDesc] = useState(false);
 
   const forms = {
