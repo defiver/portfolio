@@ -1,4 +1,4 @@
-import { CalculatorOutlined } from "@ant-design/icons";
+import { CalculatorOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { Button, Drawer, Flex, Select } from "antd";
 import { useState } from "react";
 import TokensRatio from "./forms/TokensRatio";
@@ -8,10 +8,11 @@ import "./style.css";
 export default function Calculator() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [form, setForm] = useState("TokensRatio");
+  const [showDesc, setShowDesc] = useState(false);
 
   const forms = {
-    "TokensRatio": <TokensRatio />,
-    "Looping": <Looping />,
+    "TokensRatio": <TokensRatio showDesc={showDesc} />,
+    "Looping": <Looping showDesc={showDesc} />,
   }
 
   const options = [
@@ -38,8 +39,16 @@ export default function Calculator() {
         width={500}
         onClose={() => setShowDrawer(false)}
       >
-        <Flex vertical gap={20}>
-          <Select defaultValue={form} onChange={setForm} style={{ width: "100%" }} options={options} />
+        <Flex vertical gap={26}>
+          <Flex gap={8}>
+            <Select defaultValue={form} onChange={setForm} style={{ width: "100%" }} options={options} />
+            <Button
+              type={showDesc ? "primary" : "default"}
+              icon={<InfoCircleOutlined />}
+              onClick={() => setShowDesc(!showDesc)}
+              style={{ width: 36 }}
+            />
+          </Flex>
 
           {forms[form]}
         </Flex>

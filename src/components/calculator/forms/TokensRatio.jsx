@@ -1,29 +1,27 @@
 import { ClearOutlined } from "@ant-design/icons";
-import { Row, Col, InputNumber, Button, Divider, Form, Collapse, Statistic } from "antd";
+import { Row, Col, InputNumber, Button, Divider, Form, Card, Statistic, Typography } from "antd";
 import { localeNumber } from "@/utils/number";
 import { useEffect, useState } from "react";
 
+const { Paragraph } = Typography;
+
 const defaultResult = {
-	"avgDownPrice": 0,
-	"avgUpPrice": 0,
+	"avgDownPriceA": 0,
+	"avgUpPriceB": 0,
 	"downAmountA": 0,
 	"upAmountB": 0,
+	"avgDownPriceAB": 0,
+	"avgUpPriceBA": 0,
 	"poolAmountA": 0,
 	"poolAmountB": 0,
 }
 
-export default function TokensRatio() {
+export default function TokensRatio({ showDesc }) {
 	const [form] = Form.useForm();
 	const values = Form.useWatch([], form);
 	const [result, setResult] = useState(defaultResult);
 
 	const calc = () => {
-		let avgDownPrice = (values.rangeDown + values.price) / 2;
-		let avgUpPrice = (values.rangeUp + values.price) / 2;
-
-		let downAmountA = values.amountA + values.amountB / avgDownPrice;
-		let upAmountB = values.amountB + values.amountA * avgUpPrice;
-
 		let ratio = 1;
 		let tempAmountA = values.amountB + values.amountA * values.price;
 		let tempAmountB = 0;
@@ -43,7 +41,16 @@ export default function TokensRatio() {
 		let poolAmountA = tempAmountA / values.price;
 		let poolAmountB = tempAmountB;
 
-		setResult({ avgDownPrice, avgUpPrice, downAmountA, upAmountB, poolAmountA, poolAmountB })
+		let avgDownPriceA = (values.rangeDown + values.price) / 2;
+		let avgUpPriceB = (values.rangeUp + values.price) / 2;
+
+		let downAmountA = values.amountA + values.amountB / avgDownPriceA;
+		let upAmountB = values.amountB + values.amountA * avgUpPriceB;
+
+		let avgDownPriceAB = (values.amountA * values.price + (downAmountA - values.amountA) * avgDownPriceA) / downAmountA;
+		let avgUpPriceBA = (values.amountB * values.price + (upAmountB - values.amountB) * avgUpPriceB) / upAmountB;
+
+		setResult({ avgDownPriceA, avgUpPriceB, downAmountA, upAmountB, avgDownPriceAB, avgUpPriceBA, poolAmountA, poolAmountB })
 	}
 
 	useEffect(() => {
@@ -54,44 +61,40 @@ export default function TokensRatio() {
 
 	return (
 		<>
-			<Collapse
-				size="small"
-				items={[{
-					key: 'desc',
-					label: 'Описание',
-					children: <p>Расчёт соотнешения токенов при добавлении ликвидности в пул и расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Значения для расчёта  соотнешения токенов могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание,<br />4) расчёты делаются на основе формул Uniswap V3 пулов.</p>,
-				}]}
-			/>
+			<Card size={"small"} hidden={!showDesc}>
+				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов.</p><br />
+				<p>Расчёт соотнешения токенов при добавлении ликвидности в пул. Нужно для того, чтобы оптимально разделить актив на два. Результаты могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание,<br />4) расчёты делаются на основе формул Uniswap V3 пулов.</p>
+			</Card>
 
-			<Form form={form} autoComplete="off">
+			<Form form={form} autoComplete="off" requiredMark={false}>
 				<Row gutter={[8, 8]}>
 					<Col span={8}>
-						<Form.Item name="price" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="Цена (2500)" min={1 / 10 ** 9} />
+						<Form.Item label="Цена" name="price" rules={[{ required: true, message: "" }]}>
+							<InputNumber placeholder="2500" min={1 / 10 ** 9} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
-						<Form.Item name="rangeDown" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="Нижняя граница" min={0} />
+						<Form.Item label="Нижняя граница" name="rangeDown" rules={[{ required: true, message: "" }]}>
+							<InputNumber placeholder="2100" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
-						<Form.Item name="rangeUp" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="Верхняя граница" min={0} />
+						<Form.Item label="Верхняя граница" name="rangeUp" rules={[{ required: true, message: "" }]}>
+							<InputNumber placeholder="2900" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={11}>
-						<Form.Item name="amountA" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="Кол-во токенов А (4.2)" min={0} />
+						<Form.Item label="Токены А" name="amountA" rules={[{ required: true, message: "" }]}>
+							<InputNumber placeholder="4.2" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={11}>
-						<Form.Item name="amountB" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="Кол-во токенов B (0)" min={0} />
+						<Form.Item label="Токены B" name="amountB" rules={[{ required: true, message: "" }]}>
+							<InputNumber placeholder="0" min={0} />
 						</Form.Item>
 					</Col>
 
@@ -103,28 +106,31 @@ export default function TokensRatio() {
 
 			<Row gutter={[8, 0]}>
 				<Col span={24}><Divider plain>Внесение ликвидности</Divider></Col>
-				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.poolAmountA)} /></Col>
-				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.poolAmountB)} /></Col>
+				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.poolAmountA)} suffix={<Paragraph copyable={{ text: result.poolAmountA }} />} /></Col>
+				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.poolAmountB)} suffix={<Paragraph copyable={{ text: result.poolAmountB }} />} /></Col>
 				<Col span={8}>
 					<Statistic
 						title={result.poolAmountB > values?.amountB ? "Сколько продать А" : "Сколько продать B"}
-						value={
-							result.poolAmountB > values?.amountB
-								? localeNumber(values?.amountA - result.poolAmountA)
-								: localeNumber(values?.amountB - result.poolAmountB)
+						value={result.poolAmountB > values?.amountB
+							? localeNumber(values?.amountA - result.poolAmountA)
+							: localeNumber(values?.amountB - result.poolAmountB)
+						}
+						suffix={result.poolAmountB > values?.amountB
+							? <Paragraph copyable={{ text: values?.amountA - result.poolAmountA }} />
+							: <Paragraph copyable={{ text: values?.amountB - result.poolAmountB }} />
 						}
 					/>
 				</Col>
 
 				<Col span={24}><Divider plain>Выход за нижнюю границу</Divider></Col>
 				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.downAmountA)} /></Col>
-				<Col span={8}><Statistic title="Tокенов B" value={0} /></Col>
-				<Col span={8}><Statistic title="Цена продажи" value={localeNumber(result.avgDownPrice)} /></Col>
+				<Col span={8}><Statistic title="Цена продажи B" value={localeNumber(result.avgDownPriceA)} /></Col>
+				<Col span={8}><Statistic title="Цена покупки A" value={localeNumber(result.avgDownPriceAB)} /></Col>
 
 				<Col span={24}><Divider plain>Выход за верхнюю границу</Divider></Col>
-				<Col span={8}><Statistic title="Tокенов A" value={0} /></Col>
 				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.upAmountB)} /></Col>
-				<Col span={8}><Statistic title="Цена покупки" value={localeNumber(result.avgUpPrice)} /></Col>
+				<Col span={8}><Statistic title="Цена продажи А" value={localeNumber(result.avgUpPriceB)} /></Col>
+				<Col span={8}><Statistic title="Цена покупки B" value={localeNumber(result.avgUpPriceBA)} /></Col>
 			</Row>
 		</>
 	);

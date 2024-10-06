@@ -7,9 +7,30 @@
 }
 
 .calculator .ant-divider {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .calculator .ant-statistic {
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+}
+
+.calculator .ant-form-item-label {
+  position: absolute;
+  z-index: 10;
+  bottom: 28px;
+  left: 15px;
+}
+
+.calculator .ant-form-item-label label {
+  font-size: 10px;
+  height: 10px;
+  background: #1f1f1f;
+}
+
+.calculator .ant-form-item-label label::after {
+  content: none;
+}
+
+.calculator .ant-card {
+  margin-bottom: 12px;
 }
