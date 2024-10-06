@@ -34,3 +34,7 @@
 .calculator .ant-card {
   margin-bottom: 12px;
 }
+
+.calculator .anticon-copy svg {
+  fill: #848484;
+}
