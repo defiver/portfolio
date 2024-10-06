@@ -26,7 +26,7 @@ export default function PositionList({ db }) {
           key: o.id,
           showArrow: false,
           extra: <Extra position={o} />,
-          label: <Label position={o} />,
+          label: <Label position={o} db={db} />,
           children: <Children position={o} db={db} />,
         }]}
       />
