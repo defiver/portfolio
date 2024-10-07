@@ -6,6 +6,15 @@
   padding: 8px;
 }
 
+.merkl .ant-list-header,
+.merkl .ant-list-item {
+  padding: 8px !important;
+}
+
+.merkl .ant-list-pagination {
+  margin: 16px 8px !important;
+}
+
 .merkl .ant-list-item a {
   color: inherit !important;
 }

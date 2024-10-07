@@ -38,3 +38,11 @@
 .calculator .anticon-copy svg {
   fill: #848484;
 }
+
+.calculator .ant-select-selection-item {
+  padding-inline-end: 12px !important;
+}
+
+.calculator .ant-select-arrow {
+  inset-inline-end: 10px !important;
+}

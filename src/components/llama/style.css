@@ -6,6 +6,15 @@
   padding: 8px;
 }
 
+.llama .ant-list-header,
+.llama .ant-list-item {
+  padding: 8px !important;
+}
+
+.llama .ant-list-pagination {
+  margin: 16px 8px !important;
+}
+
 .llama .ant-list-item a {
   color: inherit !important;
 }
