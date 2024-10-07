@@ -17,7 +17,7 @@ export default function Label({ db, position }) {
     });
 
     label = position.tokens.map((o, i) => o && <Tag key={i}>{`${localeNumber(o.amount)} ${o.token}`}</Tag>);
-    value > 0 && label.push(<Tag key="value">${`${localeNumber(value)}`}</Tag>)
+    value > 0 && label.push(<Tag title="Стоимость позиции в долларах" key="value">${localeNumber(value)}</Tag>)
   }
 
   return (
