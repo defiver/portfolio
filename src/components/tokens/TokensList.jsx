@@ -1,4 +1,4 @@
-import { Row, Empty, Col, Tag, Flex } from "antd";
+import { Row, Empty, Col, Tag, Flex, Typography } from "antd";
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { localeNumber, formatPercent } from "@/utils/number";
@@ -43,8 +43,10 @@ export default function TokensList({ db, inputAmount }) {
               <span>{localeNumber(o.quote)}</span>
             </Col>
 
-            <Col span={4} style={{ fontSize: 12, textAlign: "right", alignSelf: "center" }}>
-              <span title="Изменение цены с прошлого обновления">{formatPercent(o.quote, o.previous)}</span>
+            <Col span={4} style={{ textAlign: "right", alignSelf: "center" }}>
+              <Typography.Paragraph ellipsis={true} style={{ marginBottom: 0, fontSize: 12 }}>
+                <span title="Изменение цены с прошлого обновления">{formatPercent(o.quote, o.previous)}</span>
+              </Typography.Paragraph>
             </Col>
           </Row>
       ))}
