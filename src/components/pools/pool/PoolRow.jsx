@@ -1,4 +1,4 @@
-import { ReloadOutlined, BellOutlined } from "@ant-design/icons";
+import { ReloadOutlined, BellOutlined, LinkOutlined } from "@ant-design/icons";
 import { Tag, Row, Col, Button, Space } from "antd";
 import { localeNumber, formatPercent } from "@/utils/number";
 import { useLoading } from "@/hooks/useLoading";
@@ -30,6 +30,10 @@ export default function PoolRow({ db, pool }) {
 
 			<Col span={2}>
 				<Space style={{ float: "right" }} >
+					<a href={`https://dexscreener.com/search?q=${pool.address}`} title="Искать пул на Dex Screener">
+						<LinkOutlined />
+					</a>
+
 					<BellOutlined
 						className={pool.notify ? "good" : ""}
 						onClick={(e) => {
@@ -38,6 +42,7 @@ export default function PoolRow({ db, pool }) {
 						}}
 						title="Установить сигнализацию"
 					/>
+
 					<Button
 						loading={loadingPool === pool.address}
 						icon={<ReloadOutlined />}
