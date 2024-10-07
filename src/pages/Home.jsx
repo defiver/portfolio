@@ -1,5 +1,7 @@
-import { Row, Col } from "antd";
+import { useRef } from "react";
+import { Row, Col, Splitter } from "antd";
 import { RecoilRoot } from "recoil";
+import { loadStorage, saveStorage } from '@/utils/storage';
 import Journal from "@/components/journal/";
 import Notes from "@/components/notes";
 import Tokens from "@/components/tokens";
@@ -16,6 +18,12 @@ import Dexie from 'dexie';
 
 export default function Home() {
   document.title = "Portfolio";
+
+  // получаем размеры разделителя панелей из local storage
+  const sizes = useRef(loadStorage("splitter_sizes"));
+  if (sizes.current.length === 0) {
+    sizes.current = ["62%", "38%"];
+  }
 
   // const params = new URLSearchParams(window.location.search);
   // params.get("extend") !== undefined
@@ -57,14 +65,17 @@ export default function Home() {
         </div>
       </Col>
 
-      <Col span={24} lg={13}>
-        <RecoilRoot>
-          <Journal db={db} />
-        </RecoilRoot>
-      </Col>
-
-      <Col span={24} lg={9} xl={8}>
-        <Tokens db={db} />
+      <Col span={24} lg={21}>
+        <Splitter onResizeEnd={(arr) => saveStorage("splitter_sizes", arr)}>
+          <Splitter.Panel defaultSize={sizes.current[0]} min={0}>
+            <RecoilRoot>
+              <Journal db={db} />
+            </RecoilRoot>
+          </Splitter.Panel>
+          <Splitter.Panel defaultSize={sizes.current[1]} min={0}>
+            <Tokens db={db} />
+          </Splitter.Panel>
+        </Splitter>
       </Col>
     </Row>
   );

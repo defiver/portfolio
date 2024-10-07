@@ -1,3 +1,7 @@
+.tokens {
+  min-width: 340px;
+}
+
 .tokens .card-item {
   margin-bottom: 8px;
 }

@@ -1,3 +1,7 @@
+.journal {
+  min-width: 470px;
+}
+
 .journal a {
   color: #2a94ff !important;
 }

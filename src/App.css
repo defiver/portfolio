@@ -37,6 +37,10 @@
   justify-content: start;
 }
 
+.widget-button {
+  background-color: #1f1f1f;
+}
+
 @media screen and (min-width: 992px) {
   .widgets {
     height: calc(100vh - 20px);
@@ -46,8 +50,13 @@
   }
 }
 
-.widget-button {
-  background-color: #1f1f1f;
+.ant-splitter-bar {
+  padding: 0 12px;
+}
+
+.ant-splitter-bar-dragger,
+.ant-splitter-bar-collapse-bar {
+  height: 64px !important;
 }
 
 .ant-col-grid {
