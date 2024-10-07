@@ -1,5 +1,5 @@
 import { ClearOutlined } from "@ant-design/icons";
-import { Row, Col, InputNumber, Button, Divider, Form, Card, Statistic, Typography } from "antd";
+import { Row, Col, InputNumber, Button, Divider, Form, Card, Statistic, Typography, Select } from "antd";
 import { localeNumber } from "@/utils/number";
 import { useEffect, useState } from "react";
 
@@ -22,29 +22,40 @@ export default function TokensRatio({ showDesc }) {
 	const [result, setResult] = useState(defaultResult);
 
 	const calc = () => {
-		let ratio = 1;
-		// предполагаем, что вся ликвидность в одном токене, а кол-во второго равно нулю
-		let tempAmountA = values.amountB + values.amountA * values.price;
-		let tempAmountB = 0;
-		// считаем виртуальную ликвидность по формулам из https://ethereum.stackexchange.com/a/110452
-		let preLiquidityA = (Math.sqrt(values.price) * Math.sqrt(values.rangeUp)) / (Math.sqrt(values.rangeUp) - Math.sqrt(values.price));
-		let preLiquidityB = (Math.sqrt(values.price) - Math.sqrt(values.rangeDown));
+		var poolAmountA = 0;
+		var poolAmountB = 0;
 
-		// поэтому считаем численным методом, в каком соотношении должны быть активы,
-		// чтобы LiquidityA быть равно LiquidityB. погрешность 0.01%
-		while (ratio > 0.5) {
-			let liquidityA = tempAmountA * preLiquidityA / values.price;
-			let liquidityB = tempAmountB / preLiquidityB;
+		// вычисляем соотношение токенов в uniswap v3 пулах при внесении ликвидности
+		if (values.type === "uniswapv3") {
+			// предполагаем, что вся ликвидность в одном токене, а кол-во второго равно нулю
+			let tempAmountA = values.amountB + values.amountA * values.price;
+			let tempAmountB = 0;
+			// считаем виртуальную ликвидность по формулам из https://ethereum.stackexchange.com/a/110452
+			let preLiquidityA = (Math.sqrt(values.price) * Math.sqrt(values.rangeUp)) / (Math.sqrt(values.rangeUp) - Math.sqrt(values.price));
+			let preLiquidityB = (Math.sqrt(values.price) - Math.sqrt(values.rangeDown));
 
-			ratio = liquidityA / (liquidityA + liquidityB);
-			let bit = tempAmountA * 0.0001;
-			tempAmountA -= bit;
-			tempAmountB += bit;
+			// поэтому считаем численным методом, в каком соотношении должны быть активы,
+			// чтобы LiquidityA быть равно LiquidityB. погрешность 0.01%
+			let ratio = 1;
+			while (ratio > 0.5) {
+				let liquidityA = tempAmountA * preLiquidityA / values.price;
+				let liquidityB = tempAmountB / preLiquidityB;
+
+				ratio = liquidityA / (liquidityA + liquidityB);
+				let bit = tempAmountA * 0.0001;
+				tempAmountA -= bit;
+				tempAmountB += bit;
+			}
+
+			poolAmountA = tempAmountA / values.price;
+			poolAmountB = tempAmountB;
+		} else {
+			// считаем соотношение токенов при внесении ликвидности как обычную пропорцию
+			let liquidity = values.amountA * values.price + values.amountB;
+			let ratio = (values.price - values.rangeDown) / (values.rangeUp - values.rangeDown);
+			poolAmountA = ratio * liquidity / values.price;
+			poolAmountB = (1 - ratio) * liquidity;
 		}
-
-		// считаем соотношение токенов в пуле при внесении ликвидности
-		let poolAmountA = tempAmountA / values.price;
-		let poolAmountB = tempAmountB;
 
 		// расчёт средней цены покупки/продажи
 		let avgDownPriceA = (values.rangeDown + values.price) / 2;
@@ -70,13 +81,13 @@ export default function TokensRatio({ showDesc }) {
 		<>
 			<Card size={"small"} hidden={!showDesc}>
 				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов.</p><br />
-				<p>Расчёт соотнешения токенов при добавлении ликвидности в пул. Нужно для того, чтобы оптимально разделить актив на два. Результаты могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание,<br />4) расчёты делаются на основе формул Uniswap V3 пулов.</p>
+				<p>Расчёт соотнешения токенов при добавлении ликвидности в пул. Нужно для того, чтобы оптимально разделить актив на два. Результаты могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание.<br />Расчёты можно делать на основе формул Uniswap V3 пулов или на основе обычной пропорции.</p>
 			</Card>
 
-			<Form form={form} autoComplete="off" requiredMark={false}>
+			<Form form={form} autoComplete="off" requiredMark={false} initialValues={{ "type": "uniswapv3" }}>
 				<Row gutter={[8, 8]}>
 					<Col span={8}>
-						<Form.Item label="Цена" name="price" rules={[{ required: true, message: "" }]}>
+						<Form.Item label="Цена токена А" name="price" rules={[{ required: true, message: "" }]}>
 							<InputNumber placeholder="2500" min={1 / 10 ** 9} />
 						</Form.Item>
 					</Col>
@@ -93,15 +104,26 @@ export default function TokensRatio({ showDesc }) {
 						</Form.Item>
 					</Col>
 
-					<Col span={11}>
+					<Col span={8}>
 						<Form.Item label="Токены А" name="amountA" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="4.2" min={0} />
+							<InputNumber placeholder="ETH (4.2)" min={0} />
 						</Form.Item>
 					</Col>
 
-					<Col span={11}>
+					<Col span={8}>
 						<Form.Item label="Токены B" name="amountB" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="0" min={0} />
+							<InputNumber placeholder="USDC (0)" min={0} />
+						</Form.Item>
+					</Col>
+
+					<Col span={6}>
+						<Form.Item label="Тип" name="type" rules={[{ required: true, message: "" }]}>
+							<Select
+								options={[
+									{ label: "Uniswap V3", value: "uniswapv3" },
+									{ label: "Пропорция", value: "ratio" },
+								]}
+							/>
 						</Form.Item>
 					</Col>
 
