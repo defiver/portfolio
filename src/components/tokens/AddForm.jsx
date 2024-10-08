@@ -1,7 +1,8 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
-import { Form, Button, InputNumber, Space, Input, Flex } from "antd";
+import { Form, Button, Space, Input, Flex } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
+import MyInputNumber from "@/components/MyInputNumber";
 
 export default function AddForm({ setAdd, db }) {
   const [form] = Form.useForm();
@@ -24,7 +25,7 @@ export default function AddForm({ setAdd, db }) {
         </Form.Item>
 
         <Form.Item name="amount" rules={[{ required: true, message: '' }]}>
-          <InputNumber placeholder="Кол-во (1000)" />
+          <MyInputNumber placeholder="Кол-во (1000)" />
         </Form.Item>
 
         <Form.Item>

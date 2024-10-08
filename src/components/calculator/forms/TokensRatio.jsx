@@ -1,7 +1,8 @@
 import { ClearOutlined } from "@ant-design/icons";
-import { Row, Col, InputNumber, Button, Divider, Form, Card, Statistic, Typography, Select } from "antd";
+import { Row, Col, Button, Divider, Form, Card, Statistic, Typography, Select } from "antd";
 import { localeNumber } from "@/utils/number";
 import { useEffect, useState } from "react";
+import MyInputNumber from "@/components/MyInputNumber";
 
 const { Paragraph } = Typography;
 
@@ -88,31 +89,31 @@ export default function TokensRatio({ showDesc }) {
 				<Row gutter={[8, 8]}>
 					<Col span={8}>
 						<Form.Item label="Цена токена А" name="price" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="2500" min={1 / 10 ** 9} />
+							<MyInputNumber placeholder="2500" min={1 / 10 ** 9} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
 						<Form.Item label="Нижняя граница" name="rangeDown" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="2100" min={0} />
+							<MyInputNumber placeholder="2100" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
 						<Form.Item label="Верхняя граница" name="rangeUp" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="2900" min={0} />
+							<MyInputNumber placeholder="2900" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
 						<Form.Item label="Токены А" name="amountA" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="ETH (4.2)" min={0} />
+							<MyInputNumber placeholder="ETH (4.2)" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={8}>
 						<Form.Item label="Токены B" name="amountB" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="USDC (0)" min={0} />
+							<MyInputNumber placeholder="USDC (0)" min={0} />
 						</Form.Item>
 					</Col>
 

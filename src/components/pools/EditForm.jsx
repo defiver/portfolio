@@ -1,11 +1,12 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
-import { Form, Button, Row, Col, Input, Flex, Select, InputNumber } from "antd";
+import { Form, Button, Row, Col, Input, Flex, Select } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { formAddressState } from "./store";
 import { getDecimals } from './helper';
 import SubmitButton from "@/components/SubmitButton";
+import MyInputNumber from "@/components/MyInputNumber";
 
 const chains = [
   { "name": "Arbitrum", "chain": "arb" },
@@ -63,13 +64,13 @@ export default function EditForm({ db, pool }) {
 
         <Col span={8}>
           <Form.Item name="range1">
-            <InputNumber placeholder="Нижняя граница (2200)" />
+            <MyInputNumber placeholder="Нижняя граница (2200)" />
           </Form.Item>
         </Col>
 
         <Col span={8}>
           <Form.Item name="range2">
-            <InputNumber placeholder="Верхняя граница (2500)" />
+            <MyInputNumber placeholder="Верхняя граница (2500)" />
           </Form.Item>
         </Col>
 

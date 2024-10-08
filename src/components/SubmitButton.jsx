@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Button, Form } from 'antd'
+import { useState, useEffect } from "react"
+import { Button, Form } from "antd"
 
 export default function SubmitButton(props) {
 	const [submitForm, setSubmitForm] = useState(false);

@@ -1,7 +1,8 @@
 import { ClearOutlined } from "@ant-design/icons";
-import { Row, Col, InputNumber, Button, Table, Form, Card } from "antd";
+import { Row, Col, Button, Table, Form, Card } from "antd";
 import { localeNumber } from "@/utils/number";
 import { useEffect, useState } from "react";
+import MyInputNumber from "@/components/MyInputNumber";
 
 const columns = [
 	{ title: 'Круг', dataIndex: 'key', key: 'key' },
@@ -56,31 +57,31 @@ export default function Looping({ showDesc }) {
 				<Row gutter={[8, 8]}>
 					<Col span={10}>
 						<Form.Item label="Кол-во токенов" name="amount" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="1000" min={1 / 10 ** 9} />
+							<MyInputNumber placeholder="1000" min={1 / 10 ** 9} />
 						</Form.Item>
 					</Col>
 
 					<Col span={10}>
 						<Form.Item label="LTV" name="ltv" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="0.8" min={0} />
+							<MyInputNumber placeholder="0.8" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={4}>
 						<Form.Item label="Круги" name="rounds" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="10" min={1} />
+							<MyInputNumber placeholder="10" min={1} />
 						</Form.Item>
 					</Col>
 
 					<Col span={11}>
 						<Form.Item label="Процент за депозит" name="deposit" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="10" min={0} />
+							<MyInputNumber placeholder="10" min={0} />
 						</Form.Item>
 					</Col>
 
 					<Col span={11}>
 						<Form.Item label="Процент за кредит" name="credit" rules={[{ required: true, message: "" }]}>
-							<InputNumber placeholder="6" min={0} />
+							<MyInputNumber placeholder="6" min={0} />
 						</Form.Item>
 					</Col>
 

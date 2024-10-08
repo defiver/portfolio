@@ -1,10 +1,11 @@
 import { fetchingGet } from "@/utils/fetching";
 import { localeNumber } from "@/utils/number";
 import { DownOutlined, UpOutlined, ReloadOutlined } from "@ant-design/icons";
-import { Card, Space, Button, InputNumber } from "antd";
+import { Card, Space, Button } from "antd";
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useLoading } from "@/hooks/useLoading";
+import MyInputNumber from "@/components/MyInputNumber";
 import AddForm from './AddForm';
 import TokensList from './TokensList';
 import "./style.css";
@@ -50,7 +51,7 @@ export default function Tokens({ db }) {
       </>}
       extra={
         <Space>
-          <InputNumber
+          <MyInputNumber
             style={{ maxWidth: 120 }}
             placeholder={"Кол-во (0.45)"}
             value={inputAmount}

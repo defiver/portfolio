@@ -1,10 +1,11 @@
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
-import { Form, Button, DatePicker, Row, Col, Flex, Input, Space, Segmented, Select, InputNumber } from "antd";
+import { Form, Button, DatePicker, Row, Col, Flex, Input, Space, Segmented, Select } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { idState, allTagsState, allChainsState } from "./store";
 import SubmitButton from "@/components/SubmitButton";
+import MyInputNumber from "@/components/MyInputNumber";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import dayjs from "dayjs";
 
@@ -119,7 +120,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
                         <Form.Item name={[subField.name, "amount"]}>
-                          <InputNumber
+                          <MyInputNumber
                             placeholder={"1000"}
                             addonAfter={tokensSelector(subField.name)}
                             style={{ width: "100%" }}
@@ -153,7 +154,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
               <Col span={12}>
                 <Form.Item name="income">
-                  <InputNumber placeholder="Доход в долларах" />
+                  <MyInputNumber placeholder="Доход в долларах" />
                 </Form.Item>
               </Col>
             </Row>

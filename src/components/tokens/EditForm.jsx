@@ -1,7 +1,8 @@
 import { CloseOutlined, CheckOutlined, MinusOutlined } from "@ant-design/icons";
-import { Form, Button, InputNumber, Space, Input, Flex, Popconfirm } from "antd";
+import { Form, Button, Space, Input, Flex, Popconfirm } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
+import MyInputNumber from "@/components/MyInputNumber";
 
 export default function EditForm({ token, setToken, db }) {
 	const [form] = Form.useForm();
@@ -31,14 +32,14 @@ export default function EditForm({ token, setToken, db }) {
 		>
 			<Space>
 				<Form.Item>
-					<InputNumber
+					<MyInputNumber
 						placeholder="Прибавить (100)"
 						onChange={(v) => form.setFieldsValue({ amount: Number(token.amount) + Number(v) })}
 					/>
 				</Form.Item>
 
 				<Form.Item name="amount" rules={[{ required: true, message: '' }]}>
-					<InputNumber placeholder="Кол-во токенов" />
+					<MyInputNumber placeholder="Кол-во токенов" />
 				</Form.Item>
 
 				<Form.Item name="token" hidden rules={[{ required: true, message: '' }]}>
