@@ -26,14 +26,15 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
   const [editPosition, isEditPositionLoading] = useLoading(async () => {
     let values = form.getFieldValue();
-    let { id } = values;
+    let { id, tokens } = values;
+    tokens = tokens.filter(o => o);
 
     // проверяем, создаётся ли новая позиция или редактируется уже имеющаяся
     if (id > 0) {
-      await db.journal.put(values);
+      await db.journal.put({ ...values, tokens: tokens });
     } else {
       delete values.id;
-      await db.journal.add(values);
+      await db.journal.add({ ...values, tokens: tokens });
     }
 
     closeForm();

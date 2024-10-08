@@ -12,8 +12,9 @@ export default function Label({ db, position }) {
   // если в позиции есть токены, то выводим их вместе с общей стоимостью
   if (position?.tokens) {
     let value = 0; // долларовая стоимость токенов в позиции
+
     position.tokens.forEach(t => {
-      tokens.forEach(o => value += o.token === t.token ? o.quote * t.amount : 0)
+      tokens.forEach(o => value += o.token === t?.token ? o.quote * t.amount : 0)
     });
 
     label = position.tokens.map((o, i) => o && <Tag key={i}>{`${localeNumber(o.amount)} ${o.token}`}</Tag>);

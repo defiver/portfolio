@@ -18,7 +18,7 @@ export const parseTags = (items) => {
 };
 
 export const parseTokens = (items) => {
-	return sortByFrequency(items.filter(o => o?.tokens).map(o => o.tokens.map(t => t.token)).flat(1));
+	return sortByFrequency(items.filter(o => o?.tokens).map(o => o.tokens.filter(t => t?.token).map(t => t.token)).flat(1));
 };
 
 export const parseChains = (items) => {
