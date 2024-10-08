@@ -16,7 +16,7 @@ export default function TokensList({ db, inputAmount }) {
   const used = {} // массив с тем, какая часть актива используется в активных позициях
   journal.map(j => j?.tokens && j.tokens.forEach(o => {
     if (o?.token) {
-      used[o.token] = used[o.token] + (o?.amount ?? 0);
+      used[o.token] = (used[o.token] ?? 0) + (o?.amount ?? 0);
     }
   }));
 
