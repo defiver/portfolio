@@ -73,19 +73,19 @@ export default function Looping({ showDesc }) {
 						</Form.Item>
 					</Col>
 
-					<Col span={11}>
+					<Col span={10}>
 						<Form.Item label="Процент за депозит" name="deposit" rules={[{ required: true, message: "" }]}>
 							<MyInputNumber placeholder="10" min={0} />
 						</Form.Item>
 					</Col>
 
-					<Col span={11}>
+					<Col span={10}>
 						<Form.Item label="Процент за кредит" name="credit" rules={[{ required: true, message: "" }]}>
 							<MyInputNumber placeholder="6" min={0} />
 						</Form.Item>
 					</Col>
 
-					<Col span={2}>
+					<Col span={4} style={{ textAlign: "end" }}>
 						<Button icon={<ClearOutlined />} title="Очистить форму" onClick={() => form.resetFields()} />
 					</Col>
 				</Row>
