@@ -63,7 +63,7 @@ export default function Looping({ showDesc }) {
 
 					<Col span={10}>
 						<Form.Item label="LTV" name="ltv" rules={[{ required: true, message: "" }]}>
-							<MyInputNumber placeholder="0.8" min={0} />
+							<MyInputNumber placeholder="0.8" min={0} max={1} />
 						</Form.Item>
 					</Col>
 
