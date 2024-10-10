@@ -3,6 +3,7 @@ import { Button, Drawer, Flex, Select } from "antd";
 import { useState } from "react";
 import TokensRatio from "./forms/TokensRatio";
 import Looping from "./forms/Looping";
+import HF from "./forms/HF";
 import "./style.css";
 
 export default function Calculator() {
@@ -14,11 +15,13 @@ export default function Calculator() {
   const forms = {
     "TokensRatio": <TokensRatio showDesc={showDesc} />,
     "Looping": <Looping showDesc={showDesc} />,
+    "HealthFactor": <HF showDesc={showDesc} />,
   }
 
   const options = [
     { value: "TokensRatio", label: "Соотношение токенов в пуле" },
-    { value: "Looping", label: "Лупинг" }
+    { value: "Looping", label: "Looping" },
+    { value: "HealthFactor", label: "Health Factor" },
   ]
 
   return (

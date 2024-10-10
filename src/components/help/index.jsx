@@ -2,7 +2,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Modal, Tabs } from "antd";
 import { useState } from "react";
 import "./style.css";
-import Faq from "./Faq";
+import FAQ from "./FAQ";
 import Updates from "./Updates";
 
 export default function Help() {
@@ -37,7 +37,7 @@ export default function Help() {
             {
               label: "FAQ",
               key: "faq",
-              children: <Faq />,
+              children: <FAQ />,
             },
             {
               label: "Обновления",

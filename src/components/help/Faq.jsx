@@ -1,6 +1,6 @@
 import { Collapse } from "antd";
 
-export default function Faq() {
+export default function FAQ() {
 	const items = [
 		{
 			key: "about",
