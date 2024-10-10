@@ -14,7 +14,7 @@ export default function PositionList({ db }) {
   const filteredJournal = useRecoilValue(filteredJournalState);
 
   // infinite scrolling для длинного списка
-  const pagination = usePagination(filteredJournal, 5);
+  const pagination = usePagination(filteredJournal, 20);
   const observerRef = useRef();
 
   useEffect(() => {
