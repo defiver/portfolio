@@ -4,6 +4,7 @@ import { useState } from "react";
 import TokensRatio from "./forms/TokensRatio";
 import Looping from "./forms/Looping";
 import HF from "./forms/HF";
+import IL from "./forms/IL";
 import "./style.css";
 
 export default function Calculator() {
@@ -16,12 +17,14 @@ export default function Calculator() {
     "TokensRatio": <TokensRatio showDesc={showDesc} />,
     "Looping": <Looping showDesc={showDesc} />,
     "HealthFactor": <HF showDesc={showDesc} />,
+    "ImpermanentLoss": <IL showDesc={showDesc} />,
   }
 
   const options = [
     { value: "TokensRatio", label: "Соотношение токенов в пуле" },
     { value: "Looping", label: "Looping" },
     { value: "HealthFactor", label: "Health Factor" },
+    { value: "ImpermanentLoss", label: "Impermanent Loss" },
   ]
 
   return (
