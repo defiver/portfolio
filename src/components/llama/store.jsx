@@ -9,8 +9,8 @@ export const filterState = atom({
   key: "LlamaFilter",
   default: {
     query: "",
-    chain: null,
-    project: null,
+    chains: [],
+    projects: [],
     attribute: [],
     sort: "apy",
   },
@@ -24,15 +24,20 @@ export const filteredPoolsState = selector({
 
     if (filter.query) {
       let clearquery = filter.query.toLowerCase().trim().replace(/ +/, ' ');
-      pools = pools.filter(o => o.name.toLowerCase().includes(clearquery));
+
+      if (clearquery.at(0) === "^") {
+        pools = pools.filter(o => `^${o.name}`.toLowerCase().includes(clearquery));
+      } else {
+        pools = pools.filter(o => o.name.toLowerCase().includes(clearquery));
+      }
     }
 
-    if (filter.chain) {
-      pools = pools.filter(o => o.chain === filter.chain);
+    if (filter.chains.length) {
+      pools = pools.filter(o => filter.chains.includes(o.chain));
     }
 
-    if (filter.project) {
-      pools = pools.filter(o => o.project === filter.project);
+    if (filter.projects.length) {
+      pools = pools.filter(o => filter.projects.includes(o.project));
     }
 
     if (filter.attribute.length) {

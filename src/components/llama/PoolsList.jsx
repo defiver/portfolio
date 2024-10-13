@@ -18,7 +18,7 @@ export default function PoolsList({ db }) {
 		if (response?.status === "success") {
 			let newpools = response.data.map(o => new Object({
 				pool: o.pool,
-				name: o.symbol,
+				name: o.symbol.replace("/", "-"),
 				project: o.project,
 				chain: o.chain,
 				tvl: o.tvlUsd,
