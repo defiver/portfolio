@@ -27,6 +27,11 @@ export const usePrices = (pools, db) => {
 
 	return useLoading(async () => {
 		for (const pool of pools) {
+			// если пул выключен, то не проверяем
+			if (pool?.sleep) {
+				continue;
+			}
+
 			setLoadingPool(pool.address);
 			const events = await fetchEvents(pool.address, pool.chain);
 

@@ -1,4 +1,4 @@
-import { ReloadOutlined, BellOutlined, LinkOutlined } from "@ant-design/icons";
+import { ReloadOutlined, BellOutlined, LinkOutlined, PoweroffOutlined } from "@ant-design/icons";
 import { Tag, Row, Col, Button, Space } from "antd";
 import { localeNumber, formatPercent } from "@/utils/number";
 import { useLoading } from "@/hooks/useLoading";
@@ -14,13 +14,22 @@ export default function PoolRow({ db, pool }) {
 		await db.pools.update(pool.address, { notify: !pool.notify });
 	}, false);
 
+	const [setSleep] = useLoading(async () => {
+		await db.pools.update(pool.address, { sleep: !pool.sleep });
+	}, false);
+
 	return (
-		<Row gutter={[16, 16]} justify={"space-between"} align={"middle"}>
-			<Col span={8}>
+		<Row
+			gutter={[16, 16]}
+			justify={"space-between"}
+			align={"middle"}
+			className={pool.sleep ? "blur" : ""}
+		>
+			<Col span={6}>
 				<Tag color={pool?.inRange ? "default" : "error"}>{pool?.name}</Tag>
 			</Col>
 
-			<Col span={8}>
+			<Col span={6}>
 				<span title="Цена">{localeNumber(pool.price, 6)}</span>
 			</Col>
 
@@ -28,13 +37,23 @@ export default function PoolRow({ db, pool }) {
 				<span title="Изменение цены">{formatPercent(pool.price, pool.previous, 3)}</span>
 			</Col>
 
-			<Col span={2}>
-				<Space style={{ float: "right" }} >
+			<Col span={6}>
+				<Space style={{ float: "right" }} size={12}>
 					<a href={`https://dexscreener.com/search?q=${pool.address}`} title="Искать пул на Dex Screener">
 						<LinkOutlined />
 					</a>
 
+					<PoweroffOutlined
+						className={pool.sleep ? "" : "good"}
+						onClick={(e) => {
+							setSleep();
+							e.stopPropagation();
+						}}
+						title="Включить/выключить"
+					/>
+
 					<BellOutlined
+						style={{ fontSize: 15 }}
 						className={pool.notify ? "good" : ""}
 						onClick={(e) => {
 							setNotify();
@@ -44,6 +63,7 @@ export default function PoolRow({ db, pool }) {
 					/>
 
 					<Button
+						disabled={pool.sleep}
 						loading={loadingPool === pool.address}
 						icon={<ReloadOutlined />}
 						onClick={(e) => {

@@ -13,7 +13,10 @@ export default function PoolsList({ db }) {
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   }
 
-  return pools.map(o => formAddress === o.address
+  // пулы, которые выключены, сортируем в конец списка
+  const sortPools = [...pools].sort((a) => a?.sleep);
+
+  return sortPools.map(o => formAddress === o.address
     ? <EditForm key={o.address} db={db} pool={o} />
     : <Collapse
       className={formAddress ? "card-item blur" : "card-item"}

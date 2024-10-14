@@ -34,7 +34,7 @@ export default function Home() {
     tokens: "&token, amount, quote, previous",
     notes: "++id, text, finish",
     merkl: "&id, name, url, apr, fresh",
-    pools: "&address, name, chain, price, previous, range, prices, inRange, notify",
+    pools: "&address, name, chain, price, previous, range, prices, inRange, notify, sleep",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
     // sushi: "&address, name, link, chainId, params",
     // revert: "&address, positions",
