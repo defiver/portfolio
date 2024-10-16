@@ -10,7 +10,7 @@ export default function Label({ db, position }) {
   var label = position.text;
 
   // если в позиции есть токены, то выводим их вместе с общей стоимостью
-  if (position?.tokens) {
+  if (position?.tokens && position.tokens.length) {
     let value = 0; // долларовая стоимость токенов в позиции
 
     position.tokens.forEach(t => {

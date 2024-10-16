@@ -27,8 +27,9 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
 
   const [editPosition, isEditPositionLoading] = useLoading(async () => {
     let values = form.getFieldValue();
+
     let { id, tokens } = values;
-    tokens = tokens.filter(o => o);
+    tokens = tokens ? tokens.filter(o => o) : [];
 
     // проверяем, создаётся ли новая позиция или редактируется уже имеющаяся
     if (id > 0) {
