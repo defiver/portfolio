@@ -12,6 +12,7 @@ import Tools from "@/components/tools";
 import Pools from "@/components/pools";
 import Llama from "@/components/llama";
 import Calculator from "@/components/calculator";
+import Gas from "@/components/gas";
 // import Sushi from "@/components/sushi";
 // import Revert from "@/components/revert";
 import Dexie from 'dexie';
@@ -50,6 +51,7 @@ export default function Home() {
           {/* <Revert db={db} /> */}
           {/* <Sushi db={db} /> */}
 
+          <Gas />
           <Merkl db={db} />
           <RecoilRoot>
             <Llama db={db} />

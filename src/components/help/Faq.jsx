@@ -67,6 +67,11 @@ export default function FAQ() {
 			label: "Что за значок с калькулятором?",
 			children: <p>Нажатие на него вызывает панель с разными калькуляторами.</p>,
 		},
+		{
+			key: "gas",
+			label: "Что за значок с числом?",
+			children: <p>Нажатие на него загружает текущую стоимость газа в сети эфира.</p>,
+		},
 	]
 
 	return <Collapse size={"small"} accordion items={items} />
