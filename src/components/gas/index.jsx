@@ -7,7 +7,7 @@ import { fetchingGet } from "@/utils/fetching";
 import { useLoading } from "@/hooks/useLoading";
 
 const LINK = "https://api.blocknative.com/gasprices/blockprices";
-const INTERVAL = 600; // интервал таймера для авто обновления
+const INTERVAL = 300; // интервал таймера для авто обновления
 
 export default function Gas() {
   const [gas, setGas] = useState(0);
@@ -19,7 +19,8 @@ export default function Gas() {
     setGas(baseFeePerGas);
   }, false);
 
-  const color = gas === 0 ? "#dcdcdc" : gas < 10 ? "green" : gas < 30 ? "orange" : "#a52a2a";
+  // цвет контура - чем выше газ, тем краснее цвет
+  const color = gas === 0 ? "#dcdcdc" : gas < 10 ? "green" : gas < 20 ? "orange" : "#a52a2a";
 
   // хук, отвечающий за автообновление по таймеру
   useInterval(async () => {
@@ -28,7 +29,7 @@ export default function Gas() {
       await fetchGas();
       setTimer(1);
     }
-  }, timer > 0 && !isGasLoading ? 1000 : null);
+  }, !isGasLoading ? 1000 : null);
 
   useEffect(() => {
     fetchGas();
