@@ -1,7 +1,7 @@
-import { ReloadOutlined, UpOutlined, DownOutlined } from "@ant-design/icons";
+import { ReloadOutlined, UpOutlined, DownOutlined, ClearOutlined } from "@ant-design/icons";
 import { Row, Col, Select, Button, Input, Space } from "antd";
 import { useState, useEffect, useDeferredValue } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { filterState, allChainsState, allProjectsState } from "./store";
 
 export default function Filter({ fetchPools, isPoolsLoading }) {
@@ -12,6 +12,8 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 	const [showFilters, setShowFilters] = useState(true);
 	const [query, setQuery] = useState("");
 	const deferredQuery = useDeferredValue(query);
+
+	const clearForm = useResetRecoilState(filterState);
 
 	useEffect(() => {
 		setFilterState({ ...filter, query: deferredQuery });
@@ -76,7 +78,7 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 			</Row>
 
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col span={12}>
+				<Col span={11}>
 					<Input
 						allowClear
 						placeholder="Поиск по токенам (^ETH-DAI)"
@@ -94,12 +96,17 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 					/>
 				</Col>
 
-				<Col span={4} style={{ textAlign: "right" }}>
+				<Col span={5} style={{ textAlign: "right" }}>
 					<Space>
 						<Button
 							icon={showFilters ? <UpOutlined /> : <DownOutlined />}
 							onClick={() => setShowFilters(!showFilters)}
 							title="Скрыть/показать фильтры"
+						/>
+						<Button
+							icon={<ClearOutlined />}
+							title="Очистить форму"
+							onClick={clearForm}
 						/>
 						<Button
 							icon={<ReloadOutlined />}
