@@ -30,7 +30,7 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
         onOk={() => setSwowModal(false)}
         onCancel={() => setSwowModal(false)}
         width={440}
-        className={"widgets-modal"}
+        className={"widgets-list"}
         destroyOnClose={true}
       >
         <Flex gap={16} wrap>

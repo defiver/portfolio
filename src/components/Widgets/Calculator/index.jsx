@@ -27,7 +27,7 @@ export default function Calculator() {
     { value: "Looping", label: "Looping" },
     { value: "HealthFactor", label: "Health Factor" },
     { value: "ImpermanentLoss", label: "Impermanent Loss" },
-    { value: "CompoundInterest", label: "Сложный процент" },
+    // { value: "CompoundInterest", label: "Сложный процент" },
   ]
 
   return (

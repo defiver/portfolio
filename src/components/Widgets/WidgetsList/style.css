@@ -1,13 +1,12 @@
-.widgets-modal .ant-card {
+.widgets-list .ant-card {
   width: 120px;
   height: 84px;
   text-align: center;
 }
 
-.widgets-modal .favorite {
+.widgets-list .favorite {
   position: absolute;
   top: 4px;
   right: 4px;
   cursor: pointer;
-  opacity: .5;
 }
