@@ -1,4 +1,4 @@
-import { AppstoreAddOutlined } from "@ant-design/icons";
+import { ToolOutlined } from "@ant-design/icons";
 import { Button, Drawer, Flex, Row, Col, Empty } from "antd";
 import { loadStorage } from '@/utils/storage';
 import { useState } from "react";
@@ -30,7 +30,7 @@ export default function Tools() {
         size={"large"}
         shape={"circle"}
         className={"widget-button"}
-        icon={<AppstoreAddOutlined />}
+        icon={<ToolOutlined />}
         onClick={() => setShowDrawer(true)}
       />
 

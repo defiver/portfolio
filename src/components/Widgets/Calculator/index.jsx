@@ -5,6 +5,7 @@ import TokensRatio from "./forms/TokensRatio";
 import Looping from "./forms/Looping";
 import HF from "./forms/HF";
 import IL from "./forms/IL";
+import CI from "./forms/CI";
 import "./style.css";
 
 export default function Calculator() {
@@ -18,6 +19,7 @@ export default function Calculator() {
     "Looping": <Looping showDesc={showDesc} />,
     "HealthFactor": <HF showDesc={showDesc} />,
     "ImpermanentLoss": <IL showDesc={showDesc} />,
+    "CompoundInterest": <CI showDesc={showDesc} />,
   }
 
   const options = [
@@ -25,6 +27,7 @@ export default function Calculator() {
     { value: "Looping", label: "Looping" },
     { value: "HealthFactor", label: "Health Factor" },
     { value: "ImpermanentLoss", label: "Impermanent Loss" },
+    { value: "CompoundInterest", label: "Сложный процент" },
   ]
 
   return (
