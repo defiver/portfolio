@@ -1,20 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Row, Col, Splitter } from "antd";
 import { RecoilRoot } from "recoil";
 import { loadStorage, saveStorage } from '@/utils/storage';
-import Journal from "@/components/journal/";
-import Notes from "@/components/notes";
-import Tokens from "@/components/tokens";
-import Help from "@/components/help";
-import Settings from "@/components/settings";
-import Merkl from "@/components/merkl";
-import Tools from "@/components/tools";
-import Pools from "@/components/pools";
-import Llama from "@/components/llama";
-import Calculator from "@/components/calculator";
-import Gas from "@/components/gas";
-// import Sushi from "@/components/sushi";
-// import Revert from "@/components/revert";
+import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Gas } from '@/components/Widgets';
+import { WidgetsList } from '@/components/Widgets';
+import Journal from "@/components/Journal/";
+import Tokens from "@/components/Tokens";
 import Dexie from 'dexie';
 
 export default function Home() {
@@ -26,9 +17,6 @@ export default function Home() {
     sizes.current = ["62%", "38%"];
   }
 
-  // const params = new URLSearchParams(window.location.search);
-  // params.get("extend") !== undefined
-
   // поля для IndexedDB
   const stores = {
     journal: "++id, daterange, text, tokens, income, tags, transactions, status, chain, links",
@@ -37,33 +25,32 @@ export default function Home() {
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify, sleep",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
-    // sushi: "&address, name, link, chainId, params",
-    // revert: "&address, positions",
   }
 
   const db = new Dexie("porfolio");
   db.version(1).stores(stores);
 
+  // берём с localStorage виджеты, которые будут отображаться на главной странице
+  const [favorites, setFavorites] = useState(loadStorage("favorite_widgets"));
+
+  const widgets = [
+    { "component": <Gas />, "name": "Газ", key: "gas" },
+    { "component": <Merkl db={db} />, "name": "Пулы на Merkl", key: "merkl" },
+    { "component": <RecoilRoot><Llama db={db} /></RecoilRoot>, "name": "DeFiLlama", key: "llama" },
+    { "component": <RecoilRoot><Pools db={db} /></RecoilRoot>, "name": "Цены в пулах", key: "pools" },
+    { "component": <Calculator />, "name": "Калькулятор", key: "calculator" },
+    { "component": <Notes db={db} />, "name": "Заметки", key: "notes" },
+    { "component": <Tools />, "name": "Инструменты", key: "tools" },
+    { "component": <Settings db={db} />, "name": "База данных", key: "settings" },
+    { "component": <Help />, "name": "Помощь", key: "help" },
+  ];
+
   return (
     <Row gutter={[24, 16]}>
       <Col span={24} lg={2}>
         <div className="widgets">
-          {/* <Revert db={db} /> */}
-          {/* <Sushi db={db} /> */}
-
-          <Gas />
-          <Merkl db={db} />
-          <RecoilRoot>
-            <Llama db={db} />
-            <Pools db={db} />
-          </RecoilRoot>
-
-          <Calculator />
-
-          <Notes db={db} />
-          <Tools />
-          <Settings db={db} />
-          <Help />
+          {widgets.filter(o => favorites.includes(o.key)).map(o => <span key={o.key}>{o.component}</span>)}
+          <WidgetsList widgets={widgets} favorites={favorites} setFavorites={setFavorites} />
         </div>
       </Col>
 
@@ -79,6 +66,6 @@ export default function Home() {
           </Splitter.Panel>
         </Splitter>
       </Col>
-    </Row>
+    </Row >
   );
 }
