@@ -106,7 +106,10 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 						<Button
 							icon={<ClearOutlined />}
 							title="Очистить форму"
-							onClick={clearForm}
+							onClick={() => {
+								clearForm();
+								setQuery("");
+							}}
 						/>
 						<Button
 							icon={<ReloadOutlined />}
