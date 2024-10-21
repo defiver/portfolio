@@ -10,22 +10,26 @@ const handlingErrors = (error) => {
   return [];
 };
 
-export const fetchingGet = async (url, headers = {}) => {
+export const fetchingGet = async (url, headers = {}, notification = true) => {
   return await axios
     .get(url, { headers })
     .then((response) => {
       return response.data;
     })
     .catch((error) => {
-      return handlingErrors(error);
+      if (notification) {
+        return handlingErrors(error);
+      }
     });
 };
 
-export const fetchingPost = async (url, data, headers = {}) => {
+export const fetchingPost = async (url, data, headers = {}, notification = true) => {
   return await axios.post(url, data, { headers }).then((response) => {
     return response.data;
   }).catch((error) => {
-    return handlingErrors(error)
+    if (notification) {
+      return handlingErrors(error);
+    }
   })
 }
 

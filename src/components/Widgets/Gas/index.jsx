@@ -1,6 +1,6 @@
 import { LoadingOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Progress } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { localeNumber } from "@/utils/number";
 import { useInterval } from "@/hooks/useInterval";
 import { fetchingGet } from "@/utils/fetching";
@@ -9,12 +9,12 @@ import { useLoading } from "@/hooks/useLoading";
 const LINK = "https://api.blocknative.com/gasprices/blockprices";
 const INTERVAL = 300; // интервал таймера для авто обновления
 
-export default function Gas() {
+export default function Gas({ autostart = true }) {
   const [gas, setGas] = useState(0);
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(autostart ? INTERVAL : 0);
 
   const [fetchGas, isGasLoading] = useLoading(async () => {
-    const data = await fetchingGet(LINK);
+    const data = await fetchingGet(LINK, {}, false);
     const baseFeePerGas = (data?.blockPrices instanceof Array) ? data.blockPrices[0].baseFeePerGas : 0;
     setGas(baseFeePerGas);
   }, false);
@@ -24,16 +24,13 @@ export default function Gas() {
 
   // хук, отвечающий за автообновление по таймеру
   useInterval(async () => {
-    setTimer(timer + 1);
     if (timer === INTERVAL) {
       await fetchGas();
       setTimer(1);
+    } else {
+      setTimer(timer + 1);
     }
-  }, !isGasLoading ? 1000 : null);
-
-  useEffect(() => {
-    fetchGas();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, timer > 0 && !isGasLoading ? 1000 : null);
 
   return (
     <Progress
@@ -45,7 +42,10 @@ export default function Gas() {
       size={40}
       strokeWidth={2}
       strokeColor={color}
-      onClick={() => !isGasLoading && fetchGas()}
+      onClick={() => {
+        !isGasLoading && fetchGas();
+        setTimer(1);
+      }}
       style={{ cursor: "pointer", color: "#dcdcdc !important" }}
     />
   );

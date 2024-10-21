@@ -2,6 +2,7 @@ import { AppstoreAddOutlined, StarOutlined } from "@ant-design/icons";
 import { Button, Modal, Card, Flex } from "antd";
 import { useState } from "react";
 import { saveStorage } from '@/utils/storage';
+import { Gas } from '@/components/Widgets';
 import "./style.css";
 
 export default function WidgetsList({ widgets, favorites, setFavorites }) {
@@ -38,7 +39,7 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
             widgets.map(o => {
               return (
                 <Card size={"small"} key={o.key}>
-                  {o.component}
+                  {o.key === "gas" ? <Gas autostart={false} /> : o.component}
                   <p>{o.name}</p>
                   <StarOutlined
                     className="favorite"
