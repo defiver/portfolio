@@ -38,7 +38,7 @@ export default function Home() {
     { "component": <Merkl db={db} />, "name": "Пулы на Merkl", key: "merkl" },
     { "component": <RecoilRoot><Llama db={db} /></RecoilRoot>, "name": "DeFiLlama", key: "llama" },
     { "component": <RecoilRoot><Pools db={db} /></RecoilRoot>, "name": "Цены в пулах", key: "pools" },
-    { "component": <Calculator />, "name": "Калькулятор", key: "calculator" },
+    { "component": <Calculator />, "name": "Калькуляторы", key: "calculator" },
     { "component": <Notes db={db} />, "name": "Заметки", key: "notes" },
     { "component": <Tools />, "name": "Инструменты", key: "tools" },
     { "component": <Settings db={db} />, "name": "База данных", key: "settings" },
