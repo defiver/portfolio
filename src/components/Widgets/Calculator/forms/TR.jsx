@@ -7,17 +7,11 @@ import MyInputNumber from "@/components/MyInputNumber";
 const { Paragraph } = Typography;
 
 const defaultResult = {
-	"avgDownPriceA": 0, // средняя цена покупки токена А при выходе цены из нижней границы
-	"avgUpPriceB": 0, // средняя цена покупки токена B при выходе цены из верхней границы
-	"downAmountA": 0, // кол-во токенов А при выходе цены из нижней границы
-	"upAmountB": 0, // кол-во токенов В при выходе цены из верхней границы
-	"avgDownPriceAB": 0, // средняя цена покупки токена А с учётом изначального кол-ва токенов
-	"avgUpPriceBA": 0, // средняя цена покупки токена B с учётом изначального кол-ва токенов
 	"poolAmountA": 0, // кол-во токенов А при добавлени ликвидности в пул
 	"poolAmountB": 0, // кол-во токенов В при добавлени ликвидности в пул
 }
 
-export default function TokensRatio({ showDesc }) {
+export default function TR({ showDesc }) {
 	const [form] = Form.useForm();
 	const values = Form.useWatch([], form);
 	const [result, setResult] = useState(defaultResult);
@@ -26,7 +20,6 @@ export default function TokensRatio({ showDesc }) {
 		var poolAmountA = 0;
 		var poolAmountB = 0;
 
-		// вычисляем соотношение токенов в uniswap v3 пулах при внесении ликвидности
 		if (values.type === "uniswapv3") {
 			// предполагаем, что вся ликвидность в одном токене, а кол-во второго равно нулю
 			let tempAmountA = values.amountB + values.amountA * values.price;
@@ -58,18 +51,7 @@ export default function TokensRatio({ showDesc }) {
 			poolAmountB = (1 - ratio) * liquidity;
 		}
 
-		// расчёт средней цены покупки/продажи
-		let avgDownPriceA = (values.rangeDown + values.price) / 2;
-		let avgUpPriceB = (values.rangeUp + values.price) / 2;
-
-		let downAmountA = values.amountA + values.amountB / avgDownPriceA;
-		let upAmountB = values.amountB + values.amountA * avgUpPriceB;
-
-		// расчёт средней цены покупки/продажи с учётом начальной ликвидности
-		let avgDownPriceAB = (values.amountA * values.price + (downAmountA - values.amountA) * avgDownPriceA) / downAmountA;
-		let avgUpPriceBA = (values.amountB * values.price + (upAmountB - values.amountB) * avgUpPriceB) / upAmountB;
-
-		setResult({ avgDownPriceA, avgUpPriceB, downAmountA, upAmountB, avgDownPriceAB, avgUpPriceBA, poolAmountA, poolAmountB })
+		setResult({ poolAmountA, poolAmountB })
 	}
 
 	useEffect(() => {
@@ -81,8 +63,7 @@ export default function TokensRatio({ showDesc }) {
 	return (
 		<>
 			<Card size={"small"} hidden={!showDesc}>
-				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов.</p><br />
-				<p>Расчёт соотнешения токенов при добавлении ликвидности в пул. Нужно для того, чтобы оптимально разделить актив на два. Результаты могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание.<br />Расчёты можно делать на основе формул Uniswap V3 пулов или на основе обычной пропорции.</p>
+				<p>Расчёт соотнешения токенов при добавлении ликвидности в пул. Нужно для того, чтобы оптимально разделить актив на два.<br /><br />Результаты могут быть неточными, так как:<br />1) цена в пуле и цена свопа могут отличаться,<br />2) своп может повлиять на цену в пуле,<br />3) при свопе не исключено проскальзывание.<br /><br />Расчёты можно делать на основе формул Uniswap V3 пулов или на основе обычной пропорции.<br /><br />Формулы для Uniswap V3 имеют квадратичную зависимость и очень чувствительны к точности, поэтому рекомендуется копировать значения со страницы пула со всеми знаками после зяпятой.</p>
 			</Card>
 
 			<Form form={form} autoComplete="off" requiredMark={false} initialValues={{ "type": "uniswapv3" }}>
@@ -151,16 +132,6 @@ export default function TokensRatio({ showDesc }) {
 						}
 					/>
 				</Col>
-
-				<Col span={24}><Divider plain>Выход за нижнюю границу</Divider></Col>
-				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.downAmountA)} /></Col>
-				<Col span={8}><Statistic title="Цена продажи B" value={localeNumber(result.avgDownPriceA)} /></Col>
-				<Col span={8}><Statistic title="Цена покупки A" value={localeNumber(result.avgDownPriceAB)} /></Col>
-
-				<Col span={24}><Divider plain>Выход за верхнюю границу</Divider></Col>
-				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.upAmountB)} /></Col>
-				<Col span={8}><Statistic title="Цена продажи А" value={localeNumber(result.avgUpPriceB)} /></Col>
-				<Col span={8}><Statistic title="Цена покупки B" value={localeNumber(result.avgUpPriceBA)} /></Col>
 			</Row>
 		</>
 	);

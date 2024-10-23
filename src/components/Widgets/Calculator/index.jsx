@@ -1,8 +1,9 @@
 import { CalculatorOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { Button, Drawer, Flex, Select } from "antd";
 import { useState } from "react";
-import TokensRatio from "./forms/TokensRatio";
-import Looping from "./forms/Looping";
+import TR from "./forms/TR";
+import RO from "./forms/RO";
+import Lo from "./forms/Lo";
 import HF from "./forms/HF";
 import IL from "./forms/IL";
 import CI from "./forms/CI";
@@ -15,8 +16,9 @@ export default function Calculator() {
   const [showDesc, setShowDesc] = useState(false);
 
   const forms = {
-    "TokensRatio": <TokensRatio showDesc={showDesc} />,
-    "Looping": <Looping showDesc={showDesc} />,
+    "TokensRatio": <TR showDesc={showDesc} />,
+    "RangeOut": <RO showDesc={showDesc} />,
+    "Looping": <Lo showDesc={showDesc} />,
     "HealthFactor": <HF showDesc={showDesc} />,
     "ImpermanentLoss": <IL showDesc={showDesc} />,
     "CompoundInterest": <CI showDesc={showDesc} />,
@@ -24,6 +26,7 @@ export default function Calculator() {
 
   const options = [
     { value: "TokensRatio", label: "Соотношение токенов в пуле" },
+    { value: "RangeOut", label: "Средняя цена покупки/продажи" },
     { value: "Looping", label: "Looping" },
     { value: "HealthFactor", label: "Health Factor" },
     { value: "ImpermanentLoss", label: "Impermanent Loss" },

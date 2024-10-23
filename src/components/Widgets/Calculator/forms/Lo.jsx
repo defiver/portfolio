@@ -11,7 +11,7 @@ const columns = [
 	{ title: 'APR (%)', key: 'apr', dataIndex: 'apr', render: (t) => localeNumber(t), },
 ];
 
-export default function Looping({ showDesc }) {
+export default function Lo({ showDesc }) {
 	const [form] = Form.useForm();
 	const values = Form.useWatch([], form);
 	const [result, setResult] = useState([]);
