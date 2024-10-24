@@ -22,6 +22,7 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
         className={"widget-button"}
         icon={<AppstoreAddOutlined />}
         onClick={() => setSwowModal(true)}
+        title="Виджеты"
       />
 
       <Modal
@@ -30,7 +31,8 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
         open={swowModal}
         onOk={() => setSwowModal(false)}
         onCancel={() => setSwowModal(false)}
-        width={440}
+        width={576}
+        // style={{ top: 20 }}
         className={"widgets-list"}
         destroyOnClose={true}
       >
