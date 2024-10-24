@@ -9,7 +9,7 @@ import { formAddressState } from "../store";
 CJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
 // компонент для отрисовки графика изменения цены в пуле
-export default function PoolsList({ db, pool }) {
+export default function PriceChart({ db, pool }) {
 	const [, setFormAddress] = useRecoilState(formAddressState);
 
 	const [deletePool, isDeletePollLoading] = useLoading(async () => {
