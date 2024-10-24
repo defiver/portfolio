@@ -30,7 +30,7 @@ export default function EditForm({ db, pool }) {
     setFormAddress(null);
   };
 
-  const [addNote, isAddNoteLoading] = useLoading(async () => {
+  const [addPool, isAddPoolLoading] = useLoading(async () => {
     let values = form.getFieldValue();
     let { range1, range2 } = values;
     // если границы диапазона не указаны, то он будет максимально широким
@@ -54,7 +54,7 @@ export default function EditForm({ db, pool }) {
   }, [pool, form]);
 
   return (
-    <Form form={form} onFinish={addNote} className="edit-form" autoComplete="off">
+    <Form form={form} onFinish={addPool} className="edit-form" autoComplete="off">
       <Row gutter={[8, 8]}>
         <Col span={8}>
           <Form.Item name="address" rules={[{ required: true, message: '' }]}>
@@ -95,7 +95,7 @@ export default function EditForm({ db, pool }) {
             <Flex gap={8} justify="end">
               <Button icon={<CloseOutlined />} onClick={closeForm} title="Отмена" />
 
-              <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddNoteLoading} />
+              <SubmitButton icon={<CheckOutlined />} form={form} loading={isAddPoolLoading} />
             </Flex>
           </Form.Item>
         </Col>
