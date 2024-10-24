@@ -27,8 +27,7 @@
 }
 
 .pools .ant-collapse-header {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
+  padding: 4px 8px !important;
 }
 
 .pools .ant-card-head .ant-progress-inner {
@@ -38,4 +37,8 @@
 
 .pools a {
   color: #dddddd;
+}
+
+.ant-collapse-content-box {
+  padding: 8px !important;
 }
