@@ -18,17 +18,21 @@ export default function PriceChart({ db, pair }) {
 	const [loadQuotes, isLoadQuotes] = useLoading(async () => {
 		let end = Date.now();
 		let start = period > 0 ? end - period * 1000 : 0;
-		let responce = await fetchingGet(`${LINK}?coin=${pair.coin}&start=${start}&end=${end}&currency=${pair.currency}`);
-		responce.success && setQuotes(responce.data.map(o => { return [o.date, o.rate] }));
-	}, false);
+		let data = await fetchingGet(`${LINK}?coin=${pair.coin}&start=${start}&end=${end}&currency=${pair.currency}`);
+		if (data.success && data.data.length > 0) {
+			setQuotes(data.data.map(o => { return [o.date, o.rate] }));
+			if (period === pair.period) {
+				let price = data.data.at(-1)["rate"];
+				await db.pairs.put({ ...pair, price, previous: pair.price });
+			} else {
+				await db.pairs.put({ ...pair, period });
+			}
 
-	const [savePeriod] = useLoading(async () => {
-		pair.period !== period && await db.pairs.put({ ...pair, period: period });
+		}
 	}, false);
 
 	useEffect(() => {
 		loadQuotes();
-		savePeriod();
 	}, [period]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const data = {

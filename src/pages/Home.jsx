@@ -25,7 +25,7 @@ export default function Home() {
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify, sleep",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
-    pairs: "&pair, coin, currency, period",
+    pairs: "&pair, coin, currency, period, price, change",
   }
 
   const db = new Dexie("porfolio");
