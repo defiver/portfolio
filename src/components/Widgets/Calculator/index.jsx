@@ -7,6 +7,7 @@ import Lo from "./forms/Lo";
 import HF from "./forms/HF";
 import IL from "./forms/IL";
 import CI from "./forms/CI";
+import CR from "./forms/CR";
 import "./style.css";
 
 export default function Calculator() {
@@ -22,6 +23,7 @@ export default function Calculator() {
     "HealthFactor": <HF showDesc={showDesc} />,
     "ImpermanentLoss": <IL showDesc={showDesc} />,
     "CompoundInterest": <CI showDesc={showDesc} />,
+    "CAGR": <CR showDesc={showDesc} />,
   }
 
   const options = [
@@ -31,6 +33,7 @@ export default function Calculator() {
     { value: "HealthFactor", label: "Health Factor" },
     { value: "ImpermanentLoss", label: "Impermanent Loss" },
     { value: "CompoundInterest", label: "Сложный процент" },
+    { value: "CAGR", label: "Среднегодовой темп роста (CAGR)" },
   ]
 
   return (
