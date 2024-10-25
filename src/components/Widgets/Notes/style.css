@@ -19,3 +19,7 @@
 .notes .edit-form {
   margin: 0 0 16px 0;
 }
+
+.notes .ant-card-head {
+  padding: 0 8px !important;
+}
