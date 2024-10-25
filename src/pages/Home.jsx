@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Row, Col, Splitter } from "antd";
 import { RecoilRoot } from "recoil";
 import { loadStorage, saveStorage } from '@/utils/storage';
-import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Gas } from '@/components/Widgets';
+import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Gas, Quotes } from '@/components/Widgets';
 import { WidgetsList } from '@/components/Widgets';
 import Journal from "@/components/Journal/";
 import Tokens from "@/components/Tokens";
@@ -25,6 +25,7 @@ export default function Home() {
     merkl: "&id, name, url, apr, fresh",
     pools: "&address, name, chain, price, previous, range, prices, inRange, notify, sleep",
     llama: "&pool, name, project, chain, tvl, apy, stable, il, apy30d, exposure, outlier",
+    pairs: "&pair, coin, currency, period",
   }
 
   const db = new Dexie("porfolio");
@@ -38,6 +39,7 @@ export default function Home() {
     { "component": <Merkl db={db} />, "name": "Пулы на Merkl", key: "merkl" },
     { "component": <RecoilRoot><Llama db={db} /></RecoilRoot>, "name": "DeFiLlama", key: "llama" },
     { "component": <RecoilRoot><Pools db={db} /></RecoilRoot>, "name": "Цены в пулах", key: "pools" },
+    { "component": <Quotes db={db} />, "name": "Котировки", key: "quotes" },
     { "component": <Calculator />, "name": "Калькуляторы", key: "calculator" },
     { "component": <Notes db={db} />, "name": "Заметки", key: "notes" },
     { "component": <Tools />, "name": "Инструменты", key: "tools" },
@@ -49,7 +51,7 @@ export default function Home() {
     <Row gutter={[24, 16]}>
       <Col span={24} lg={2}>
         <div className="widgets">
-          {widgets.filter(o => favorites.includes(o.key)).map(o => <span key={o.key}>{o.component}</span>)}
+          {widgets.filter(o => favorites.includes(o.key)).map(o => <span key={o.key} title={o.name}>{o.component}</span>)}
           <WidgetsList widgets={widgets} favorites={favorites} setFavorites={setFavorites} />
         </div>
       </Col>
