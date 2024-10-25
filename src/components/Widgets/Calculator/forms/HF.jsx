@@ -40,7 +40,7 @@ export default function HF({ showDesc }) {
 				<p>Простой калькулятор для расчёта показателя здоровья и цен ликвидации при взятии кредита в лендинг протоколах.</p>
 			</Card>
 
-			<Form form={form} autoComplete="off" requiredMark={false} initialValues={{ rounds: 8 }}>
+			<Form form={form} autoComplete="off" requiredMark={false}>
 				<Row gutter={[8, 8]}>
 					<Col span={10}>
 						<Form.Item label="Кол-во токенов A на депозите" name="amountA" rules={[{ required: true, message: "" }]}>

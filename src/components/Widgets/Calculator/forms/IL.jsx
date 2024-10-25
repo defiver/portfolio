@@ -57,7 +57,7 @@ export default function IL({ showDesc }) {
 				<p>Сравнение стратегии HODL с внесением активов в пул ликвидности. Можно указать доходность позиции и её продолжительность для приблезительного учёта комиссионных.<br /><br />Предполагаемая цена это цена, при которой позиция перестаёт быть активной и она переливается в один из токенов.</p>
 			</Card>
 
-			<Form form={form} autoComplete="off" requiredMark={false} initialValues={{ "type": "uniswapv3" }}>
+			<Form form={form} autoComplete="off" requiredMark={false}>
 				<Row gutter={[8, 8]}>
 					<Col span={12}>
 						<Form.Item label="Текущая цена токена А" name="startPrice" rules={[{ required: true, message: "" }]}>

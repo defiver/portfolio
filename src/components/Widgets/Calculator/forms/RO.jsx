@@ -44,7 +44,7 @@ export default function RO({ showDesc }) {
 				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов.</p>
 			</Card>
 
-			<Form form={form} autoComplete="off" requiredMark={false} initialValues={{ "type": "uniswapv3" }}>
+			<Form form={form} autoComplete="off" requiredMark={false}>
 				<Row gutter={[8, 8]}>
 					<Col span={8}>
 						<Form.Item label="Цена токена А" name="price" rules={[{ required: true, message: "" }]}>
