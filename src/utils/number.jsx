@@ -38,3 +38,24 @@ export const formatPercent = (n1, n2, fixed = 1) => {
 
 	return <>{icon}{(Math.abs(percent)).toLocaleString(undefined, { minimumFractionDigits: 1 }) + "%"}</>;
 }
+
+// функция для преобразования больших чисел в читаемый вид
+export const bigNumber = (number) => {
+	number = number ? number : 0;
+	number = parseFloat(number);
+	const positive = Math.abs(number);
+	var suffix = "";
+
+	if (positive >= 1_000_000_000_000) {
+		suffix = " трлн.";
+		number /= 1_000_000_000_000;
+	} else if (positive >= 1_000_000_000) {
+		suffix = " млрд.";
+		number /= 1_000_000_000;
+	} else if (positive >= 1_000_000) {
+		suffix = " млн.";
+		number /= 1_000_000;
+	}
+
+	return localeNumber(number) + suffix;
+}
