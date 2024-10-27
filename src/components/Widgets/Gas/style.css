@@ -1,0 +1,17 @@
+.gas .ant-drawer-header {
+  display: none;
+}
+
+.gas .ant-drawer-body {
+  padding: 20px 8px 8px;
+}
+
+.gas .ant-card-body {
+  padding: 20px 12px !important;
+}
+
+.gas .gas-list img {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+}
