@@ -5,7 +5,7 @@ import { localeNumber, bigNumber } from "@/utils/number";
 import { fetchFear, fetchGlobal, fetchCoins } from "./fetching";
 import "./style.css";
 
-export default function Market() {
+export default function Stats() {
 	const [fear, setFear] = useState({ today: 0, change: "0%" });
 	const [global, setGlobal] = useState({ cap: 0, btcd: 0 });
 	const [coins, setCoins] = useState([]);

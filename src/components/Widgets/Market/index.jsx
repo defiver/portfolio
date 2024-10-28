@@ -1,14 +1,14 @@
 import { Drawer } from "antd";
 import { useState } from "react";
-import Market from "./Market";
-import GasIcon from "./GasIcon";
+import Stats from "./Stats";
+import Gas from "./Gas";
 
-export default function Gas({ autostart = true }) {
+export default function Market({ autostart = true }) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   return (
     <>
-      <GasIcon
+      <Gas
         autostart={autostart}
         setShowDrawer={setShowDrawer}
       />
@@ -22,7 +22,7 @@ export default function Gas({ autostart = true }) {
         width={500}
         onClose={() => setShowDrawer(false)}
       >
-        <Market />
+        <Stats />
       </Drawer >
     </>
   );

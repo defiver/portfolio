@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Row, Col, Splitter } from "antd";
 import { RecoilRoot } from "recoil";
 import { loadStorage, saveStorage } from '@/utils/storage';
-import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Gas, Quotes } from '@/components/Widgets';
+import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Market, Quotes } from '@/components/Widgets';
 import { WidgetsList } from '@/components/Widgets';
 import Journal from "@/components/Journal/";
 import Tokens from "@/components/Tokens";
@@ -35,7 +35,7 @@ export default function Home() {
   const [favorites, setFavorites] = useState(loadStorage("favorite_widgets"));
 
   const widgets = [
-    { "component": <Gas />, "name": "Газ", key: "gas" },
+    { "component": <Market />, "name": "Рынок", key: "market" },
     { "component": <Merkl db={db} />, "name": "Пулы на Merkl", key: "merkl" },
     { "component": <RecoilRoot><Llama db={db} /></RecoilRoot>, "name": "DeFiLlama", key: "llama" },
     { "component": <RecoilRoot><Pools db={db} /></RecoilRoot>, "name": "Цены в пулах", key: "pools" },

@@ -8,7 +8,7 @@ import { fetchGas } from "./fetching";
 
 const INTERVAL = 300; // интервал таймера для авто обновления
 
-export default function Icon({ autostart = true, setShowDrawer }) {
+export default function Gas({ autostart = true, setShowDrawer }) {
 	const [gas, setGas] = useState(0);
 	const [timer, setTimer] = useState(autostart ? INTERVAL : 0);
 
@@ -32,11 +32,14 @@ export default function Icon({ autostart = true, setShowDrawer }) {
 			type="circle"
 			percent={100}
 			status={"normal"}
-			format={() => isGetGasLoading ? <LoadingOutlined /> : gas > 0 ? localeNumber(gas) : "N/A"}
+			format={() => isGetGasLoading
+				? <LoadingOutlined />
+				: <span onClick={(e) => { getGas(); e.stopPropagation(); }}>{gas > 0 ? localeNumber(gas) : "N/A"}</span>
+			}
 			size={40}
 			strokeWidth={2}
 			strokeColor={color}
-			onClick={() => gas > 0 ? setShowDrawer(true) : getGas()}
+			onClick={() => setShowDrawer(true)}
 			style={{ cursor: "pointer", color: "#dcdcdc !important" }}
 		/>
 	);
