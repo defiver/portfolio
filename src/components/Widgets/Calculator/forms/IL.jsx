@@ -11,6 +11,8 @@ const defaultResult = {
 	"poolAmountB": 0, // сколько будет токенов B в пуле после перелива
 	"holdAmountA": 0, // сколько будет токена A при HOLD
 	"holdAmountB": 0, // сколько будет токена B при HOLD
+	"ILA": 0, // непостоянные потери в А
+	"ILB": 0, // непостоянные потери в В
 	"startPrice": 0,
 	"endPrice": 0,
 }
@@ -42,7 +44,10 @@ export default function IL({ showDesc }) {
 			poolAmountB = fees + values.amountB + values.amountA * avgPrice;
 		}
 
-		setResult({ startAmountA, startAmountB, poolAmountA, poolAmountB, holdAmountA, holdAmountB, startPrice, endPrice })
+		let ILA = startPrice > endPrice ? (holdAmountA - poolAmountA) : (holdAmountA - poolAmountB / endPrice);
+		let ILB = startPrice > endPrice ? (holdAmountB - poolAmountA * endPrice) : (holdAmountB - poolAmountB);
+
+		setResult({ startAmountA, startAmountB, poolAmountA, poolAmountB, holdAmountA, holdAmountB, startPrice, endPrice, ILA, ILB })
 	}
 
 	useEffect(() => {
@@ -104,31 +109,23 @@ export default function IL({ showDesc }) {
 			<Row gutter={[8, 0]} className="IL">
 				<Col span={24}><Divider plain>В токенах А</Divider></Col>
 
-				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountA)} /></Col>
+				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountA)} suffix={localeNumber(values.amountA) + " A + " + localeNumber(values.amountB) + " B"} /></Col>
 
-				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountA)} suffix={localeNumber(result.poolAmountA * result.endPrice) + " B"} /></Col>
+				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountA)} suffix={localeNumber(result.poolAmountB) + " B"} /></Col>
 
 				<Col span={6}><Statistic title="HOLD" value={localeNumber(result.holdAmountA)} suffix={localeNumber(result.startAmountA * result.endPrice) + " B"} /></Col>
 
-				<Col span={6}><Statistic title="IL" value={
-					result.startPrice > result.endPrice
-						? localeNumber(result.holdAmountA - result.poolAmountA)
-						: localeNumber(result.holdAmountA - result.poolAmountB / result.endPrice)
-				} /></Col>
+				<Col span={6}><Statistic title="IL" value={localeNumber(result.ILA)} suffix={localeNumber(result.endPrice * result.ILA) + " B"} /></Col>
 
 				<Col span={24}><Divider plain>В токенах B</Divider></Col>
 
-				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountB)} /></Col>
+				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountB)} suffix={localeNumber(values.amountA) + " A + " + localeNumber(values.amountB) + " B"} /></Col>
 
-				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountB)} suffix={localeNumber(result.poolAmountB / result.endPrice) + " A"} /></Col>
+				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountB)} suffix={localeNumber(result.poolAmountA) + " A"} /></Col>
 
 				<Col span={6}><Statistic title="HOLD" value={localeNumber(result.holdAmountB)} suffix={localeNumber(result.startAmountB / result.endPrice) + " A"} /></Col>
 
-				<Col span={6}><Statistic title="IL" value={
-					result.startPrice > result.endPrice
-						? localeNumber(result.holdAmountB - result.poolAmountA * result.endPrice)
-						: localeNumber(result.holdAmountB - result.poolAmountB)
-				} /></Col>
+				<Col span={6}><Statistic title="IL" value={localeNumber(result.ILB)} suffix={localeNumber(result.ILB / result.endPrice) + " A"} /></Col>
 			</Row>
 		</>
 	);
