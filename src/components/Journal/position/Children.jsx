@@ -15,9 +15,14 @@ export default function Children({ position, db }) {
   }, false);
 
   let age = 0;
+  let dates = "";
   // расчёт возраста позиции из объекта dayjs
   if (position?.daterange && position.daterange[0] && dayjs(position.daterange[0].$d).isValid()) {
     age = dayjs().diff(position.daterange[0].$d, 'day', true).toFixed(2);
+    dates = dayjs(position.daterange[0].$d).format('DD.MM.YYYY HH:mm');
+    if (position.daterange[1] && dayjs(position.daterange[1].$d).isValid()) {
+      dates += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YYYY HH:mm');
+    }
   }
 
   // проверка, если ли в ссылки в тексте из textarea
@@ -35,7 +40,7 @@ export default function Children({ position, db }) {
       <Typography.Paragraph>{position.text}</Typography.Paragraph>
       <Flex justify={"space-between"} align={"center"}>
         <Space>
-          <Typography.Text code>Возраст: {age} days</Typography.Text>
+          <Typography.Text code title={dates}>Возраст: {age} days</Typography.Text>
           {checkFirstLink(position.transactions) && getFirstLink(position.transactions)}
           {checkFirstLink(position.links) && getFirstLink(position.links)}
         </Space>
