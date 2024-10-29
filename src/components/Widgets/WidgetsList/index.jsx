@@ -1,4 +1,4 @@
-import { AppstoreAddOutlined, StarOutlined } from "@ant-design/icons";
+import { AppstoreAddOutlined, PushpinOutlined } from "@ant-design/icons";
 import { Button, Modal, Card, Flex } from "antd";
 import { useState } from "react";
 import { saveStorage } from '@/utils/storage';
@@ -43,7 +43,7 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
                 <Card size={"small"} key={o.key}>
                   {o.key === "market" ? <Market autostart={false} /> : o.component}
                   <p>{o.name}</p>
-                  <StarOutlined
+                  <PushpinOutlined
                     className="favorite"
                     style={{ color: favorites.includes(o.key) ? "darkorange" : "#343434" }}
                     onClick={() => setFavorite(o.key)}
