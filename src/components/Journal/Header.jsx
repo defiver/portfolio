@@ -1,9 +1,9 @@
-import { DownOutlined, FileZipOutlined, UpOutlined } from "@ant-design/icons";
+import { DownOutlined, FileZipOutlined, UpOutlined, BarChartOutlined } from "@ant-design/icons";
 import { Button, Select, Flex } from "antd";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { chainsState, idState, filterState, tagsState, tokensState } from "./store";
 
-export default function Header() {
+export default function Header({ showChart, setShowChart }) {
   const [filter, setFilterState] = useRecoilState(filterState);
   const [id, setId] = useRecoilState(idState);
   const tags = useRecoilValue(tagsState);
@@ -39,6 +39,12 @@ export default function Header() {
         />
       </Flex>
       <Flex gap={4} justify="end">
+        <Button
+          type={showChart ? "primary" : "default"}
+          icon={<BarChartOutlined />}
+          onClick={() => setShowChart(!showChart)}
+          title="График доходов за последний год"
+        />
         <Button
           type={filter.status ? "default" : "primary"}
           icon={<FileZipOutlined />}
