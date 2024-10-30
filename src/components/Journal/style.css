@@ -26,3 +26,7 @@
 .journal .edit-form {
   margin: 0 0 16px 0;
 }
+
+.journal-datepicker .ant-picker-body {
+  padding: 0 !important;
+}

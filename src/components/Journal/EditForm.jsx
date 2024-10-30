@@ -28,15 +28,16 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
   const [editPosition, isEditPositionLoading] = useLoading(async () => {
     let values = form.getFieldValue();
 
-    let { id, tokens } = values;
+    let { id, tokens, begindate, finishdate } = values;
+    let daterange = [begindate, finishdate];
     tokens = tokens ? tokens.filter(o => o) : [];
 
     // проверяем, создаётся ли новая позиция или редактируется уже имеющаяся
     if (id > 0) {
-      await db.journal.put({ ...values, tokens: tokens });
+      await db.journal.put({ ...values, tokens, daterange });
     } else {
       delete values.id;
-      await db.journal.add({ ...values, tokens: tokens });
+      await db.journal.add({ ...values, tokens, daterange });
     }
 
     closeForm();
@@ -56,7 +57,11 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
       form={form}
       onFinish={editPosition}
       className="edit-form"
-      initialValues={position}
+      initialValues={{
+        ...position,
+        begindate: position.daterange && position.daterange[0] && dayjs(position.daterange[0].$d) || null,
+        finishdate: position.daterange && position.daterange[1] && dayjs(position.daterange[1].$d) || null,
+      }}
       autoComplete="off"
     >
       <Flex vertical={true} gap={4}>
@@ -84,33 +89,47 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
           />
         </Form.Item>
 
-        <Flex gap={8}>
-          <Form.Item
-            name="daterange"
-            getValueProps={(value) => ({
-              value: [value && value[0] && dayjs(value[0].$d), value && value[1] && dayjs(value[1].$d)]
-            })}
-          >
-            <DatePicker.RangePicker
-              allowClear
-              locale={locale}
-              style={{ width: "100%" }}
-              allowEmpty={[true, true]}
-              needConfirm={false}
-              showTime
-              format="DD.MM.YYYY HH:mm:ss"
-            />
-          </Form.Item>
+        <Row gutter={[8, 8]}>
+          <Col span={7}>
+            <Form.Item name="begindate">
+              <DatePicker
+                popupClassName="journal-datepicker"
+                placeholder="Дата создания позиции"
+                showNow
+                allowClear
+                style={{ width: "100%" }}
+                locale={locale}
+                showTime
+                format="DD.MM.YYYY HH:mm:ss"
+              />
+            </Form.Item>
+          </Col>
 
-          <Form.Item name="tags">
-            <Select
-              mode="tags"
-              style={{ width: "100%" }}
-              placeholder="Теги"
-              options={tags.map((i) => new Object({ label: i, value: i }))}
-            />
-          </Form.Item>
-        </Flex>
+          <Col span={7}>
+            <Form.Item name="finishdate">
+              <DatePicker
+                popupClassName="journal-datepicker"
+                placeholder="Дата закрытия позиции"
+                showNow
+                allowClear
+                style={{ width: "100%" }}
+                locale={locale}
+                showTime
+                format="DD.MM.YYYY HH:mm:ss"
+              />
+            </Form.Item>
+          </Col>
+
+          <Col span={10}>
+            <Form.Item name="tags">
+              <Select
+                mode="tags"
+                placeholder="Теги"
+                options={tags.map((i) => new Object({ label: i, value: i }))}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
         <Row gutter={[8, 8]}>
           <Col span={12}>
