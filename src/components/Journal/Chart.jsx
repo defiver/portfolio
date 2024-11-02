@@ -87,7 +87,7 @@ export default function Chart({ journal }) {
 			tooltip: {
 				displayColors: false,
 				callbacks: {
-					label: (c) => c.dataset.label + ": $" + localeNumber(c.dataset.data[c.dataIndex], 0)
+					label: (c) => c.dataset.label + "($): " + localeNumber(c.dataset.data[c.dataIndex], 0)
 				},
 			}
 		},
