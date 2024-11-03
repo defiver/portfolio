@@ -1,4 +1,4 @@
-import { stringToColour } from "@/utils/colour";
+import { stringToBackground } from "@/utils/colour";
 import { Col, Row, Typography, Tag } from "antd";
 import { localeNumber } from "@/utils/number";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -29,10 +29,10 @@ export default function Label({ db, position }) {
 
       <Col span={10}>
         {position.tags && position.tags.slice(0, 3).map((tag) => (
-          <Typography.Text code key={tag} style={stringToColour(tag)}>{tag}</Typography.Text>
+          <Typography.Text code key={tag} style={stringToBackground(tag)}>{tag}</Typography.Text>
         ))}
 
-        {chain && <Typography.Text code style={stringToColour(chain)}>{chain}</Typography.Text>}
+        {chain && <Typography.Text code style={stringToBackground(chain)}>{chain}</Typography.Text>}
       </Col>
     </Row>
   );
