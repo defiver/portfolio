@@ -1,6 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Table, Popconfirm } from "antd";
 import { useLoading } from "@/hooks/useLoading";
+import { localeNumber } from "@/utils/number";
 
 export default function TransTable({ db, transactions }) {
 	const [deleteTransacton, isTransactonLoading] = useLoading(async (id) => {
@@ -46,7 +47,7 @@ export default function TransTable({ db, transactions }) {
 			align: 'center',
 			render: (_, row) => {
 				// если продажа, то цифры красные
-				let value = row.amount * row.price;
+				let value = localeNumber(row.amount * row.price);
 				return value > 0 ? value : <span className="warning">{value}</span>;
 			},
 			sorter: (a, b) => (a.amount * a.price) - (b.amount * b.price),
