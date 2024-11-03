@@ -30,9 +30,9 @@ export default function AssetsList({ db, transactions, tokens }) {
 
 			<Row gutter={[8, 8]}>
 				<Col span={6}><CustomStatistic value={amount} title={"Кол-во токенов"} /></Col>
-				<Col span={6}><CustomStatistic value={purchase < 0 ? 0 : purchase} title={"Вложено"} prefix={"$"} /></Col>
-				<Col span={6}><CustomStatistic value={value} title={"Текущая стоимость"} prefix={"$"} /></Col>
-				<Col span={6}><CustomStatistic value={income} title={"Доход"} prefix={"$"} painted /></Col>
+				<Col span={6}><CustomStatistic value={purchase < 0 ? 0 : purchase} title={"Вложено"} suffix={"$"} /></Col>
+				<Col span={6}><CustomStatistic value={value} title={"Текущая стоимость"} suffix={"$"} /></Col>
+				<Col span={6}><CustomStatistic value={income} title={"Доход"} suffix={"$"} painted /></Col>
 				<Col span={6}><CustomStatistic value={AVG} title={"AVG"} suffix={"%"} painted /></Col>
 				<Col span={6}><CustomStatistic value={MWR} title={"MWR"} suffix={"%"} painted /></Col>
 				<Col span={6}><CustomStatistic value={ROE} title={"ROE"} suffix={"%"} painted /></Col>

@@ -16,7 +16,7 @@ export default function CustomStatistic(props) {
 		desc = <Popover placement="leftTop" content={desc}><InfoCircleOutlined style={{ fontSize: 12 }} /></Popover>;
 	}
 
-	const color = (!props.painted || props.value === 0) ? "inherit" : props.value > 0 ? "#3f8600" : "#e45431";
+	const color = (!props.painted || !props.value) ? "inherit" : props.value > 0 ? "#3f8600" : "#e45431";
 
 	return (
 		<Card size="small">

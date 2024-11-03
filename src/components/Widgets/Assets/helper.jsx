@@ -63,12 +63,11 @@ const calcXIRR = (values, dates, guess = 0.1) => {
 		resultValue = irrResult(values, dates, resultRate);
 		newRate = resultRate - resultValue / irrResultDeriv(values, dates, resultRate);
 		epsRate = Math.abs(newRate - resultRate);
-		resultRate = newRate;
 		contLoop = (epsRate > epsMax) && (Math.abs(resultValue) > epsMax);
 	} while (contLoop && (++iteration < iterMax));
 
 	// Return internal rate of return
-	return contLoop ? 0 : resultRate;
+	return contLoop || !resultRate ? 0 : resultRate;
 }
 
 // мод. метод Дитца
