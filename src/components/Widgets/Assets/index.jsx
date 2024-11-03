@@ -27,7 +27,10 @@ export default function Assets({ db }) {
       let data = await fetchingGet(LINK);
       let tkns = {}; // заносим данные в объект
       (data?.data || []).forEach(o => {
-        tkns[o.symbol] = { name: o.name, symbol: o.symbol, price: o.price.USD }
+        // в списке есть повторяющтеся тикеры, поэтому оставляем те, которые выше в рейтинге
+        if (!(o.symbol in tkns)) {
+          tkns[o.symbol] = { name: o.name, symbol: o.symbol, price: o.price.USD }
+        }
       });
       Object.keys(tkns).length > 0 && setTokens(tkns);
       timeCache.current = now;
