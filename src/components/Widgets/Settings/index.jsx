@@ -4,7 +4,7 @@ import { useState } from "react";
 import Backup from './Backup';
 
 export default function Settings({ db }) {
-  const [swowModal, setSwowModal] = useState(false);
+  const [showModal, setshowModal] = useState(false);
 
   return (
     <>
@@ -14,15 +14,15 @@ export default function Settings({ db }) {
         shape={"circle"}
         className={"widget-button"}
         icon={<DownloadOutlined />}
-        onClick={() => setSwowModal(true)}
+        onClick={() => setshowModal(true)}
       />
 
       <Modal
         title="База данных"
         footer={null}
-        open={swowModal}
-        onOk={() => setSwowModal(false)}
-        onCancel={() => setSwowModal(false)}
+        open={showModal}
+        onOk={() => setshowModal(false)}
+        onCancel={() => setshowModal(false)}
         width={300}
       >
         <Backup db={db} />

@@ -5,11 +5,11 @@ import { useState, useDeferredValue } from "react";
 import chainIds from './chainIds.json';
 
 export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
-	const [swowFresh, setSwowFresh] = useState(true);
+	const [showFresh, setshowFresh] = useState(true);
 	const [inputQuery, setInputQuery] = useState("");
 
 	const deferredQuery = useDeferredValue(inputQuery);
-	const filterOpp = useFilterList(allOpp, swowFresh, deferredQuery, "apr");
+	const filterOpp = useFilterList(allOpp, showFresh, deferredQuery, "apr");
 
 	return (
 		<List
@@ -28,8 +28,8 @@ export default function OppList({ allOpp, fetchOpp, isOppLoading }) {
 					/>
 					<Select
 						disabled={isOppLoading}
-						defaultValue={swowFresh ? "fresh" : "all"}
-						onChange={() => setSwowFresh(!swowFresh)}
+						defaultValue={showFresh ? "fresh" : "all"}
+						onChange={() => setshowFresh(!showFresh)}
 						style={{ minWidth: 100 }}
 						options={[{ value: "all", label: "Все" }, { value: "fresh", label: "Новые" }]}
 					/>

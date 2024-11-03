@@ -6,7 +6,7 @@ import { Market } from '@/components/Widgets';
 import "./style.css";
 
 export default function WidgetsList({ widgets, favorites, setFavorites }) {
-  const [swowModal, setSwowModal] = useState(false);
+  const [showModal, setshowModal] = useState(false);
 
   const setFavorite = (key) => {
     let nfavs = favorites.includes(key) ? favorites.filter(i => i !== key) : [...favorites, key];
@@ -21,16 +21,16 @@ export default function WidgetsList({ widgets, favorites, setFavorites }) {
         shape={"circle"}
         className={"widget-button"}
         icon={<AppstoreAddOutlined />}
-        onClick={() => setSwowModal(true)}
+        onClick={() => setshowModal(true)}
         title="Виджеты"
       />
 
       <Modal
         title="Виджеты"
         footer={null}
-        open={swowModal}
-        onOk={() => setSwowModal(false)}
-        onCancel={() => setSwowModal(false)}
+        open={showModal}
+        onOk={() => setshowModal(false)}
+        onCancel={() => setshowModal(false)}
         width={576}
         // style={{ top: 20 }}
         className={"widgets-list"}

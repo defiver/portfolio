@@ -40,8 +40,8 @@ export default function EditForm({ setAdd, db }) {
 							mode="tags"
 							placeholder="Categories"
 							// disabled={isOppLoading}
-							// defaultValue={swowFresh ? "fresh" : "all"}
-							// onChange={() => setSwowFresh(!swowFresh)}
+							// defaultValue={showFresh ? "fresh" : "all"}
+							// onChange={() => setshowFresh(!showFresh)}
 							style={{ width: "100%" }}
 						// options={categories.map(i => { return { value: i, label: i } })}
 						/>
@@ -54,8 +54,8 @@ export default function EditForm({ setAdd, db }) {
 							mode="tags"
 							placeholder="Chains"
 							// disabled={isOppLoading}
-							// defaultValue={swowFresh ? "fresh" : "all"}
-							// onChange={() => setSwowFresh(!swowFresh)}
+							// defaultValue={showFresh ? "fresh" : "all"}
+							// onChange={() => setshowFresh(!showFresh)}
 							style={{ width: "100%" }}
 						// options={categories.map(i => { return { value: i, label: i } })}
 						/>
