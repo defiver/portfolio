@@ -6,7 +6,7 @@ import FAQ from "./FAQ";
 import Updates from "./Updates";
 
 export default function Help() {
-  const [swowModal, setSwowModal] = useState(false);
+  const [showModal, setshowModal] = useState(false);
 
   return (
     <>
@@ -16,16 +16,16 @@ export default function Help() {
         shape={"circle"}
         className={"widget-button"}
         icon={<QuestionCircleOutlined />}
-        onClick={() => setSwowModal(true)}
+        onClick={() => setshowModal(true)}
       />
 
       <Modal
         title={false}
         footer={null}
         className="help"
-        open={swowModal}
-        onOk={() => setSwowModal(false)}
-        onCancel={() => setSwowModal(false)}
+        open={showModal}
+        onOk={() => setshowModal(false)}
+        onCancel={() => setshowModal(false)}
         width={800}
         style={{ top: 20 }}
       >

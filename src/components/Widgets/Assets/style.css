@@ -1,0 +1,28 @@
+.assets .ant-tabs-tab-btn {
+  color: #e0e0e0 !important;
+}
+
+.assets .ant-modal-content {
+  padding: 12px 24px;
+}
+
+.assets .ant-form-item-label {
+  position: absolute;
+  z-index: 10;
+  bottom: 28px;
+  left: 15px;
+}
+
+.assets .ant-form-item-label label {
+  font-size: 10px;
+  height: 10px;
+  background: #1f1f1f;
+}
+
+.assets .ant-form-item-label label::after {
+  content: none;
+}
+
+.assets .ant-form-item-label label::before {
+  content: none !important;
+}
