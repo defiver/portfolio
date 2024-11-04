@@ -39,7 +39,11 @@ export default function PoolRow({ db, pool }) {
 
 			<Col span={6}>
 				<Space style={{ float: "right" }} size={12}>
-					<a href={`https://dexscreener.com/search?q=${pool.address}`} title="Искать пул на Dex Screener">
+					<a
+						href={`https://dexscreener.com/search?q=${pool.address}`}
+						title="Искать пул на Dex Screener"
+						onClick={e => e.stopPropagation()}
+					>
 						<LinkOutlined />
 					</a>
 
