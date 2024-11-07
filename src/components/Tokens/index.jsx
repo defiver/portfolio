@@ -10,7 +10,7 @@ import AddForm from './AddForm';
 import TokensList from './TokensList';
 import "./style.css";
 
-const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=2000"; // ресурс с котировками
+const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=3000"; // ресурс с котировками
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
