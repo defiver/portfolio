@@ -47,8 +47,8 @@ export default function TransTable({ db, transactions }) {
 			align: 'center',
 			render: (_, row) => {
 				// если продажа, то цифры красные
-				let value = localeNumber(row.amount * row.price);
-				return value > 0 ? value : <span className="warning">{value}</span>;
+				let value = row.amount * row.price;
+				return value > 0 ? localeNumber(value) : <span className="warning">{localeNumber(value)}</span>;
 			},
 			sorter: (a, b) => (a.amount * a.price) - (b.amount * b.price),
 		},
