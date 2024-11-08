@@ -109,7 +109,7 @@ export default function IL({ showDesc }) {
 			<Row gutter={[8, 0]} className="IL">
 				<Col span={24}><Divider plain>В токенах А</Divider></Col>
 
-				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountA)} suffix={localeNumber(values.amountA) + " A + " + localeNumber(values.amountB) + " B"} /></Col>
+				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountA)} suffix={localeNumber(values?.amountA || 0) + " A + " + localeNumber(values?.amountB || 0) + " B"} /></Col>
 
 				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountA)} suffix={localeNumber(result.poolAmountB) + " B"} /></Col>
 
@@ -119,7 +119,7 @@ export default function IL({ showDesc }) {
 
 				<Col span={24}><Divider plain>В токенах B</Divider></Col>
 
-				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountB)} suffix={localeNumber(values.amountA) + " A + " + localeNumber(values.amountB) + " B"} /></Col>
+				<Col span={6}><Statistic title="Изначально" value={localeNumber(result.startAmountB)} suffix={localeNumber(values?.amountA || 0) + " A + " + localeNumber(values?.amountB || 0) + " B"} /></Col>
 
 				<Col span={6}><Statistic title="В пуле" value={localeNumber(result.poolAmountB)} suffix={localeNumber(result.poolAmountA) + " A"} /></Col>
 
