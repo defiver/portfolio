@@ -9,6 +9,7 @@ export { default as Calculator } from "./Calculator"
 export { default as Market } from "./Market"
 export { default as Quotes } from "./Quotes"
 export { default as Assets } from "./Assets"
+export { default as Wrappers } from "./Wrappers"
 export { default as WidgetsList } from "./WidgetsList"
 // export { default as Sushi } from "./Sushi" // sushi: "&address, name, link, chainId, params",
 // export { default as Revert } from "./Revert" // revert: "&address, positions",

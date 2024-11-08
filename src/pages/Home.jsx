@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Row, Col, Splitter } from "antd";
 import { RecoilRoot } from "recoil";
 import { loadStorage, saveStorage } from '@/utils/storage';
-import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Market, Quotes, Assets } from '@/components/Widgets';
+import { Notes, Help, Settings, Merkl, Tools, Pools, Llama, Calculator, Market, Quotes, Assets, Wrappers } from '@/components/Widgets';
 import { WidgetsList } from '@/components/Widgets';
 import Journal from "@/components/Journal/";
 import Tokens from "@/components/Tokens";
@@ -37,14 +37,15 @@ export default function Home() {
 
   const widgets = [
     { "component": <Market />, "name": "Рынок", key: "market" },
-    { "component": <Assets db={db} />, "name": "Активы", key: "assets" },
     { "component": <Merkl db={db} />, "name": "Пулы на Merkl", key: "merkl" },
     { "component": <RecoilRoot><Llama db={db} /></RecoilRoot>, "name": "DeFiLlama", key: "llama" },
+    { "component": <Calculator />, "name": "Калькуляторы", key: "calculator" },
     { "component": <RecoilRoot><Pools db={db} /></RecoilRoot>, "name": "Цены в пулах", key: "pools" },
     { "component": <Quotes db={db} />, "name": "Котировки", key: "quotes" },
-    { "component": <Calculator />, "name": "Калькуляторы", key: "calculator" },
-    { "component": <Notes db={db} />, "name": "Заметки", key: "notes" },
+    { "component": <Assets db={db} />, "name": "Активы", key: "assets" },
+    { "component": <Wrappers />, "name": "Токены", key: "wrappers" },
     { "component": <Tools />, "name": "Инструменты", key: "tools" },
+    { "component": <Notes db={db} />, "name": "Заметки", key: "notes" },
     { "component": <Settings db={db} />, "name": "База данных", key: "settings" },
     { "component": <Help />, "name": "Помощь", key: "help" },
   ];

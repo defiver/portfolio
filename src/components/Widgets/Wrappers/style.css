@@ -1,0 +1,46 @@
+.wrappers .ant-drawer-header {
+  display: none;
+}
+
+.wrappers .ant-drawer-body {
+  padding: 8px;
+}
+
+.wrappers .ant-list-header,
+.wrappers .ant-list-items {
+  padding: 8px !important;
+}
+
+.wrappers .ant-list-pagination {
+  margin: 16px 8px !important;
+}
+
+.wrappers .ant-collapse:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.wrappers .ant-collapse-header {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.wrappers .ant-list-items a {
+  color: inherit !important;
+}
+
+.wrappers .ant-list-items .small-text {
+  font-size: 12px;
+}
+
+.wrappers .ant-typography {
+  margin-bottom: 8px;
+}
+
+.wrappers .anticon-copy svg {
+  fill: #bbbbbb;
+}
+
+.wrappers .wrappers-list .ant-card-body {
+  height: calc(100vh - 40px - 16px);
+  overflow-y: auto;
+}
