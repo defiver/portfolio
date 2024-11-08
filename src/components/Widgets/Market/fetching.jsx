@@ -3,7 +3,7 @@ import { formatPercent } from "@/utils/number";
 
 export const fetchGas = async () => {
 	const data = await fetchingGet("https://eth.blockscout.com/api/v2/stats", {}, false);
-	return data.gas_prices.average || 0;
+	return data?.gas_prices?.average || 0;
 };
 
 export const fetchFear = async () => {
