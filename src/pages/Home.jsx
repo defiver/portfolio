@@ -11,7 +11,7 @@ import Dexie from 'dexie';
 export default function Home() {
   document.title = "Portfolio";
 
-  // получаем размеры разделителя панелей из local storage
+  // получаем размеры разделителя панелей из localStorage
   const sizes = useRef(loadStorage("splitter_sizes"));
   if (sizes.current.length === 0) {
     sizes.current = ["62%", "38%"];
