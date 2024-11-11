@@ -1,6 +1,6 @@
 import { ReloadOutlined } from "@ant-design/icons";
 import { Button, List, Typography, Input, Flex, Select } from "antd";
-import { useFilterList } from './useFilterList';
+import { useFilterList } from './helper';
 import { useState, useDeferredValue } from "react";
 import chainIds from './chainIds.json';
 
