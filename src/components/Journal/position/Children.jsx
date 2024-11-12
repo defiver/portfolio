@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Flex, Popconfirm, Space, Typography } from "antd";
+import { Button, Flex, Popconfirm, Space, Typography, Row } from "antd";
 import { useRecoilState } from "recoil";
 import { idState } from "../store";
 import { useLoading } from "@/hooks/useLoading";
@@ -15,13 +15,19 @@ export default function Children({ position, db }) {
   }, false);
 
   let age = 0;
+  let soon = false;
   let dates = "";
+  let datesTitle = "";
   // расчёт возраста позиции из объекта dayjs
   if (position?.daterange && position.daterange[0] && dayjs(position.daterange[0].$d).isValid()) {
     age = dayjs().diff(position.daterange[0].$d, 'day', true).toFixed(2);
-    dates = dayjs(position.daterange[0].$d).format('DD.MM.YYYY HH:mm');
+    dates = dayjs(position.daterange[0].$d).format('DD.MM.YY');
+    datesTitle = dayjs(position.daterange[0].$d).format('DD.MM.YYYY HH:mm');
     if (position.daterange[1] && dayjs(position.daterange[1].$d).isValid()) {
-      dates += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YYYY HH:mm');
+      dates += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YY');
+      datesTitle += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YYYY HH:mm');
+      // если до окончания срока позиции остаётся менее 3 суток, то выделяем даты
+      soon = dayjs(position.daterange[1].$d).diff(dayjs()) < 86400 * 3 * 1000;
     }
   }
 
@@ -39,11 +45,12 @@ export default function Children({ position, db }) {
     <>
       <Typography.Paragraph>{position.text}</Typography.Paragraph>
       <Flex justify={"space-between"} align={"center"}>
-        <Space>
-          <Typography.Text code title={dates}>Возраст: {age} days</Typography.Text>
+        <Row>
+          <Typography.Text code title={datesTitle} className={soon ? "warning" : ""}>{dates}</Typography.Text>
+          <Typography.Text code title={`${age * 24} ч`}>Возраст: {age} д</Typography.Text>
           {checkFirstLink(position.transactions) && getFirstLink(position.transactions)}
           {checkFirstLink(position.links) && getFirstLink(position.links)}
-        </Space>
+        </Row>
         <Space>
           <Popconfirm
             title="Удалить запись?"

@@ -15,6 +15,7 @@ export default function Header({ showChart, setShowChart }) {
       <Flex gap={8} justify={"flex-start"}>
         <Select
           allowClear
+          showSearch
           style={{ width: 150 }}
           placeholder="Тег"
           value={filter.tag}
@@ -23,6 +24,7 @@ export default function Header({ showChart, setShowChart }) {
         />
         <Select
           allowClear
+          showSearch
           style={{ width: 100 }}
           placeholder="Токен"
           value={filter.token}
@@ -31,6 +33,7 @@ export default function Header({ showChart, setShowChart }) {
         />
         <Select
           allowClear
+          showSearch
           style={{ width: 100 }}
           placeholder="Сеть"
           value={filter.chain}

@@ -17,5 +17,6 @@ export const stringToBackground = (str) => {
     background: "linear-gradient(to right, #d0d2d4, " + stringToColour(str) + ")",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
+    padding: "1px",
   };
 };

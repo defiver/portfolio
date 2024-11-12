@@ -6,8 +6,9 @@ import { usePagination } from "@/hooks/usePagination";
 import { useScroll } from "@/hooks/useScroll";
 import EditForm from "./EditForm";
 import Children from "./position/Children";
-import Extra from "./position/Extra";
+// import Extra from "./position/Extra";
 import Label from "./position/Label";
+import dayjs from "dayjs";
 
 export default function PositionList({ db }) {
   const id = useRecoilValue(idState);
@@ -27,21 +28,31 @@ export default function PositionList({ db }) {
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   }
 
+  // если до окончания срока позиции остаётся менее суток, то обводим элемент красной рамкой
+  var soon = {};
+  pagination.displayData.forEach(o => {
+    soon[o.id] = false;
+    if (o?.daterange && o.daterange[1] && o.status === "active") {
+      soon[o.id] = dayjs(o.daterange[1].$d).diff(dayjs()) < 86400 * 1000;
+    }
+  });
+
   return (
     <>
       {
-        pagination.displayData.map((o) => (
+        pagination.displayData.map(o => (
           o.id === id
             ? <EditForm key={o.id} position={o} db={db} />
             : <Collapse
               destroyInactivePanel={true}
               className={id ? "card-item blur" : "card-item"}
+              style={soon[o.id] && { borderColor: "rgba(220, 68, 70, .66)" }}
               size={"small"}
               key={o.id}
               items={[{
                 key: o.id,
                 showArrow: false,
-                extra: <Extra position={o} />,
+                // extra: <Extra position={o} />,
                 label: <Label position={o} db={db} />,
                 children: <Children position={o} db={db} />,
               }]}

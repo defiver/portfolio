@@ -25,6 +25,14 @@
   color: #008000;
 }
 
+.warning-b {
+  border-color: #dc4446;
+}
+
+.good-b {
+  border-color: #008000;
+}
+
 .blur {
   opacity: 0.5;
 }
