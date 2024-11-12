@@ -1,4 +1,4 @@
-import { XOutlined, DiscordOutlined, LinkOutlined, StarOutlined, InfoCircleOutlined, SendOutlined } from "@ant-design/icons";
+import { XOutlined, DiscordOutlined, LinkOutlined, StarOutlined, InfoCircleOutlined, SendOutlined, YoutubeOutlined } from "@ant-design/icons";
 import { saveStorage } from '@/utils/storage';
 import { Card, Avatar, Popover, Badge, Space } from "antd";
 
@@ -18,6 +18,9 @@ export default function ToolCard({ item, favorites, setFavorites }) {
 		}
 		if (url.toLowerCase().includes("discord.")) {
 			return <a href={url} key="discord"><DiscordOutlined /></a>
+		}
+		if (url.toLowerCase().includes("youtube.") || url.toLowerCase().includes("youtu.be")) {
+			return <a href={url} key="youtube"><YoutubeOutlined /></a>
 		}
 		if (url.toLowerCase().includes("t.me")) {
 			return <a href={url} key="discord"><SendOutlined /></a>
