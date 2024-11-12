@@ -27,7 +27,7 @@ export default function Children({ position, db }) {
       dates += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YY');
       datesTitle += " - " + dayjs(position.daterange[1].$d).format('DD.MM.YYYY HH:mm');
       // если до окончания срока позиции остаётся менее 3 суток, то выделяем даты
-      soon = dayjs(position.daterange[1].$d).diff(dayjs()) < 86400 * 3 * 1000;
+      soon = position.status === "active" && dayjs(position.daterange[1].$d).diff(dayjs()) < 86400 * 3 * 1000;
     }
   }
 
