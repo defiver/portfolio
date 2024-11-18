@@ -117,8 +117,8 @@ export default function TR({ showDesc }) {
 
 			<Row gutter={[8, 0]}>
 				<Col span={24}><Divider plain>Внесение ликвидности</Divider></Col>
-				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.poolAmountA)} suffix={<Paragraph copyable={{ text: result.poolAmountA }} />} /></Col>
-				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.poolAmountB)} suffix={<Paragraph copyable={{ text: result.poolAmountB }} />} /></Col>
+				<Col span={8}><Statistic title="Tокенов A" value={localeNumber(result.poolAmountA)} suffix={<Paragraph copyable={{ text: result.poolAmountA.toFixed(6) }} />} /></Col>
+				<Col span={8}><Statistic title="Tокенов B" value={localeNumber(result.poolAmountB)} suffix={<Paragraph copyable={{ text: result.poolAmountB.toFixed(6) }} />} /></Col>
 				<Col span={8}>
 					<Statistic
 						title={result.poolAmountB > values?.amountB ? "Сколько продать А" : "Сколько продать B"}
@@ -127,8 +127,8 @@ export default function TR({ showDesc }) {
 							: localeNumber(values?.amountB - result.poolAmountB)
 						}
 						suffix={result.poolAmountB > values?.amountB
-							? <Paragraph copyable={{ text: values?.amountA - result.poolAmountA }} />
-							: <Paragraph copyable={{ text: values?.amountB - result.poolAmountB }} />
+							? <Paragraph copyable={{ text: (values?.amountA - result.poolAmountA).toFixed(6) }} />
+							: <Paragraph copyable={{ text: (values?.amountB - result.poolAmountB).toFixed(6) }} />
 						}
 					/>
 				</Col>
