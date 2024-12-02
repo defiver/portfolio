@@ -80,19 +80,25 @@ export default function Assets({ db }) {
               disabled: isTokensLoading,
               label: "Графики",
               key: "charts",
-              children: <Charts transactions={transactions} tokens={tokens} />
+              children: isTokensLoading
+                ? <Skeleton loading active paragraph={{ rows: 5 }} title={false} />
+                : <Charts transactions={transactions} tokens={tokens} />
             },
             {
               disabled: isTokensLoading,
               label: "Активы",
               key: "assets",
-              children: <AssetsList db={db} transactions={transactions} tokens={tokens} />
+              children: isTokensLoading
+                ? <Skeleton loading active paragraph={{ rows: 5 }} title={false} />
+                : <AssetsList db={db} transactions={transactions} tokens={tokens} />
             },
             {
               disabled: isTokensLoading,
               label: "Транзакции",
               key: "transactions",
-              children: <Transactions db={db} transactions={transactions} tokens={tokens} />
+              children: isTokensLoading
+                ? <Skeleton loading active paragraph={{ rows: 5 }} title={false} />
+                : <Transactions db={db} transactions={transactions} tokens={tokens} />
             },
           ]}
         />
