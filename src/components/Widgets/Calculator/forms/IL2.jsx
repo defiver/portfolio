@@ -33,8 +33,8 @@ export default function IL2({ showDesc }) {
 		let holdA = amountA * 2;
 		let holdB = amountB * 2;
 
-		let feesA = amountA * values.apr / 200 * values.days / 365;
-		let feesB = amountB * values.apr / 200 * values.days / 365;
+		let feesA = amountA * values.apr / 100 * values.days / 365;
+		let feesB = amountB * values.apr / 100 * values.days / 365;
 
 		let poolA = amountA + feesA + (amountB + feesB) / endPrice;
 		let poolB = amountB + feesB + (amountA + feesA) * endPrice;
