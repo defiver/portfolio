@@ -17,7 +17,7 @@ const defaultResult = {
 	"endPrice": 0,
 }
 
-export default function IL({ showDesc }) {
+export default function IL3({ showDesc }) {
 	const [form] = Form.useForm();
 	const values = Form.useWatch([], form);
 	const [result, setResult] = useState(defaultResult);
@@ -59,7 +59,7 @@ export default function IL({ showDesc }) {
 	return (
 		<>
 			<Card size={"small"} hidden={!showDesc}>
-				<p>Сравнение стратегии HODL с внесением активов в пул ликвидности. Можно указать доходность позиции и её продолжительность для приблезительного учёта комиссионных.<br /><br />Предполагаемая цена это цена, при которой позиция перестаёт быть активной и она переливается в один из токенов.</p>
+				<p>Сравнение стратегии HODL с внесением активов в v3 пулы. Можно указать доходность позиции и её продолжительность для приблезительного учёта комиссионных.<br /><br />Предполагаемая цена это цена, при которой позиция перестаёт быть активной и она переливается в один из токенов.</p>
 			</Card>
 
 			<Form form={form} autoComplete="off" requiredMark={false}>
