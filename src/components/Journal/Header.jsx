@@ -1,5 +1,5 @@
 import { DownOutlined, FileZipOutlined, UpOutlined, BarChartOutlined } from "@ant-design/icons";
-import { Button, Select, Flex } from "antd";
+import { Button, Select, Flex, Input } from "antd";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { chainsState, idState, filterState, tagsState, tokensState } from "./store";
 
@@ -13,10 +13,17 @@ export default function Header({ showChart, setShowChart }) {
   return (
     <Flex gap={8} justify="space-between" style={{ overflow: "auto", width: "100%" }}>
       <Flex gap={8} justify={"flex-start"}>
+        <Input
+          allowClear
+          placeholder="Поиск"
+          style={{ width: 120 }}
+          value={filter.query}
+          onChange={(e) => setFilterState({ ...filter, query: e.target.value })}
+        />
         <Select
           allowClear
           showSearch
-          style={{ width: 150 }}
+          style={{ width: 120 }}
           placeholder="Тег"
           value={filter.tag}
           onChange={(value) => setFilterState({ ...filter, tag: value })}
@@ -25,7 +32,7 @@ export default function Header({ showChart, setShowChart }) {
         <Select
           allowClear
           showSearch
-          style={{ width: 100 }}
+          style={{ width: 120 }}
           placeholder="Токен"
           value={filter.token}
           onChange={(value) => setFilterState({ ...filter, token: value })}
@@ -34,7 +41,7 @@ export default function Header({ showChart, setShowChart }) {
         <Select
           allowClear
           showSearch
-          style={{ width: 100 }}
+          style={{ width: 120 }}
           placeholder="Сеть"
           value={filter.chain}
           onChange={(value) => setFilterState({ ...filter, chain: value })}

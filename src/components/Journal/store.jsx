@@ -14,6 +14,7 @@ export const idState = atom({
 export const filterState = atom({
   key: "JournalFilter",
   default: {
+    query: "",
     tag: null,
     token: null,
     chain: null,
@@ -40,6 +41,10 @@ export const filteredJournalState = selector({
 
     if (filter.chain) {
       journal = journal.filter((o) => o.chain && o.chain.includes(filter.chain));
+    }
+
+    if (filter.query != "") {
+      journal = journal.filter((o) => o.text && o.text.toLowerCase().includes(filter.query.toLowerCase()));
     }
 
     return journal.filter((o) => filter.status ^ (o.status !== "active"));
