@@ -10,15 +10,16 @@ import MyInputNumber from "@/components/MyInputNumber";
 
 const chains = [
   { "name": "Arbitrum", "chain": "arb" },
-  { "name": "Avalanche", "chain": "avax" },
   { "name": "Base", "chain": "base" },
   { "name": "Blast", "chain": "blast" },
   { "name": "Ethereum", "chain": "eth" },
   { "name": "Mantle", "chain": "mantle" },
   { "name": "Mode", "chain": "mode" },
   { "name": "Optimism", "chain": "opt" },
-  { "name": "Scroll", "chain": "scroll" },
-  { "name": "zkSync", "chain": "zksync" },
+  { "name": "Polygon", "chain": "polygon" },
+//  { "name": "Scroll", "chain": "scroll" },
+//  { "name": "zkSync", "chain": "zksync" },
+//  { "name": "Avalanche", "chain": "avax" },
 ];
 
 export default function EditForm({ db, pool }) {
