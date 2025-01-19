@@ -10,6 +10,7 @@ export const filterState = atom({
   default: {
     query: "",
     chains: [],
+    negative_chains: [],
     projects: [],
     attribute: [],
     sort: "apy",
@@ -34,6 +35,10 @@ export const filteredPoolsState = selector({
 
     if (filter.chains.length) {
       pools = pools.filter(o => filter.chains.includes(o.chain));
+    }
+
+    if (filter.negative_chains.length) {
+      pools = pools.filter(o => !filter.negative_chains.includes(o.chain));
     }
 
     if (filter.projects.length) {

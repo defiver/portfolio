@@ -35,15 +35,27 @@ export default function Filter({ fetchPools, isPoolsLoading }) {
 
 	return (
 		<>
-			<Row gutter={[8, 8]} align={"middle"} style={{ marginBottom: 8, display: showFilters ? "grid" : "none" }}>
-				<Col span={24}>
+			<Row gutter={[8, 8]} align={"middle"} style={{ marginBottom: 8, display: showFilters ? "flex" : "none" }}>
+				<Col span={14}>
 					<Select
 						showSearch
 						allowClear
 						mode="multiple"
-						placeholder="Сети"
+						placeholder="Только эти сети"
 						value={filter.chains}
 						onChange={(value) => setFilterState({ ...filter, chains: value })}
+						options={chains.map(i => { return { value: i, label: i } })}
+						filterSort={(a, b) => (a.label).toLowerCase().localeCompare((b.label).toLowerCase())}
+					/>
+				</Col>
+				<Col span={10}>
+					<Select
+						showSearch
+						allowClear
+						mode="multiple"
+						placeholder="Исключить сети"
+						value={filter.negative_chains}
+						onChange={(value) => setFilterState({ ...filter, negative_chains: value })}
 						options={chains.map(i => { return { value: i, label: i } })}
 						filterSort={(a, b) => (a.label).toLowerCase().localeCompare((b.label).toLowerCase())}
 					/>
