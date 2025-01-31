@@ -7,19 +7,19 @@ export const fetchGas = async () => {
 };
 
 export const fetchFear = async () => {
-	const data = await fetchingGet("https://api.cryptorank.io/v0/widgets/fear-and-greed-index");
+	const data = await fetchingGet("https://api.coin-stats.com/v2/fear-greed");
 	return {
-		today: data?.today || 0,
-		change: data?.yesterday ? formatPercent(data?.today, data?.yesterday) : 0,
+		today: data?.now?.value || 0,
+		change: data?.yesterday?.value ? formatPercent(data?.now?.value, data?.yesterday?.value) : 0,
 	}
 };
 
 export const fetchGlobal = async () => {
-	const data = await fetchingGet("https://api.cryptorank.io/v0/global");
+	const data = await fetchingGet("https://api.coin-stats.com/v2/markets/global");
 
 	return {
-		cap: data?.totalMarketCap || 0,
-		btcd: data?.btcDominance || 0,
+		cap: data?.globalData?.marketCap || 0,
+		btcd: data?.globalData?.btcDominance || 0,
 	};
 };
 
