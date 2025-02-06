@@ -29,7 +29,7 @@ export default function IL3({ showDesc }) {
 		let startAmountA = values.amountA + values.amountB / startPrice;
 		let startAmountB = values.amountA * startPrice + values.amountB;
 
-		let avgPrice = (startPrice + endPrice) / 2;
+		let avgPrice = Math.sqrt(startPrice * endPrice);
 		let holdAmountA = startAmountA;
 		let holdAmountB = startAmountB;
 		let poolAmountA = 0;

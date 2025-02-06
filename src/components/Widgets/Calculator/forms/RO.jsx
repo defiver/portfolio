@@ -19,8 +19,8 @@ export default function RO({ showDesc }) {
 	const [result, setResult] = useState(defaultResult);
 
 	const calc = () => {
-		let avgDownPriceA = (values.rangeDown + values.price) / 2;
-		let avgUpPriceB = (values.rangeUp + values.price) / 2;
+		let avgDownPriceA = Math.sqrt(values.rangeDown * values.price);
+		let avgUpPriceB = Math.sqrt(values.rangeUp * values.price);
 
 		let downAmountA = values.amountA + values.amountB / avgDownPriceA;
 		let upAmountB = values.amountB + values.amountA * avgUpPriceB;
@@ -41,7 +41,7 @@ export default function RO({ showDesc }) {
 	return (
 		<>
 			<Card size={"small"} hidden={!showDesc}>
-				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов.</p>
+				<p>Расчёт средней цены покупки/продажи токенов при выходе цены за границы диапазона. Средняя цена считается как для случая переливания одного токена в другой, так и с учётом изначально имеющихся активов. Расчёт производится по формуле геометрической средней.</p>
 			</Card>
 
 			<Form form={form} autoComplete="off" requiredMark={false}>
