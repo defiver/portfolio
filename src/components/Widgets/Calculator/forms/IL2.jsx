@@ -5,14 +5,12 @@ import { useEffect, useState } from "react";
 import MyInputNumber from "@/components/MyInputNumber";
 
 const defaultResult = {
-	"amountA": 0, // ликвидность в токенах A
-	"amountB": 0, // ликвидность в токенах B
 	"holdA": 0, // ликвидность в токенах A при HOLD
 	"holdB": 0, // ликвидность в токенах A при HOLD
 	"feesA": 0, // накопленные комиссии для токенов А
 	"feesB": 0, // накопленные комиссии для токенов B
-	"poolA": 0, // ликвидность в токенах A в пуле с учётом комиссий
-	"poolB": 0, // ликвидность в токенах B в пуле с учётом комиссий
+	"poolAmountA": 0, // ликвидность в токенах A в пуле с учётом комиссий
+	"poolAmountB": 0, // ликвидность в токенах B в пуле с учётом комиссий
 	"ILA": 0, // непостоянные потери в А
 	"ILB": 0, // непостоянные потери в В
 	"startPrice": 0,
@@ -30,27 +28,25 @@ export default function IL2({ showDesc }) {
 		let amountA = values.amountA;
 		let amountB = values.amountB;
 
+		// кол-во токенов в пуле после изменения цены (x * y = k)
+		let k = values.amountA * values.amountB;
+		let poolAmountA = Math.sqrt(k / endPrice);
+		let poolAmountB = Math.sqrt(k * endPrice);
+
+		// заработанные комиссионные
+		let feesA = ((amountA + poolAmountA) / 2) * values.apr / 100 * values.days / 365;
+		let feesB = ((amountB + poolAmountB) / 2) * values.apr / 100 * values.days / 365;
+
 		let holdA = amountA * 2;
 		let holdB = amountB * 2;
 
-		let feesA = amountA * values.apr / 100 * values.days / 365;
-		let feesB = amountB * values.apr / 100 * values.days / 365;
+		let ILA = holdA - (poolAmountA * 2) + feesA + feesB / endPrice;
+		let ILB = holdB - (poolAmountB * 2) + feesA * endPrice + feesB;
 
-		let poolA = amountA + feesA + (amountB + feesB) / endPrice;
-		let poolB = amountB + feesB + (amountA + feesA) * endPrice;
-
-		let ILA = holdA - poolA;
-		let ILB = holdB - poolB;
-
-		setResult({ amountA, amountB, holdA, holdB, feesA, feesB, poolA, poolB, ILA, ILB, startPrice, endPrice })
+		setResult({ holdA, holdB, feesA, feesB, poolAmountA, poolAmountB, ILA, ILB, startPrice, endPrice })
 	}
 
 	useEffect(() => {
-		if (values?.amountA > 0 && values?.startPrice > 0) {
-			form.setFieldsValue({ amountB: values.amountA * values.startPrice })
-		}
-
-
 		form.validateFields({ validateOnly: true })
 			.then(() => calc())
 			.catch(() => setResult(defaultResult))
@@ -59,7 +55,7 @@ export default function IL2({ showDesc }) {
 	return (
 		<>
 			<Card size={"small"} hidden={!showDesc}>
-				<p>Сравнение стратегии HODL с внесением активов в v2 пулы, когда кол-во токенов в позиции остаётся постоянным вне зависимости от изменения цены. Можно указать доходность позиции и её продолжительность для приблезительного учёта комиссионных.<br /></p>
+				<p>Сравнение стратегии HODL с внесением активов в v2 пулы. Можно указать доходность позиции и её продолжительность для приблизительного учёта комиссионных.<br /></p>
 			</Card>
 
 			<Form form={form} autoComplete="off" requiredMark={false}>
@@ -84,7 +80,7 @@ export default function IL2({ showDesc }) {
 
 					<Col span={12}>
 						<Form.Item label="Токены B" name="amountB" rules={[{ required: true, message: "" }]}>
-							<MyInputNumber disabled />
+							<MyInputNumber placeholder="USDC (1000)" min={0} />
 						</Form.Item>
 					</Col>
 
@@ -109,13 +105,13 @@ export default function IL2({ showDesc }) {
 			<Row gutter={[8, 0]} className="IL">
 				<Col span={24}><Divider plain>Пул c учётом комиссий</Divider></Col>
 
-				<Col span={6}><Statistic title="Токенов А" value={localeNumber(result.amountA + result.feesA)} suffix={localeNumber(result.amountA) + " + " + localeNumber(result.feesA)} /></Col>
+				<Col span={6}><Statistic title="Токенов А" value={localeNumber(result.poolAmountA + result.feesA)} suffix={localeNumber(result.poolAmountA) + " + " + localeNumber(result.feesA)} /></Col>
 
-				<Col span={6}><Statistic title="Токенов B" value={localeNumber(result.amountB + result.feesB)} suffix={localeNumber(result.amountB) + " + " + localeNumber(result.feesB)} /></Col>
+				<Col span={6}><Statistic title="Токенов B" value={localeNumber(result.poolAmountB + result.feesB)} suffix={localeNumber(result.poolAmountB) + " + " + localeNumber(result.feesB)} /></Col>
 
-				<Col span={6}><Statistic title="Всего в А" value={localeNumber(result.poolA)} suffix={localeNumber(result.amountA + result.feesA) + " + " + localeNumber((result.amountB + result.feesB) / result.endPrice)} /></Col>
+				<Col span={6}><Statistic title="Всего в А" value={localeNumber((result.poolAmountA * 2) + result.feesA + result.feesB / result.endPrice)} suffix={localeNumber(result.poolAmountA * 2) + " + " + localeNumber(result.feesA + result.feesB / result.endPrice)} /></Col>
 
-				<Col span={6}><Statistic title="Всего в B" value={localeNumber(result.poolB)} suffix={localeNumber(result.amountB + result.feesB) + " + " + localeNumber((result.amountA + result.feesA) * result.endPrice)} /></Col>
+				<Col span={6}><Statistic title="Всего в B" value={localeNumber((result.poolAmountB * 2) + result.feesB * result.endPrice + result.feesB)} suffix={localeNumber(result.poolAmountB * 2) + " + " + localeNumber(result.feesA * result.endPrice + result.feesB)} /></Col>
 
 				<Col span={24}><Divider plain>Непостоянные потери</Divider></Col>
 
