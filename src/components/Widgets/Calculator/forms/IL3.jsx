@@ -35,12 +35,12 @@ export default function IL3({ showDesc }) {
 		let poolAmountA = 0;
 		let poolAmountB = 0;
 
+		let fees = avgPrice * values.apr / 100 * values.days / 365;
+
 		// расчёт итоговой стоимости активов после перелива позиции с учётом комиссионных
 		if (startPrice > endPrice) {
-			let fees = (poolAmountA + startAmountA) / 2 * values.apr / 100 * values.days / 365;
-			poolAmountA = fees + values.amountA + values.amountB / avgPrice;
+			poolAmountA = fees / avgPrice + values.amountA + values.amountB / avgPrice;
 		} else {
-			let fees = (startAmountB + poolAmountB) / 2 * values.apr / 100 * values.days / 365;
 			poolAmountB = fees + values.amountB + values.amountA * avgPrice;
 		}
 
