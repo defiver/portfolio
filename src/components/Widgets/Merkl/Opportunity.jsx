@@ -20,7 +20,7 @@ export default function Opportunity({ db }) {
           let chainId = chainIds[o.chainId] !== undefined ? o.chainId : "0";
           let chainName = chainIds[chainId].name;
           let url = `https://app.merkl.xyz/opportunities/${chainName}/${o.type}/${o.identifier}`;
-          return { id: o.identifier, name: o.name, url, apr: o.aprRecord.cumulated, fresh, chain: chainId };
+          return { id: o.identifier, name: o.name, url, apr: o.apr, fresh, chain: chainId };
         });
       await db.transaction('rw', db.merkl, async function () {
         await db.merkl.clear();
