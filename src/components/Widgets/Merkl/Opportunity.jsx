@@ -3,8 +3,7 @@ import { useLoading } from "@/hooks/useLoading";
 import { useLiveQuery } from "dexie-react-hooks";
 import OppList from './OppList';
 import chainIds from './chainIds.json';
-
-const LINK = "https://api.merkl.xyz/v4/opportunities/?items=500&status=LIVE&test=false&sort=apr";
+const LINK = "https://api.merkl.xyz/v4/opportunities/?items=100&status=LIVE&test=false&sort=lastCampaignCreatedAt";
 
 export default function Opportunity({ db }) {
   const allOpp = useLiveQuery(() => db.merkl.toArray(), [], []);
