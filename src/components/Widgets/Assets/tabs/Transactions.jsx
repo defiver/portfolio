@@ -21,7 +21,7 @@ export default function Transactions({ db, transactions, tokens }) {
 	// токенов много, поэтому выводим только 10 подходящих
 	const handleSearch = (value) => {
 		value = value.toLowerCase()
-		let search = Object.values(tokens).filter(o => o.name.toLowerCase().includes(value) || o.symbol.toLowerCase().includes(value));
+		let search = Object.values(tokens).filter(o => o.symbol && (o.name.toLowerCase().includes(value) || o.symbol.toLowerCase().includes(value)));
 		setOptions(search.slice(0, 10));
 	};
 
