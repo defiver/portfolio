@@ -6,12 +6,13 @@ import TransTable from "../components/TransTable";
 
 export default function AssetsList({ db, transactions, tokens }) {
 	// дефолтный токен в select
-	const [token, setToken] = useState(transactions.length ? transactions[0].token : null);
+	const [token, setToken] = useState();
 
 	let uniqueObjects = {}; // уникальные токены
 	transactions.forEach(obj => { uniqueObjects[obj.token] = obj });
-	let options = Object.values(uniqueObjects).map(o => { return { value: o.token, label: o.token } });
 	const filterTrans = transactions.filter(o => o.token === token); // фильтр по выбранному токену
+	const options = Object.values(uniqueObjects).map(o => { return { value: o.token, label: o.token } })
+	const [filterOptions, setFilterOptions] = useState(options);
 
 	const amount = filterTrans.reduce((a, b) => a + b.amount, 0); // текущее кол-во токенов
 	const purchase = filterTrans.reduce((a, b) => a + b.amount * b.price, 0); // сколько потрачено
@@ -24,9 +25,29 @@ export default function AssetsList({ db, transactions, tokens }) {
 	const ROE = calcROE(filterTrans, tokens);
 	const APY = calcAPY(filterTrans, tokens);
 
+	const handleSearch = (value) => {
+		if (value) {
+			value = value.toLowerCase()
+			let search = Object.values(options).filter(o => o.value && (o.value.toLowerCase().includes(value) || o.label.toLowerCase().includes(value)));
+			setFilterOptions(search);
+		} else {
+			setFilterOptions(options);
+		}
+	};
+
 	return (
 		<Flex vertical gap={16}>
-			<Select options={options} defaultValue={token} onChange={setToken} />
+			<Select
+				options={filterOptions}
+				defaultValue={token}
+				onChange={setToken}
+				allowClear
+				onClear={() => {
+					setToken(null)
+					setFilterOptions(options)
+				}}
+				showSearch
+				onSearch={handleSearch} />
 
 			<Row gutter={[8, 8]}>
 				<Col span={6}><CustomStatistic value={amount} title={"Кол-во токенов"} /></Col>
