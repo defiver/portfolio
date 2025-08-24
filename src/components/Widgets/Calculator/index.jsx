@@ -9,6 +9,7 @@ import IL3 from "./forms/IL3";
 import IL2 from "./forms/IL2";
 import CI from "./forms/CI";
 import CR from "./forms/CR";
+import AV from "./forms/AV";
 import "./style.css";
 
 export default function Calculator() {
@@ -26,6 +27,7 @@ export default function Calculator() {
     "ImpermanentLossV2": <IL2 showDesc={showDesc} />,
     "CompoundInterest": <CI showDesc={showDesc} />,
     "CAGR": <CR showDesc={showDesc} />,
+    "AveragingPrices": <AV showDesc={showDesc} />,
   }
 
   const options = [
@@ -37,6 +39,7 @@ export default function Calculator() {
     { value: "ImpermanentLossV2", label: "Impermanent Loss V2" },
     { value: "CompoundInterest", label: "Сложный процент" },
     { value: "CAGR", label: "Среднегодовой темп роста (CAGR)" },
+    { value: "AveragingPrices", label: "Усреднениe цены" },
   ]
 
   return (
