@@ -2,8 +2,11 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { Form, Button, DatePicker, Row, Col, Flex, Input, } from "antd";
 import { useLoading } from "@/hooks/useLoading";
 import SubmitButton from "@/components/SubmitButton";
-import locale from "antd/es/date-picker/locale/ru_RU";
+import locale from 'antd/es/date-picker/locale/ru_RU';
 import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+
+dayjs.locale('ru', { weekStart: 1 });
 
 export default function EditForm({ setId, db, note = {} }) {
   const [form] = Form.useForm();

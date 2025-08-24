@@ -161,3 +161,33 @@ export const calcMWR = (transactions, tokens) => {
 	var now = calcAssetsValue(assets, tokens);
 	return mimo.length ? 100 * calcModDietz(mimo, 0, now) : 0;
 }
+
+// функция для расчёта средней цены покупки
+export const calcAPP = (assets) => {
+	var value = 0;
+	var count = 0;
+
+	for (const o of assets) {
+		if (o.amount > 0) {
+			value += o.amount * o.price;
+			count += o.amount;
+		}
+	}
+
+	return count > 0 ? value / count : 0;
+};
+
+// функция для расчёта средней цены продажи
+export const calcAPS = (assets) => {
+	var value = 0;
+	var count = 0;
+
+	for (const o of assets) {
+		if (o.amount < 0) {
+			value += o.amount * o.price * -1;
+			count += o.amount * -1;
+		}
+	}
+
+	return count > 0 ? value / count : 0;
+};

@@ -6,8 +6,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { idState, allTagsState, allChainsState } from "./store";
 import SubmitButton from "@/components/SubmitButton";
 import MyInputNumber from "@/components/MyInputNumber";
-import locale from "antd/es/date-picker/locale/ru_RU";
-import dayjs from "dayjs";
+import locale from 'antd/es/date-picker/locale/ru_RU';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+
+dayjs.locale('ru', { weekStart: 1 });
 
 export default function EditForm({ db, position = { id: 0, status: "active", daterange: [dayjs()] } }) {
   const [form] = Form.useForm();
@@ -46,7 +49,7 @@ export default function EditForm({ db, position = { id: 0, status: "active", dat
   // для выбора нескольких токенов в позицию
   const tokensSelector = (name) => (
     <Form.Item name={[name, "token"]} noStyle>
-      <Select style={{ width: 100 }}>
+      <Select style={{ width: 100 }} showSearch>
         {tokens.map(o => <Select.Option key={o.token} value={o.token}>{o.token}</Select.Option>)}
       </Select>
     </Form.Item>

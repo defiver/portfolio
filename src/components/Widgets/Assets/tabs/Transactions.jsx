@@ -5,7 +5,11 @@ import { useState } from "react";
 import SubmitButton from "@/components/SubmitButton";
 import MyInputNumber from "@/components/MyInputNumber";
 import TransTable from "../components/TransTable";
-import locale from "antd/es/date-picker/locale/ru_RU";
+import locale from 'antd/es/date-picker/locale/ru_RU';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+
+dayjs.locale('ru', { weekStart: 1 });
 
 export default function Transactions({ db, transactions, tokens }) {
 	const [form] = Form.useForm();

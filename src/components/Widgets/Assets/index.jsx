@@ -60,7 +60,7 @@ export default function Assets({ db }) {
         onOk={() => setshowModal(false)}
         onCancel={() => setshowModal(false)}
         afterClose={() => setshowModal(false)}
-        width={750}
+        width={980}
         style={{ top: 20 }}
       >
         <Tabs
