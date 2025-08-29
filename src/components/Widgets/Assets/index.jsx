@@ -11,7 +11,8 @@ import AssetsList from "./tabs/AssetsList";
 import Transactions from "./tabs/Transactions";
 import "./style.css";
 
-const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=1500";
+// const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=1500";
+const LINK = "https://http-api.livecoinwatch.com/coins?offset=0&limit=1000&sort=cap&order=descending&currency=USD";
 
 export default function Assets({ db }) {
   const [showModal, setshowModal] = useState(false);
@@ -28,8 +29,8 @@ export default function Assets({ db }) {
       let tkns = {}; // заносим данные в объект
       (data?.data || []).forEach(o => {
         // в списке есть повторяющтеся тикеры, поэтому оставляем те, которые выше в рейтинге
-        if (!(o.symbol in tkns)) {
-          tkns[o.symbol] = { name: o.name, symbol: o.symbol, price: o.price.USD }
+        if (!(o.code in tkns)) {
+          tkns[o.code] = { name: o.name, symbol: o.code, price: o.price }
         }
       });
       Object.keys(tkns).length > 0 && setTokens(tkns);
