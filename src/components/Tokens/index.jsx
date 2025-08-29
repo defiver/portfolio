@@ -10,7 +10,8 @@ import AddForm from './AddForm';
 import TokensList from './TokensList';
 import "./style.css";
 
-const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=3000"; // ресурс с котировками
+// const LINK = "https://api.cryptorank.io/v0/coins/v2?lifeCycle=traded&limit=3000"; // ресурс с котировками
+const LINK = "https://http-api.livecoinwatch.com/coins?offset=0&limit=1000&sort=cap&order=descending&currency=USD"; // ресурс с котировками
 
 export default function Tokens({ db }) {
   const [add, setAdd] = useState(false);
@@ -28,8 +29,8 @@ export default function Tokens({ db }) {
     // обновляем цены тех токенов, которые есть в общем списке с котировками
     for (const t of tokens) {
       for (const q of prices) {
-        if (q.symbol && t.token && q.symbol.toLowerCase() === t.token.toLowerCase()) {
-          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.price.USD ?? 0 });
+        if (q.code && t.token && q.code.toLowerCase() === t.token.toLowerCase()) {
+          editTonen({ ...t, previous: t?.quote ?? 0, quote: q.price ?? 0 });
           break;
         }
       }
