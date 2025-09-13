@@ -52,8 +52,8 @@ export default function Chart({ journal }) {
 	}
 
 	// выводим данные только за последний год
-	datasets = datasets.slice(-365);
-	incomes = Object.values(incomes).map(v => v).slice(-365);
+	// datasets = datasets.slice(-365);
+	// incomes = Object.values(incomes).map(v => v).slice(-365);
 
 	const data = {
 		labels: datasets.map(a => a[0]),
