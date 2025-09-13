@@ -1,6 +1,8 @@
 import { localeNumber } from "@/utils/number";
 import { Chart as CJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip } from 'chart.js';
+import { useState } from "react";
 import { Bar } from 'react-chartjs-2';
+import { Segmented } from "antd";
 import dayjs from "dayjs";
 import minMax from "dayjs/plugin/minMax";
 
@@ -18,6 +20,8 @@ const getRange = (beginDate, endDate) => {
 }
 
 export default function Chart({ journal }) {
+	const [period, setPeriod] = useState("1Y");
+
 	var dates = journal
 		.filter(o => o?.daterange && o.daterange[0] && dayjs(o.daterange[0].$d).isValid())
 		.map(o => dayjs(o.daterange[0].$d));
@@ -51,9 +55,19 @@ export default function Chart({ journal }) {
 		datasets.push([key, allincome]);
 	}
 
-	// выводим данные только за последний год
-	// datasets = datasets.slice(-365);
-	// incomes = Object.values(incomes).map(v => v).slice(-365);
+	// выводим данные за определённый период
+	if (period === "1Y") {
+		datasets = datasets.slice(-365);
+		incomes = Object.values(incomes).map(v => v).slice(-365);
+	} else if (period === "6M") {
+		datasets = datasets.slice(-183);
+		incomes = Object.values(incomes).map(v => v).slice(-180);
+	} if (period === "1M") {
+		datasets = datasets.slice(-30);
+		incomes = Object.values(incomes).map(v => v).slice(-30);
+	} else {
+		incomes = Object.values(incomes).map(v => v);
+	}
 
 	const data = {
 		labels: datasets.map(a => a[0]),
@@ -98,5 +112,17 @@ export default function Chart({ journal }) {
 		},
 	};
 
-	return <div style={{ height: 300, margin: "10px 0" }} ><Bar options={options} data={data} /></div>
+	return (
+		<div style={{ height: 325, margin: "10px 0" }} >
+			<div style={{ height: 300 }} >
+				<Bar options={options} data={data} />
+				<Segmented
+					size={"small"}
+					options={["All", "1Y", "6M", "1M"]}
+					value={period}
+					onChange={setPeriod}
+				/>
+			</div>
+		</div>
+	)
 }
