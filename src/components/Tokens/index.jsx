@@ -28,11 +28,16 @@ export default function Tokens({ db }) {
     let prices = quotes?.data || [];
     // обновляем цены тех токенов, которые есть в общем списке с котировками
     for (const t of tokens) {
+      let prov = false;
       for (const q of prices) {
         if (q.code && t.token && q.code.toLowerCase() === t.token.toLowerCase()) {
           editTonen({ ...t, previous: t?.quote ?? 0, quote: q.price ?? 0 });
+          prov = true;
           break;
         }
+      }
+      if (!prov) {
+        editTonen({ ...t, previous: 0, quote: 0 });
       }
     }
   }, false);
