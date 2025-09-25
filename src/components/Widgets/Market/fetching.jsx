@@ -24,14 +24,15 @@ export const fetchGlobal = async () => {
 };
 
 export const fetchCoins = async () => {
-	const data = await fetchingGet("https://api.cryptorank.io/v0/coins/v2?limit=10");
+	// const data = await fetchingGet("https://api.cryptorank.io/v0/coins/?limit=10");
+	const data = await fetchingGet("https://api.coin-stats.com/v4/coins?skip=0&limit=10");
 
-	return (data?.data instanceof Array ? data.data : []).map(o => {
+	return (data?.coins instanceof Array ? data.coins : []).map(o => {
 		return {
-			name: o.name,
-			cap: o.marketCap,
-			price: o.price.USD,
-			image: o.image,
+			name: o.n,
+			cap: o.m,
+			price: o.pu,
+			image: o.ic,
 		}
 	});
 };
