@@ -2,8 +2,9 @@ import { fetchingGet } from "@/utils/fetching";
 import { formatPercent } from "@/utils/number";
 
 export const fetchGas = async () => {
-	const data = await fetchingGet("https://eth.blockscout.com/api/v2/stats", {}, false);
-	return data?.gas_prices?.average || 0;
+	// const data = await fetchingGet("https://eth.blockscout.com/api/v2/stats", {}, false);
+	const data = await fetchingGet("https://beaconcha.in/api/v1/execution/gasnow", {}, false);
+	return parseFloat((data?.data?.standard || 0) / 1_000_000_000).toFixed(2);
 };
 
 export const fetchFear = async () => {
